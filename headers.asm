@@ -1,22 +1,36 @@
-%define SYS_READ 0
-%define SYS_WRITE  1
-%define SYS_CLOSE 3
-%define SYS_EXIT 60
-%define SYS_OPEN 2
-%define SYS_NANOSLEEP 35
-%define SYS_RT_SIGACTION 13
-%define SYS_RT_SIGRETURN 15
-%define SYS_DUP2 33
-%define SYS_GETCWD 79
-%define SYS_SOCKET 41
-%define SYS_CONNECT 42
-%define SYS_ACCEPT 43
-%define SYS_SEND 289
-%define SYS_RECV 291
+%define SYS_READ_X64 0
+%define SYS_WRITE_X64  1
+%define SYS_CLOSE_X64 3
+%define SYS_EXIT_X64 60
+%define SYS_OPEN_X64 2
+%define SYS_GETCWD_X64 79
+%define SYS_NANOSLEEP_X64 35
+%define SYS_RT_SIGACTION_X64 13
+%define SYS_RT_SIGRETURN_X64 15
+%define SYS_DUP2_X64 33
+%define SYS_GETCWD_X64 79
+%define SYS_SOCKET_X64 41
+%define SYS_CONNECT_X64 42
+%define SYS_ACCEPT_X64 43
+%define SYS_SEND_X64 289
+%define SYS_RECV_X64 291
+
+%define SYS_WRITE_X32 4
+%define SYS_EXIT_X32 1
+%define SYS_READ_X32 3
+%define SYS_CLOSE_X32 6
+%define SYS_OPEN_X32 5
+%define SYS_CHDIR_X32 12
+%define SYS_GETCWD_X32 183
 
 ; Standard file decriptors
 %define STDOUT 1
 %define STDIN 2
+
+
+
+
+
 
 ; signal handling
 %define sigaction_size 32

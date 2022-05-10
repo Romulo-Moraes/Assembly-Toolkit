@@ -1,0 +1,12 @@
+JO - jump on overflow (signed operation)
+JNO - jump on not overflow (signed operation)
+
+JC - jump on overflow (unsigned operation)
+JNC - jump on not overflow (unsigned operation)
+
+JE - jump if equal 
+JZ - jump if Zero
+JNZ - jump if not Zero
+JNE - jump if not equal 
+
+JL - jump if less

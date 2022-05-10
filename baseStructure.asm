@@ -1,3 +1,5 @@
+segment .rodata
+
 segment .data
 
 segment .bss

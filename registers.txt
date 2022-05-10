@@ -1,0 +1,49 @@
+Data registers: {
+    64 bits registers: {
+        RAX
+        RDI
+        RDI
+        RDX
+    }
+    32 bits registers: {
+        EAX
+        EBX 
+        ECX
+        EDX
+    }
+    16 bits registers: {
+        AX
+        BX
+        CX
+        DX
+    }
+    8 bits registers: {
+        AL
+        BL
+        CL
+        DL
+    }
+}
+Index registers: {
+    64 bits registers: {
+        RSI
+        RDI
+    }
+
+    32 bits registers: {
+        ESI
+        EDI
+    }
+
+    16 bits registers: {
+        SI
+        DI
+    }
+}
+Control registers: {
+    Overflow Flag (OF)
+    Zero Flag (ZF)
+    Sign Flag (SF)
+}
+
+
