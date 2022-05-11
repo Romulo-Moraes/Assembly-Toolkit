@@ -1,3 +1,5 @@
+jmp - jump to a address in memory
+
 JO - jump on overflow (signed operation)
 JNO - jump on not overflow (signed operation)
 
@@ -5,8 +7,13 @@ JC - jump on overflow (unsigned operation)
 JNC - jump on not overflow (unsigned operation)
 
 JE - jump if equal 
-JZ - jump if Zero
-JNZ - jump if not Zero
+JGE - jump if greater or equal
+JLE - jump if less or equal
 JNE - jump if not equal 
 
+JZ - jump if Zero
+JNZ - jump if not Zero
+
 JL - jump if less
+JG - jump if greater
+
