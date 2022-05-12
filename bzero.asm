@@ -1,4 +1,4 @@
-bzero_memory_init:
+bzero:
     xor rcx,rcx
 
     cmp rcx,rax

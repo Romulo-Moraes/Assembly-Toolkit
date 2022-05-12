@@ -1,6 +1,8 @@
-;
 ; This function requires strlen.asm
+
+; Write something in standard output
 ;
+; Input: string address in RSI
 
 
 puts:

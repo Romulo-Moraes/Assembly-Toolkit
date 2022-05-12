@@ -2,6 +2,6 @@
 ;
 ; Input: exit code in RDI
 
-_exit:
+exit:
     mov rax,60
     syscall

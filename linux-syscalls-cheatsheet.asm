@@ -27,6 +27,10 @@
 %define STDOUT 1
 %define STDIN 2
 
+; Exit status
+%define EXIT_SUCCESS 0
+%define EXIT_FAILURE 1
+
 
 
 
