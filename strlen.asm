@@ -6,7 +6,7 @@
 
 
 strlen:
-  push rdi
+  push rsi
 
   ; Set zero to count
   xor rcx,rcx
@@ -14,21 +14,21 @@ strlen:
 strlen_step:
 
   ; Check if byte is not null
-  cmp [rdi],byte 0
+  cmp [rsi],byte 0
 
   ; If null, is the end of array, exit 
   jz strlen_exit
 
   ; If not next char and increment count
-  inc rdi
+  inc rsi
   inc rcx
 
   ; Go back to loop
   jmp strlen_step
 
 strlen_exit:
-  xor rdi,rdi
-  pop rdi
+  xor rsi,rsi
+  pop rsi
 
   ; Move result to rax then exit
   mov rax,rcx

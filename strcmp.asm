@@ -14,12 +14,12 @@ strcmp:
 
     mov r8,rax
 
-    push rdi
+    push rsi
 
 
-    mov rdi,rsi
+    mov rsi,rdi
 
-    pop rsi
+    pop rdi
 
     call strlen
 

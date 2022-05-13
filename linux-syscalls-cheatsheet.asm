@@ -12,6 +12,7 @@
 %define SYS_SOCKET_X64 41
 %define SYS_CONNECT_X64 42
 %define SYS_ACCEPT_X64 43
+%define SYS_CREAT_X64 85
 %define SYS_SEND_X64 289
 %define SYS_RECV_X64 291
 
