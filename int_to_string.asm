@@ -1,6 +1,6 @@
 ; Convert integer to string
 ;  
-; Input: number in EAX, output address in RSI
+; Input: number in rax, output address in RSI
 ;
 ; Output Number as string in address given by RSI
 
