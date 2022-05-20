@@ -2,26 +2,30 @@ Data registers: {
     64 bits registers: {
         RAX
         RDI
-        RDI
+        RSI
         RDX
+        R8-R15
     }
     32 bits registers: {
         EAX
         EBX 
         ECX
         EDX
+        R8D-R15D(32)
     }
     16 bits registers: {
         AX
         BX
         CX
         DX
+        R8W-R15W(16)
     }
     8 bits registers: {
         AL
         BL
         CL
         DL
+        R8B-R15B(8)
     }
 }
 Index registers: {

@@ -14,6 +14,11 @@ create_file:
     ret
 
 
+; Open a file
+;
+; Input: file name in RDI
+;
+; Output: nothing
 
 open_file:
     mov rax,2
@@ -52,6 +57,12 @@ read_file:
 
     ret
 
+
+; Close a file
+;
+; Input: Put file decriptor in RDI
+;
+; Output: nothing
 
 close_file:
     mov rax,3
