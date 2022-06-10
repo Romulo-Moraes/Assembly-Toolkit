@@ -4,8 +4,11 @@
 ;
 ; Output Number as string in address given by RSI
 
+
+; 12
+
 int_to_string:
-    xor r11,11
+    xor r11,r11
     xor rcx,rcx
 
     cmp rax,0
@@ -20,7 +23,10 @@ IF_NEGATIVE_NUMBER:
 
 begin:
 
+
     cmp rax,0
+
+    
     jne run_process
 
     cmp rcx,0
@@ -56,12 +62,21 @@ run_process:
     jmp IF_NOT_10
 
 IF_10:
+
+    xor r9,r9
     mov r9,10
+
     div r9
+
+
+
 IF_NOT_10:
+
+
 
     add rdx,'0'
     push rdx
+    xor rdx,rdx
 
     inc rcx
 

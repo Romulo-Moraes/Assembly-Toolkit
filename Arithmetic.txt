@@ -23,3 +23,10 @@ mul/imul: {
         rax -- quotient
     }
 }
+
+
+int_to_string:{
+    each time that make: add rdx,'0' to transform
+    a number into a character you NEED: xor rdx,rdx or else a 
+    Floating point exception will happens
+}
