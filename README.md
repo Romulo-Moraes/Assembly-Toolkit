@@ -82,5 +82,11 @@ to read a file pass the file decriptor in RDI, the address to be written the fil
 
 to close a file pass the file decriptor in RDI and call the segment close_file
 
+### exit.asm
+This file just ask the OS to unload your program from memory.
+
+Call the segment exit, pass some exit code to RDI register for costumization
+
+
 ## The linux-syscalls-cheatsheet and windows-constants files
 This special file contains a good number of constants that can help in system interaction in Unix-like and Windows platform, just include this to your code file then you can use them.
