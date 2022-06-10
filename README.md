@@ -82,5 +82,5 @@ to read a file pass the file decriptor in RDI, the address to be written the fil
 
 to close a file pass the file decriptor in RDI and call the segment close_file
 
-## The linux-syscalls-cheatsheet file
-This special file contains a good number of constants that can help in system calls for Unix-like systems, just include this to your code file then you can use them.
+## The linux-syscalls-cheatsheet and windows-constants files
+This special file contains a good number of constants that can help in system interaction in Unix-lik and Windows platform, just include this to your code file then you can use them.
