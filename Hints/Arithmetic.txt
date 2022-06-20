@@ -1,0 +1,32 @@
+inc rax -- increment rax value in one
+dec rax -- decrement rax value in one
+
+add rax,10 -- add 10 to rax value
+sub rax,10 -- subtract 10 values from rax
+
+div/idiv: {
+    rax -- number to be divided
+    [RDI,RSI] -- divisor
+    
+    result: {
+        rdx -- the rest
+        rax -- quotient
+    }
+}
+
+mul/imul: {
+    rax -- number to be multiplied
+    [RDI,RSI] -- multiplier
+
+    result: {
+        rdx -- the rest
+        rax -- quotient
+    }
+}
+
+
+int_to_string:{
+    each time that make: add rdx,'0' to transform
+    a number into a character you NEED: xor rdx,rdx or else a 
+    Floating point exception will happens
+}
