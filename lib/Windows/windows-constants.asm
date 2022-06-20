@@ -1,9 +1,0 @@
-%define STD_INPUT_HANDLE -10
-%define STD_OUTPUT_HANDLE -11
-%define STD_ERROR_HANDLE -12
-%define NULL 0
-%define INTEGER_SIZE 4
-%define SHORT_SIZE 2
-%define DWORD_SIZE 4
-%define CHAR_SIZE 1
-%define WORD_SIZE 2
