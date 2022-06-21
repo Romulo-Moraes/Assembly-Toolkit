@@ -1,20 +1,21 @@
 ; Remove the first '\n' from a string
 
-; Input:  Address of string in RSI register
+; Input:  Address of string in ESI register
 
 
 strcspn:
-    cmp [rsi],byte 10
+    cmp [ESI], byte 10
     je strcspn_end_or_newline
 
-    cmp [rsi],byte 0
+    cmp [ESI],byte 0
+
     je strcspn_end_or_newline
 
-    add rsi,1
+    add ESI,1
 
     jmp strcspn
 
 strcspn_end_or_newline:
-    mov [rsi], byte 0
+    mov [ESI], byte 0
     ret
     

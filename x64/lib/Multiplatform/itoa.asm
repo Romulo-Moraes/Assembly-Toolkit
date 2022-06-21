@@ -5,8 +5,6 @@
 ; Output Number as string in address given by RSI
 
 
-; 12
-
 int_to_string:
     xor r11,r11
     xor rcx,rcx
