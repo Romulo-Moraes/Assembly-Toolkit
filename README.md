@@ -19,7 +19,7 @@ Like in C programming language, the strlen will return the size of a chain of ch
 To use just import the file and pass some arguments to registers before call the function.
 
 ```txt
-Pass the string address to RDI register
+Pass the string address to RSI register
 
 The output size will be returned in RAX register
 ```
