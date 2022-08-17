@@ -1,4 +1,4 @@
-;Copy a string from source address to destiny address
+; Copy a string from source address to destiny address
 
 ; Destiny address in RDI, source address in RSI
 

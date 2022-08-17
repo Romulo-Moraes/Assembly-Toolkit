@@ -56,6 +56,12 @@ To use just import the file and pass some arguments to registers before call the
 Pass the address to RSI, the range value to RAX, and the value to be set in RDX registers
 ```
 
+### strcpy.asm
+This file has code segments for execute a C based string copy, from source address to destiny address.
+```txt
+Destiny address in RDI, source address in RSI
+```
+
 # Unix-like code segments
 
 ### puts.asm
