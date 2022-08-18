@@ -8,6 +8,7 @@
 int_to_string:
     xor r11,r11
     xor rcx,rcx
+    xor rdx,rdx
 
     cmp rax,0
     jl IF_NEGATIVE_NUMBER
