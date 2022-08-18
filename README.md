@@ -1,7 +1,7 @@
 <div align="center">
     <h1>Assembly toolkit framework</h1>    
     <img width="400px" src="./assets/AssemblyImage.png">
-    <p>Created by Rômulo Moraes</p>
+    <p>Written by Cipher</p>
 </div>
 
 #
