@@ -7,12 +7,17 @@
 ; Output: if equal RAX = 1 else RAX = 0
 
 strcmp:
+    push rbp
+    mov rbp,rsp
+    sub rsp, 8
     xor rcx,rcx
 
     call strlen 
 
 
-    mov r8,rax
+
+    mov QWORD [rbp+0], rax
+
 
     push rsi
 
@@ -22,12 +27,16 @@ strcmp:
     pop rdi
 
     call strlen
+	
 
-    cmp r8,rax
+    cmp QWORD [rbp+0],rax
 
     je strcmp_step
 
     mov rax,0
+    
+    mov rsp, rbp
+    pop rbp
 
     ret
 
@@ -55,10 +64,18 @@ strcmp_good_step:
 
 
     mov rax,1
+
+    mov rsp,rbp
+    pop rbp
+
     ret
 
 strcmp_bad_step:
     mov rax,0
+
+    mov rsp,rbp
+    pop rbp
+
     ret
 
 

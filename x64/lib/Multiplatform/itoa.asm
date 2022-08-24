@@ -1,95 +1,114 @@
-; Convert integer to string
-;  
-; Input: number in rax, output address in RSI
-;
-; Output Number as string in address given by RSI
+; Transform a number to string
+
+; Number in RAX
+; Output address in RSI
+
+%define NUMBER_OF_CHARS_PUSHED_OFFSET 0
+%define NEGATIVE_NUMBER_FLAG_OFFSET 4
 
 
-int_to_string:
-    xor r11,r11
-    xor rcx,rcx
-    xor rdx,rdx
+itoa:
+	push rsi
+	push rbp
+	mov rbp, rsp
+	
+	sub rsp, 5
 
-    cmp rax,0
-    jl IF_NEGATIVE_NUMBER
+	mov DWORD [rbp+NUMBER_OF_CHARS_PUSHED_OFFSET], 0
 
-    jmp begin
-
-IF_NEGATIVE_NUMBER:
-    mov r11,1
-    mov r10,-1
-    imul r10
-
-begin:
+	cmp rax, 0
+	jl Negative_number
 
 
-    cmp rax,0
+	; If it reach here, the number ins't negative, flag to false
+	mov BYTE [rbp+NEGATIVE_NUMBER_FLAG_OFFSET], BYTE 0
 
-    
-    jne run_process
 
-    cmp rcx,0
-    je FIRST_AND_ZERO
-
-    jmp FIRST_AND_ZERO_END
-
-FIRST_AND_ZERO:
-    mov rax,'0'
-    push rax
-    inc rcx
-FIRST_AND_ZERO_END:
-
-    cmp r11,1
-    je APPLY_NUMBER_SIGN
-
-    jmp APPLY_NUMBER_SIGN_END
-
-APPLY_NUMBER_SIGN:
-    mov rax,'-'
-    push rax
-    inc rcx
-APPLY_NUMBER_SIGN_END:
-
-    jmp reverse_sequence
-
-run_process:
-    cmp rax,10
-    jge IF_10
-
-    mov rdx,rax
-    mov rax,0
-    jmp IF_NOT_10
-
-IF_10:
-
-    xor r9,r9
-    mov r9,10
-
-    div r9
+	je Number_zero
+	jmp Loop
 
 
 
-IF_NOT_10:
+Number_zero:
+	; If the number is zero, it has nothing todo, heading to end process
+	add rax, '0'
+	push rax
+	
+	inc DWORD [rbp+NUMBER_OF_CHARS_PUSHED_OFFSET]
+	
+	jmp Write_in_output
+Negative_number:
+	; Set negative flag, will be handled after
+	mov BYTE [rbp+NEGATIVE_NUMBER_FLAG_OFFSET], BYTE 1
+
+	; Transform number to positive
+	mov rdi, -1
+	imul rdi
+
+Loop:
+
+	; Always compare if the number is lower than 10
+	; Numbers lower than 10 don't need to be divided
+	cmp rax, 10
+
+	jl Last_number
+
+	xor rdi,rdi
+	xor rdx,rdx
+
+	; Get rest of division and save in stack
+	mov rdi, 10
+	div rdi
+
+	add rdx, '0'
+	push rdx
+
+	inc DWORD [rbp+NUMBER_OF_CHARS_PUSHED_OFFSET]
+
+
+	jmp Loop	
+
+Last_number:
+
+	; If only has one number, just transform to string and save in stack
+	add rax, '0'
+	push rax
+
+	inc DWORD [rbp+NUMBER_OF_CHARS_PUSHED_OFFSET]
+
+	jmp Handle_negative_number
+
+Handle_negative_number:
+	; Check the flag previous setted to see if a signal need be added
+	cmp BYTE [rbp+NEGATIVE_NUMBER_FLAG_OFFSET], BYTE 1
+
+	jne Write_in_output
+
+	mov rax, "-"
+	push rax
+
+	inc DWORD [rbp+NUMBER_OF_CHARS_PUSHED_OFFSET]
 
 
 
-    add rdx,'0'
-    push rdx
-    xor rdx,rdx
+Write_in_output:
 
-    inc rcx
+Write_in_output_loop:
+	; Loading all numbers from memory and writing in output address
+	pop rax
+	mov [rsi], rax
 
-    jmp begin
+	inc rsi
+	dec DWORD [rbp+NUMBER_OF_CHARS_PUSHED_OFFSET]
 
-reverse_sequence:
-    cmp rcx,0
-    jne IF_NOT_0
+	cmp DWORD [rbp+NUMBER_OF_CHARS_PUSHED_OFFSET], 0
 
-    ret
 
-IF_NOT_0:
-    pop rax
-    mov [rsi],rax
-    inc rsi
-    dec rcx
-    jmp reverse_sequence
+	jge Write_in_output_loop
+
+	mov rsp, rbp
+	
+	pop rbp
+	pop rsi
+
+	ret
