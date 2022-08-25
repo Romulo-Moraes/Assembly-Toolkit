@@ -1,60 +1,86 @@
-Data registers: {
+Registers: {
     64 bits registers: {
-        RAX
-        RDI
-        RSI
-        RDX
-        R8-R15
+        Data: {
+            RAX
+            RBX
+            RCX
+            RDX
+            R8-R15
+        }
+
+        Pointer: {
+            RBP
+            RSP
+        }
+
+        Index: {
+            RSI
+            RDI
+        }
     }
+
     32 bits registers: {
-        EAX
-        EBX 
-        ECX
-        EDX
-        R8D-R15D(32)
+        Data: {
+            EAX
+            EBX
+            ECX
+            EDX
+            R8D-R15D(32)
+        }
+
+        Pointer: {
+            EBP
+            ESP
+        }
+
+        Index: {
+            ESI
+            EDI
+        }
+
     }
+
     16 bits registers: {
-        AX
-        BX
-        CX
-        DX
-        R8W-R15W(16)
+        Data: {
+            AX
+            BX
+            CX
+            DX
+            R8W-R15W(16)
+        }
+
+        Pointer: {
+            BP
+            SP
+        }
+
+        Index: {
+            SI
+            DI
+        }
     }
+
     8 bits registers: {
-        AL
-        BL
-        CL
-        DL
-        R8B-R15B(8)
-    }
-}
-Index registers: {
-    64 bits registers: {
-        RSI
-        RDI
-    }
+        Data: {
+            AL
+            BL
+            CL
+            DL
+            R8B-R15B(8)
+        }
 
-    32 bits registers: {
-        ESI
-        EDI
-    }
+        Pointer: {
+            BPL
+            SPL
+        }
 
-    16 bits registers: {
-        SI
-        DI
+        Index: {
+            SIL
+            DIL
+        }
     }
 }
 
-Pointer registers: {
-    64 bits registers:{
-        RBP
-        RSP
-    }
-    32 bits registers: {
-        EBP
-        ESP
-    }
-}
 
 Control registers: {
     Overflow Flag (OF)

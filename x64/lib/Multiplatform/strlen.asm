@@ -1,4 +1,4 @@
-; Get string size in stack memory
+; Get string size in memory
 ;
 ; Input: String address in RSI
 ;
@@ -19,7 +19,7 @@ strlen_step:
   ; If null, is the end of array, exit 
   jz strlen_exit
 
-  ; If not next char and increment count
+  ; If not, next char and increment count
   inc rsi
   inc rcx
 
