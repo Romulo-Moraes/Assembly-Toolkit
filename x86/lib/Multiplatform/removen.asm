@@ -2,20 +2,18 @@
 
 ; Input:  Address of string in ESI register
 
+removen:
+    cmp [esi], BYTE 10
+    je removen_end_or_newline
 
-strcspn:
-    cmp [ESI], byte 10
-    je strcspn_end_or_newline
+    cmp [esi], BYTE 0
+    je removen_end_or_newline
 
-    cmp [ESI],byte 0
+    inc esi
 
-    je strcspn_end_or_newline
+    jmp removen
 
-    add ESI,1
 
-    jmp strcspn
-
-strcspn_end_or_newline:
-    mov [ESI], byte 0
+removen_end_or_newline:
+    mov [esi], BYTE 0
     ret
-    

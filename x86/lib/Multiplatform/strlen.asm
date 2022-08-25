@@ -1,28 +1,39 @@
-; Get string size in stack memory
+; Get string size in memory
 ;
 ; Input: String address in ESI
 ;
 ; Output: String size in EAX
 
-strlen:
-    push ESI
 
-    xor EDX,EDX
+strlen:
+    push esi
+
+    ; Set zero to count
+    xor ecx, ecx
 
 strlen_step:
-    cmp [ESI], byte 0
+    ; Check if byte is not null
+    cmp [esi], BYTE 0
 
+    ; If null, is the end of array, exit 
     jz strlen_exit
 
+    ; If not, next char and increment count
+    inc esi
+    inc ecx
 
-    inc ESI
-    INC EDX
-
+    ; Go back to loop
     jmp strlen_step
 
 strlen_exit:
-    xor ESI,ESI
-    pop ESI
+    xor esi, esi
+    pop esi
 
-    mov EAX,EDX
+    ; Move result to rax then return function call
+    mov eax, ecx
     ret
+
+
+
+
+

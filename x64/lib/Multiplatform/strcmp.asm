@@ -47,7 +47,6 @@ strcmp:
 strcmp_step:
     ; Compare two bytes
     mov al, BYTE [rsi]
-    ;mov bl,[rdi]
 
     cmp al, BYTE [rdi]
 
@@ -71,7 +70,6 @@ strcmp_good_step:
 
 
     ; If yes, no diff found, return true
-
     mov rax,1
 
     mov rsp,rbp
@@ -82,7 +80,7 @@ strcmp_good_step:
 strcmp_bad_step:
     ; If the code flow reached here, both strings 
     ; are not the same, return false
-    mov rax,0
+    mov rax, 0
 
     mov rsp,rbp
     pop rbp

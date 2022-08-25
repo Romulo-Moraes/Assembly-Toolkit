@@ -1,59 +1,109 @@
-; Convert integer to string
-;  
-; Input: number in eax, output address in ESI
-;
-; Output: Number as string in address given by ESI
+; Transform a number to string
 
-int_to_string:
-    xor ebx,ebx
-    xor ecx,ecx
+; Number in EAX
+; Output address in ESI
 
-    cmp eax,0
-    jl IF_NEGATIVE_NUMBER
 
-    jmp begin
+%define NUMBER_OF_CHARS_PUSHED_OFFSET 0
+%define NEGATIVE_NUMBER_FLAG_OFFSET 4
 
-IF_NEGATIVE_NUMBER:
-    mov ebx,1
-    mov edx,-1
-    imul edx
+itoa:
+    push esi
+    push ebp
+    mov ebp, esp
 
-begin:
-    cmp eax,0
+    sub esp, 5
 
-    jne run_process
+    mov DWORD [ebp+NUMBER_OF_CHARS_PUSHED_OFFSET], 0
 
-    cmp ecx,0
-    je FIRST_AND_ZERO
+    cmp eax, 0
+    jl Negative_number
 
-    jmp FIRST_AND_ZERO_END
+    ; If it reach here, the number ins't negative, flag to false
+    mov BYTE [ebp+NEGATIVE_NUMBER_FLAG_OFFSET], BYTE 0
 
-FIRST_AND_ZERO:
-    mov eax,'0'
+    je Number_zero
+    jmp Loop
+
+Number_zero:
+    ; If the number is zero, it has nothing todo, heading to end process
+    add eax, '0'
     push eax
-    inc ecx
 
-FIRST_AND_ZERO_END:
-    cmp ebx,1
-    je APPLY_NUMBER_SIGN
-    jmp APPLY_NUMBER_SIGN_END
+    inc DWORD [ebp+NUMBER_OF_CHARS_PUSHED_OFFSET]
 
-APPLY_NUMBER_SIGN
-    mov eax,'-'
+    jmp Write_in_output
+
+Negative_number:
+    ; Set negative flag, will be handled after
+    mov BYTE [ebp+NEGATIVE_NUMBER_FLAG_OFFSET], BYTE 1
+
+    ; Transform number to positive
+    mov edi, -1
+    imul edi
+
+Loop:
+    ; Always compare if the number is lower than 10
+    ; Numbers lower than 10 don't need to be divided
+    cmp eax, 10
+
+    jl Last_number
+
+    xor edi, edi
+    xor edx, edx
+
+    ; Get rest of division and save in stack
+    mov edi, 10
+    div edi
+
+    add edx, '0'
+    push edx
+
+    inc DWORD [ebp+NUMBER_OF_CHARS_PUSHED_OFFSET]
+
+    jmp Loop
+
+Last_number:
+
+    ; If only has one number, just transform to string and save in stack
+    add eax, '0'
     push eax
-    inc ecx
 
-APPLY_NUMBER_SIGN_END:
-    jmp reverse_sequence
+    inc DWORD [ebp+NUMBER_OF_CHARS_PUSHED_OFFSET]
 
-run_process:
-    cmp eax,10
-    jge IF_10
+    jmp Handle_negative_number
 
-    mov edi,eax
+Handle_negative_number:
+    ; Check the flag previous setted to see if a signal need be added
+    cmp BYTE [ebp+NEGATIVE_NUMBER_FLAG_OFFSET], BYTE 1
 
-    mov eax,0
-    jmp IF_NOT_10
+    jne Write_in_output
 
-IF_10
-    
+
+    mov eax, "-"
+    push eax
+
+    inc DWORD [ebp+NUMBER_OF_CHARS_PUSHED_OFFSET]
+
+
+Write_in_output:
+
+Write_in_output_loop:
+    ; Loading all numbers from memory and writing in output address
+    pop eax
+    mov [esi], eax
+
+    inc esi
+
+    dec DWORD [ebp+NUMBER_OF_CHARS_PUSHED_OFFSET]
+
+    cmp DWORD [ebp+NUMBER_OF_CHARS_PUSHED_OFFSET], 0
+
+    jge Write_in_output_loop
+
+    mov esp, ebp
+
+    pop ebp
+    pop esi
+
+    ret
