@@ -1,6 +1,6 @@
 ; Get string size in stack memory
 ;
-; Input: String address in RDI
+; Input: String address in RSI
 ;
 ; Output: String size in RAX
 
@@ -30,7 +30,7 @@ strlen_exit:
   xor rsi,rsi
   pop rsi
 
-  ; Move result to rax then exit
+  ; Move result to rax then return function call
   mov rax,rcx
   ret
 

@@ -3,18 +3,18 @@
 ; Input:  Address of string in RSI register
 
 
-strcspn:
-    cmp [rsi],byte 10
-    je strcspn_end_or_newline
+removen:
+    cmp [rsi], BYTE 10
+    je removen_end_or_newline
 
-    cmp [rsi],byte 0
-    je strcspn_end_or_newline
+    cmp [rsi], BYTE 0
+    je removen_end_or_newline
 
-    add rsi,1
+    inc rsi
 
-    jmp strcspn
+    jmp removen
 
-strcspn_end_or_newline:
-    mov [rsi], byte 0
+removen_end_or_newline:
+    mov [rsi], BYTE 0
     ret
     
