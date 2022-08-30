@@ -1,0 +1,61 @@
+itoa: {
+	segment to call: itoa
+	arguments: {
+		Number to transform: eax
+		Output address: esi
+	}
+},
+
+memset: {
+	segment to call: memset
+	arguments: {
+		Address to set: esi
+		Range size: eax
+		Value to set: bl
+	}
+},
+
+removen: {
+	segment to call: removen
+	arguments: {
+		String address: esi
+	}
+},
+
+strcat: {
+	segment to call: strcat
+	arguments: {
+		Destiny address: edi
+		Source adrress: esi
+	}
+},
+
+strcmp: {
+	segment to call: strcmp
+	arguments: {
+		First string address: esi
+		Second string address: edi
+	}
+	return value: {
+		equal: eax = 1
+		not equal: eax = 0
+	}
+},
+
+strcpy: {
+	segment to call: strcpy
+	arguments: {
+		Destiny address: edi
+		Source address: esi
+	}
+},
+
+strlen: {
+	segment to call: strlen
+	arguments: {
+		String address: esi
+	}
+	return value: {
+		String size: eax
+	}
+}

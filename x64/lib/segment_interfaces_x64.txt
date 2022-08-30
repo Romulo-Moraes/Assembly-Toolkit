@@ -1,0 +1,61 @@
+itoa: {
+	segment to call: itoa
+	arguments: {
+		Number to transform: rax
+		Output address: rsi
+	}
+},
+
+memset: {
+	segment to call: memset
+	arguments: {
+		Address to set: rsi
+		Range size: rax
+		Value to set: bl
+	}
+},
+
+removen: {
+	segment to call: removen
+	arguments: {
+		String address: rsi
+	}
+},
+
+strcat: {
+	segment to call: strcat
+	arguments: {
+		Destiny address: rdi
+		Source adrress: rsi
+	}
+},
+
+strcmp: {
+	segment to call: strcmp
+	arguments: {
+		First string address: rsi
+		Second string address: rdi
+	}
+	return value: {
+		equal: rax = 1
+		not equal: rax = 0
+	}
+},
+
+strcpy: {
+	segment to call: strcpy
+	arguments: {
+		Destiny address: rdi
+		Source address: rsi
+	}
+},
+
+strlen: {
+	segment to call: strlen
+	arguments: {
+		String address: rsi
+	}
+	return value: {
+		String size: rax
+	}
+}
