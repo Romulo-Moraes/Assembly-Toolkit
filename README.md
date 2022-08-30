@@ -122,3 +122,6 @@ Call the segment exit, pass some exit code to RDI register for costumization
 
 ## The linux-syscalls-cheatsheet and windows-constants files
 This special file contains a good number of constants that can help in system interaction in Unix-like and Windows platform, just include this to your code file then you can use them.
+
+## Segment interfaces files
+Each instruction set folder has a file with a name of "segment_interface..." those files was made to not be necessary open a file of a code segment always that you wan't see which registers that function use or what values it return. With this, it's just necessary import the files, and the "cheat sheet" will be available in just one file.
