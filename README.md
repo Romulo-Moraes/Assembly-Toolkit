@@ -93,23 +93,22 @@ This code segments will do file operations in Unix-like platforms, like open, re
 To use just import the file and pass some arguments to registers before call the create_file segment.
 
 ```txt
-to create a file pass the file name to RDI, access mode in RSI. the file decriptor is returned in RAX register.
-```
+to create a file pass the file name to RDI, access
+mode in RSI. the file decriptor is returned in RAX 
+register.
 
-```txt
-to open a file pass the name to RDI register and call the segment open_file 
-``` 
+to open a file pass the name to RDI register and
+call the segment open_file 
 
-```txt
-to write a file pass the file decriptor in RDI register, the text in RSI register and call the segment write_file
-```
+to write a file pass the file decriptor in RDI register,
+the text in RSI register and call the segment write_file
 
-```txt
-to read a file pass the file decriptor in RDI, the address to be written the file text in RSI, the size to read in RDX and call the segment read_file
-```
+to read a file pass the file decriptor in RDI,
+the address to be written the file text in RSI,
+the size to read in RDX and call the segment read_file
 
-```txt
-to close a file pass the file decriptor in RDI and call the segment close_file
+to close a file pass the file decriptor in RDI 
+and call the segment close_file
 ```
 
 ### exit.asm
