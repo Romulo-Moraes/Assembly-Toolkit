@@ -4,13 +4,24 @@
     <p>Written by Cipher</p>
 </div>
 
-#
+<br/>
+<br/>
 
 # What is that
-Assembly toolkit is a compiled of assembly files to do operations like string comparation, file operations, memory set and another things. This project is based on Netwide assembler to linux, but some code segment work on Windows too, if don't need do a linux syscall, like memory operations for example.
+Assembly toolkit is a compiled of text files, code ideas written in assembly and hints that can help you learn Assembly.
+This project is based on Netwide assembler to linux.
 
-# Text files
-The project has some text files that is some hints on work with assembly, like conditional jumps, arithmetic operations, etc...
+# Registers section
+Inside the register directory you will find what is a register and how it works, execute operations with them and more.
+
+# Jumps section
+The jumps directory will show what is jumps, conditional jumps and more and why they are one of the most important parts of computing.
+
+# Arithmetic section
+The Arithmetic directory contains knowledge about how to do the basic math operations that the CPU can handle that is add, sub, div and mul.
+
+# High level functions code example
+Finally the last section, here i wrote some examples of codes that do some things like in the C programming language. Functions like memcpy, strlen, strcmp, itoa, memset and more...
 
 # Multiplatform code segments
 
