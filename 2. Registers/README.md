@@ -18,23 +18,21 @@ Is important to say that the size of the registers respect the word's size of th
 Now that you know all types of registers is the time of reveal their names, it can be tough at the begin because all of them has just 3 characters and doesn't refer to anything but you'll get it soon.
 
 ```txt
-    Data: {
-        RAX
-        RBX
-        RCX
-        RDX
-        R8-R15 (R8, R9, R10...)
-    }
-
-    Pointer: {
-        RBP
-        RSP
-    }
-
-    Index: {
-        RSI
-        RDI
-    }
+Data: {
+    RAX
+    RBX
+    RCX
+    RDX
+    R8-R15 (R8, R9, R10...)
+}
+Pointer: {
+    RBP
+    RSP
+}
+Index: {
+    RSI
+    RDI
+}
 ```
 
 These registers are from x86-64 and can be different in another architecture that doesn't follow this feature.
@@ -56,6 +54,73 @@ It's often normal to Assembly programmers write the numbers in hexadecimal, Howe
 In Assembly language, the comments are made with a semicolon and can be put in any place that you wan't comment.
 
 The two remaining kinds of registers will be covered in another section, here is just to see what they are.
+
+## 2.2 Older versions of nowaday registers
+The word of the architecture x86-64 is exactly 64 bits, in other words, 8 bytes, so in teory we can only manage data by 8 bytes at a time, correct ?
+
+At the begin of computing, the memory was very expensive and wasn't possible to make a register of 64 bits, so we started with basic examples of register, being it 8 bits, after 16 and so on... until reach at the most common among the registers that is 64 bits.
+
+But if we face a problem that require we manage one byte at a time, what we do ? We still can access these kinds of registers, however, that is not differents registers, this is a part of the main register of 64 bits, we just access a percentage of it.
+
+Here is the first half with 32 bits:
+```txt
+32 bits registers: {
+    Data: {
+        EAX
+        EBX
+        ECX
+        EDX
+        R8D-R15D(32)
+    }
+    Pointer: {
+        EBP
+        ESP
+    }
+    Index: {
+        ESI
+        EDI
+    }
+```
+Here is the 1/4 from the full register:
+```txt
+16 bits registers: {
+    Data: {
+        AX
+        BX
+        CX
+        DX
+        R8W-R15W(16)
+    }
+    Pointer: {
+        BP
+        SP
+    }
+    Index: {
+        SI
+        DI
+    }
+}
+```
+And the 8 bits registers:
+```txt
+8 bits registers: {
+    Data: {
+        AL
+        BL
+        CL
+        DL
+        R8B-R15B(8)
+    }
+    Pointer: {
+        BPL
+        SPL
+    }
+    Index: {
+        SIL
+        DIL
+    }
+}
+```
 
 ## What's next
 Here we covered a bit about what are the regiters and whay they do, but the playground with them isn't over because they are important and you will ever use them in your programs. In the next section we will see about the segmentations that a program has inside the memory.

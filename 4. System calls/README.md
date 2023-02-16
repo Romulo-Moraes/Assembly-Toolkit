@@ -1,7 +1,7 @@
 # 4. System calls
 System calls is an important thing when we are building programs in userland, with this we can interact with the Operating System and just ask favors like read a file, print something in the screen, get current working directory and more...
 
-Using what was said before, great part of everything that the C language does isn't really it that does. Our program in userland doesn't has the privileges to access the HD to read a file or even access to the network card to create a socket and send data through the internet, it barely know how to do it, even because a program that does it has few instruction and can't control an entire device. In this moment comes the Operating System, that is a huge software and with it's drivers can do the dirty job, in short, our program just ask for favors to the Operating System and the OS does whether it is in a good day.
+Using what was said previously, great part of everything that the C language does isn't really it that does. Our program in userland doesn't has the privileges to access the HD to read a file or even access to the network card to create a socket and send data through the internet, it barely know how to do it, even because a program that does it has few instruction and can't control an entire device. In this moment comes the Operating System, that is a huge software and with it's drivers can do the dirty job, in short, our program just ask for favors to the Operating System and the OS does whether it is in a good day.
 
 A system call uses registers to communicate with the OS and uses a new command too, called 'syscall'.
 
@@ -9,8 +9,8 @@ The following code is a program that prints the first message that every program
 
 ```asm
 ; The text segment tell the assembler that the
-; executable code starts from the _start tag, 
-; the we just need to specify it with the 
+; executable code starts from the _start symbol, 
+; then we just need to specify it with the 
 ; global keyword
 
 segment .text
@@ -91,4 +91,4 @@ and then simply call the program:
 ```
 
 ## What's next
-We finally made our first program and put it to run on our own machine, great! In the next section of our journey is 
+We finally made our first program and put it to run on our own machine, great! In the next section of our journey we will talk a bit about jumps and conditional jumps, that is a important thing to the nowaday computers.
