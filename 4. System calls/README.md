@@ -1,7 +1,8 @@
-# 4. System calls
-System calls is an important thing when we are building programs in userland, with this we can interact with the Operating System and just ask favors like read a file, print something in the screen, get current working directory and more...
 
-Using what was said previously, great part of everything that the C language does isn't really it that does. Our program in userland doesn't has the privileges to access the HD to read a file or even access to the network card to create a socket and send data through the internet, it barely know how to do it, even because a program that does it has few instruction and can't control an entire device. In this moment comes the Operating System, that is a huge software and with it's drivers can do the dirty job, in short, our program just ask for favors to the Operating System and the OS does whether it is in a good day.
+# 4. System calls
+System calls are an important thing when we are building programs in userland, with this we can interact with the Operating System and just ask favors like read a file, print something in the screen, get current working directory and more...
+
+Using what was said previously, great part of everything that the C language does isn't really it that does. Our program in userland doesn't has the privileges to access the HD to read a file or even access to the network card to create a socket and send data through the internet, it barely know how to do it, even because our program usually has few instructions and can't control an entire device. In this moment comes the Operating System, that is a huge software and with it's drivers can do the dirty job, in short, our program just ask for favors to the Operating System and the OS does whether it is in a good day.
 
 A system call uses registers to communicate with the OS and uses a new command too, called 'syscall'.
 
@@ -75,6 +76,11 @@ segment .rodata
 
 But you could ask: "It's really necessary remember every single system call's numbers when make one ?", and the answer is no. The Linux kernel developers already give you a list of all of them and can be found in any place at the internet, but i would recommend this one: https://hackeradam.com/x86-64-linux-syscalls/.
 
+## 1.1. Warnings
+It's important to say that every time that you do a system call, all registers are reseted, so you must save their values in memory if you wan't use them for another reason.
+
+## 1.2. Running the code
+
 To try this code in your own machine you will need the assembler Nasm, and i have to remind you that this block of code only work in Linux machines, however, Nasm already exists for Windows but the system calls used in this example only work for Linux.
 
 Assuming that your file name is hello_world.asm do the following command to assemble:
@@ -90,5 +96,5 @@ and then simply call the program:
 ./hello_world
 ```
 
-## What's next
+## 1.3. What's next
 We finally made our first program and put it to run on our own machine, great! In the next section of our journey we will talk a bit about jumps and conditional jumps, that is a important thing to the nowaday computers.

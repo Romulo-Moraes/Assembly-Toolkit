@@ -1,12 +1,12 @@
 # 5. Jumps and conditional jumps
-Jumps is a essential part of nowadays computers, with this we can make loops, conditional structures like if/else and switch, constructing what we know today by modern languages.
+Jumps is a essential part of nowadays computers, with this we can make loops, conditional structures like if/else and switch and constructing what we know today by modern languages.
 
-There's many possible jumps, being conditional or not, they are the following:
+There're many possibles jumps, being conditional or not, they are the following:
 ```txt
 JMP - Jump to a address given by it's unique operand
 
 JO - Jump on overflow (signed operation)
-JNO - Jump on not overflow (signed operation)
+JNO - Jump on not overflow (signnned operation)
 
 JC - Jump on overflow (unsigned operation)
 JNC - Jump on not overflow (unsigned operation)
@@ -29,12 +29,13 @@ A symbol represents an address in memory, such address that points to the next i
 ```asm
 _append_number_in_rax:
     add rax, 0xa
-
+	
+	; We will talk about this command after
     ret
 ```
 
 ## 5.2 Comparing values
-There's a special opcode that do the comparison called 'cmp', this accepts two operands, and after that we can call a jump and pass a flag with it. For instance:
+There's a special opcode that does the comparison called 'cmp', this accepts two operands, and after that we can call a jump and pass a flag with it. For instance:
 ```asm
     cmp rax, rbx ; cmp subtract rbx from rax
 
@@ -42,8 +43,12 @@ There's a special opcode that do the comparison called 'cmp', this accepts two o
     ; another, jz can be used to check if 
     ; both are equal. 4 - 4 = 0.
 
+	; Jump to <Symbol> if rax equals to rbx
     jz <Symbol>
 ```
 
 ## 5.3 Practice with jumps
 In the current directory was put some assembly source files with examples of programs, being them: loops, if/else, etc... Give a look to know a bit more about.
+
+## 5.4 What's next
+We've just learnt how jumps works and we even saw some examples of them in real programs, we are doing a great progress! In the next section we'll see about Arithmetic operations to be possible we make more sophisticated softwares with Assembly language.
