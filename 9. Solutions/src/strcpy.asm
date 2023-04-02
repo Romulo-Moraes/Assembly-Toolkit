@@ -4,7 +4,8 @@
 ; RSI register is used as source
 ; RAX is the return value (contains destiny addr)
 ;
-; The function doesn't change RDI and RSI after exit
+; The function doesn't change the value of RDI and RSI
+; The function doesn't use any registers beyond the known
 
 
 strcpy:
