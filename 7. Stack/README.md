@@ -94,13 +94,13 @@ mov DWORD [rbp+MY_STRING], eax ; MY_STRING equals to -1
 ; shows how the above code will behave.
 ;
 ; +----+
-; | a  |
+; | d  |
 ; +----+
-; | b  | The "abcd" will be written from rbp+-1 to above
+; | c  | The "abcd" will be written from rbp+-1 to above
 ; +----+
-; | c  | <- rbp
+; | b  | <- rbp
 ; +----+
-; | d  | <- rbp+-1
+; | a  | <- rbp+-1
 ; +----+
 ; |    | <- rbp+-2
 ; +----+
