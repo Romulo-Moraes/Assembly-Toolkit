@@ -77,7 +77,7 @@ segment .rodata
 But you could ask: "It's really necessary remember every single system call's numbers when make one ?", and the answer is no. The Linux kernel developers already give you a list of all of them and can be found in any place at the internet, but i would recommend this one: https://hackeradam.com/x86-64-linux-syscalls/.
 
 ## 1.1. Warnings
-It's important to say that every time that you do a system call, all registers are reseted, so you must save their values in memory if you wan't use them for another reason.
+It's important to say that every time that you do a system call, a great part of the registers are reseted, so you must save their values in memory if you wan't use them for another reason.
 
 ## 1.2. Running the code
 

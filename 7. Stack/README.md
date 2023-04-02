@@ -124,7 +124,8 @@ mov al, 2
 ; now the register al contains the binary 00000010.
 ; even if the old value of the al register had 1 in the most significant bit,
 ; it is reseted to 0.
-; thinking about bigger registers, if we set a number for the al version of rax,
+; thinking about bigger 
+, if we set a number for the al version of rax,
 ; then the entire rax register will be reseted to zero, except the used bits.
 ```
 

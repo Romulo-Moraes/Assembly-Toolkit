@@ -74,7 +74,21 @@ Another common question is: Visually, rbp is 24 bytes away from the value 5, so 
 
 The answer is: In cases like that, you need have in mind that the **end** of the value 5 is at 0x0, however, the end of the value isn't useful usually. You must fetch the arguments "thinking about the end of the previous", or in other words, the difference between rbp and the target. In the visual example given above, the difference between rbp and the target (i.e. 5), is really 16 bytes.
 
-## 8.8 A working example of function call
+## 8.8 Calling conventions
+It is right that was presented that you can pass function arguments through stack and registers, however, functions calls have conventions depending of the operating system and archtecture. The focus here is in Linux O.S, so here are how the arguments are usually passed to the functions:
+
+```txt
+rdi - Contains the 1st argument
+rsi - Contains the 2nd argument
+rdx - Contains the 3nd argument
+rcx - Contains the 4th argument
+r8  - Contains the 5th argument
+r9  - Contains the 6th argument
+stack - The rest of arguments
+```
+If in any moment your function need return a value to the superior context, you use the RAX register to pass the value.
+
+## 8.9 A working example of function call
 A file named as "hello_x_times.asm" is in the same directory of this markdown file, there's a example inside, using function calls, stack frame allocation and more. The program goal is print "Hello, world!" x times, where x is the user that choose (only one digit numbers allowed).
 
 ## What's next
