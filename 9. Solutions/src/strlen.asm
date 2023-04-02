@@ -5,7 +5,7 @@
 ;
 ; The function doesn't change the value of RDI
 
-%define __STRLEN_SIZE_COUNT -8
+%define __STRLEN_SIZE_COUNT -9
 
 strlen:
     ; Save some registers

@@ -9,3 +9,6 @@ strlen is a function to calculate the size of a string in memory, the calculatio
 
 ## 9.3 memset
 memset is a function that fills the first x bytes pointed by an address, with the value y. The **address** to fill must be passed to RDI register, the **byte** used to fill the area must be passed to RSI register, the **number** of bytes to fill with the value must be passed to RDX register. The function returns the address of the filled area in RAX register.
+
+## 9.4 strcat
+strcat is a function that concatenate a *source* string into a *destiny* string. The *destiny* **address** must be passed to RDI, and the *source* **address** must be passed to RSI. The function returns the *destiny* address in RAX register. The programmer is responsible for allocate a buffer large enough to hold the final result, that is: strlen(destiny) + strlen(source) + 1. 

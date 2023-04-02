@@ -6,8 +6,9 @@
 ; RAX is the return value (contains the address of the filled area)
 ;
 ; The function doesn't change the value of RDI, RSI and RDX
+; The function doesn't use any register beyond the known
 
-%define __MEMSET_COPY_COUNTER -8
+%define __MEMSET_COPY_COUNTER -9
 
 memset:
     ; Save some registers into stack
@@ -16,7 +17,7 @@ memset:
 
     ; Allocate memory in stack frame
     mov rbp, rsp
-    sub rsp, 8
+    sub rsp, 9
 
     ; Put zero inside the counter variable
     mov QWORD [rbp+__MEMSET_COPY_COUNTER], 0
