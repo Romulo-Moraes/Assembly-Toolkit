@@ -15,3 +15,6 @@ strcat is a function that concatenate a *source* string into a *destiny* string.
 
 ## 9.5 atoi
 atoi is a function that converts a numeric string to a number. The **address** of the string must be passed to RDI, the RAX register will contain the integer value after the function call.
+
+## 9.6 strcmp
+strcmp is a function that compares two strings to check equality. The **address** of the first must be passed to RDI, the **address** of the second string must be passed to RSI, the RAX register will contains the return value, that may be -1 whether the first string is less than the second, 0 whether both are equal or 1 whether the first string is greater than the second.
