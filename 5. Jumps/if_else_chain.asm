@@ -68,7 +68,7 @@ _INPUT_IS_ANYTHING_ELSE:
 
 _END_OF_IF_ELSE_CHAIN:	
 
-	;; Now we need to print the number, but there's a problem
+	;; Now we need to print the number, but there's a problem,
 	;; we can't just print the number, because according to the ascii
 	;; table, only numbers between the ascii codes 48 and 57 are
 	;; printable, now we are working with literal numbers, so we
@@ -85,7 +85,7 @@ _END_OF_IF_ELSE_CHAIN:
 	;; character '0' that has the ascii value 48, we just added
 	;; 48 to 5, resulting in 53. If we look in the ascii table,
 	;; then we will see that 53 represents the character '5', that
-	;; is the exactly thing we wan't.
+	;; is the exact thing we wan't.
 
 	;; Moving the data to a address in .bss
 	mov [final_answer], al
@@ -101,7 +101,7 @@ _END_OF_IF_ELSE_CHAIN:
 
 	;; Exiting the program
 	mov rax, 60
-	mov rdi, 1
+	mov rdi, 0
 	syscall
 	
 	segment .bss

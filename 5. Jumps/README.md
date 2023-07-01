@@ -3,10 +3,10 @@ Jumps is a essential part of nowadays computers, with this we can make loops, co
 
 There're many possibles jumps, being conditional or not, they are the following:
 ```txt
-JMP - Jump to a address given by it's unique operand
+JMP - Jump to a address given by its unique operand
 
 JO - Jump on overflow (signed operation)
-JNO - Jump on not overflow (signnned operation)
+JNO - Jump on not overflow (signed operation)
 
 JC - Jump on overflow (unsigned operation)
 JNC - Jump on not overflow (unsigned operation)

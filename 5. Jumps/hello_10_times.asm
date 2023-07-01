@@ -1,5 +1,8 @@
-segment .text
-    global _start
+	;; This is an assembly program that prints 'Hello!' 10 times
+	;; using conditional jumps to make a loop
+
+	segment .text
+	global _start
 
 _start:
     
@@ -15,13 +18,15 @@ loop_begin:
     ; jump to loop_end
     jge loop_end
 
+    ;; if not, follow the normal flow
+	
     ; increment al by 1
     inc al
 
     ; mov al back to symbol count
     mov [count], al
 
-    ; print the message
+    ; prepare the print syscall
     mov rax, 1
     mov rdi, 1
     mov rsi, msg

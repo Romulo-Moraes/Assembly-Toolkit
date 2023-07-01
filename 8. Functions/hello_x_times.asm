@@ -53,7 +53,7 @@ print_hello_word:
     ; Allocating memory in stack frame
     sub rsp, 20
 
-    ; rbx now have rax value
+    ; rbx now has rax value
     mov rbx, [rbp+16]
     
     ; Counter in rbp+-1, occupying 1 byte
@@ -110,7 +110,7 @@ COUNTER_IS_OK:
 
     jmp PRINT_LOOP ; <- start over and over again...
 
-; When the procedure reach the end a jump will 
+; When the procedure reach the end, a jump will 
 ; occur to here
 print_hello_word_end:
     ; deallocate memory from stack frame

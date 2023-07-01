@@ -52,7 +52,7 @@ _start:
 	;; Moving the char 'R' to the CHAR_VARIABLE location
 	mov BYTE [rbp+CHAR_VARIABLE], 'R'
 
-	;; Printing the value what is inside the stack
+	;; Printing the value that is inside the stack
 	mov rax, 1
 	mov rdi, 1
 	;; Note that here we use a new opcode named lea.
@@ -62,7 +62,7 @@ _start:
 	;; segments (.rodata, .bss or .data), but those symbols
 	;; don't represent values, they represent addresses
 	;; (the address of that value in those segments)
-	;; the kernel needs an address to print it's contents, so
+	;; the kernel needs an address to print its contents, so
 	;; we use lea for this reason.
 	lea rsi, [rbp+CHAR_VARIABLE]
 	mov rdx, 1
@@ -109,7 +109,7 @@ mov DWORD [rbp+MY_STRING], eax ; MY_STRING equals to -1
 ; |    | <- rsp (rbp+-4)
 ; +----+
 ;
-; the correct approach would be set MY_STRING to -4
+; the correct approach would be set MY_STRING to -4,
 ; in this way, "abcd" would be written from rsp to rbp+-1.
 ```
 
@@ -124,7 +124,7 @@ mov al, 2
 ; now the register al contains the binary 00000010.
 ; even if the old value of the al register had 1 in the most significant bit,
 ; it is reseted to 0.
-; thinking about bigger 
+; thinking about bigger number
 ; if we set a number for the al version of rax,
 ; then the entire rax register will be reseted to zero, except the used bits.
 ```
@@ -152,7 +152,7 @@ In the following example these commands make real difference:
 	; If we put the BYTE command here
 	; nothing unexpected happens in the
 	; print command bellow, but if we put
-	; QWORD in it's place, then only the last
+	; QWORD on its place, then only the last
 	; r of "foobarrr" will be printed.
 	; That's because the first 8 bytes
 	; from rbp+-9 to above were overwritten

@@ -26,7 +26,7 @@ _start:
     ; operation to do, the people that built
     ; the linux made that 1 represents print 
     ; on terminal, rdi is the file descriptor to do it,
-    ; being '0' the STDIN '1' the STDOUT, and
+    ; being '0' the STDIN, '1' the STDOUT, and
     ; '2' the STDERR, rsi is the pointer to the
     ; message and rdx is the size of the message
     ; to be printed.
@@ -42,8 +42,8 @@ _start:
 
     syscall
 
-    ; Other favor asking but this time is saying
-    ; to the OS that our program finished all it's
+    ; Other favor asking, but this time is saying
+    ; to the OS that our program finished all its
     ; instructions and wan't be unloaded from
     ; memory. the rdi register is the status
     ; that will be sent to the OS on program exit
@@ -62,7 +62,7 @@ segment .rodata
     ; a byte or a chain of bytes.
     ; each comma outside the quotes is a 
     ; concatenation, then there was added
-    ; 0xa that is the character ascii 10
+    ; 0xa that is the ascii character 10,
     ; representing '\n' and finally the null byte
     ; that is always necessary when we are
     ; handling with strings
@@ -81,7 +81,7 @@ It's important to say that every time that you do a system call, a great part of
 
 ## 1.2. Running the code
 
-To try this code in your own machine you will need the assembler Nasm, and i have to remind you that this block of code only work in Linux machines, however, Nasm already exists for Windows but the system calls used in this example only work for Linux.
+To try this code in your own machine you will need the Nasm assembler, and i have to remind you that this block of code only works on Linux machines, however, Nasm already exists for Windows but the system calls used in this example only work for Linux.
 
 Assuming that your file name is hello_world.asm do the following command to assemble:
 ```sh

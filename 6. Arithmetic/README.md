@@ -3,13 +3,13 @@
 
 
 # 6. Arithmetic
-Arithmetic is really important in software, even more in complex programs, like AI, games, etc... However, here in the low-level it's important too. There're four basic arithmetic operations that the CPU can do, being them add, subtract, multiply and divide, and we'll see how each one work now.
+Arithmetic is really important in software, even more in complex programs, like AI, games, etc... However, here in the low-level it's important too. There're four basic arithmetic operations that the CPU can do, being them add, subtract, multiply and divide, and we'll see how each one works now.
 
 ## 6.1 Flags
 Before start talking about the methods to do arithmetic in assembly is important talk about CPU flags. A CPU flag is used for store a information representing something that have just happened, and this "something" could be a overflow or even representing that the result of a arithmetic operation resulted in zero. This can be used to decide what to do, mainly in jumps, after the cmp opcode, that is what usually create flags.
 
 ## 6.1 Add
-There're two ways of add something in Assembly language, one more sophisticated and a simple one, we already saw them before and they are the *add* and *inc*.
+There're two ways of add something in Assembly language, one more sophisticated and a simple one, we already saw them before and they are the **add** and **inc**.
 ```txt
 add - Accepts two operands, the left operand will be incremented by the value of the second operand.
 
@@ -18,7 +18,7 @@ inc - Accepts only one operand, and will be incremented by one.
 ```
 
 ## 6.2 Subtract
-There're also two ways of subract something in Assembly, and is the exact opposite side of the section, the commands are *sub* and *dec*.
+There're also two ways of subract something in Assembly, and is the exact opposite side of the Add section, the commands are **sub** and **dec**.
 ```txt
 sub - Accepts two operands, the left will be decremented by the value of the second operand.
 
@@ -26,7 +26,7 @@ dec - Accepts only one operand, and will be decremented by one.
 ```
 
 ## 6.3 Multiply
-Multiplication here is a bit more complicated than the expected, because we have to deal with quotient, rest and three or more registers for the process be a success.
+Multiplication here is a bit more complicated than the expected, because we have to bring one more register to the game or even a value in memory:
 
 <ul>
 	<li>rax: Put the number to be multiplied here</li>
@@ -51,7 +51,7 @@ mov rax, 10
 mov rbx, 2
 mul rbx
 	
-; now rax contains 20 as it's value
+; now rax contains 20 as its value
 ```
 
 ### 6.3.1 Using jumps in multiplication
@@ -78,12 +78,16 @@ mul BYTE bl
 ```
 A more significant moment that an overflow jump becomes useful is in the following example
 ```asm
+	segment .text
+	global _start
+
+_start:
 	; An unsigned byte can support values between
 	; 0 and 255.
-	; In this code, if al is 128, then the content of
-	; the symbol msg will be printed, with any number that
-	; doesn't result in an overflow at the end (aka 0 - 127)
-	; nothing happens,
+	; In this code, if al is 128, the message 'Overflow!!'
+	; will be printed; with any number that
+	; doesn't result in an overflow at the end (aka 0 - 127),
+	; the message 'Not overflow!' will be printed,
 	; this simply happens because 128 * 2 equals to 256, that
 	; means a overflow
 	mov al, 128
@@ -91,23 +95,45 @@ A more significant moment that an overflow jump becomes useful is in the followi
 	mul bl
 
 	; If an overflow NOT occurred, then jump to...
-	jnc jump_on_overflow
+	jnc jump_not_overflow
 
 	; If the flow of code reaches here, then it means
 	; that an overflow occurred.
 
-	; Print something just to know whether the flow of
-	; code reached here
+	;; Print a message saying it
 	mov rax, 1
 	mov rdi, 1
 	mov rsi, msg
 	mov rdx, msg.sz
 	syscall
+
+	;; Jump to end because we don't wan't two messages
+	jmp end
+jump_not_overflow:
+	;; If the flow of code reaches here, a overflow
+	;; didn't occur
+
+	;; Print a message saying it
+	mov rax, 1
+	mov rdi, 1
+	mov rsi, msg2
+	mov rdx, msg2.sz
+
+	syscall
+
+end:
+
+	;; Exit the program
+	mov rax, 60
+	mov rdi, 0
+
+	syscall
 	
-	
-jump_on_overflow:
-	; Further code here, probably a syscall to exit the
-	; program
+	segment .rodata
+	msg db 'Overflow!!', 0xa, 0x0
+	msg.sz equ $-msg
+	msg2 db 'Not overflow!', 0xa, 0x0
+	msg2.sz equ $-msg2
 ```
 
 In short, overflow is when a value doesn't fit inside the register, when two positives values are added with each other and the result is negative or even when the result is just impossible for that operation, that means an overflow occurred.
@@ -122,7 +148,7 @@ JC - Jump on overflow (unsigned operation)
 JNC - Jump on not overflow (unsigned operation)
 ```
 
-## 6.4 Divide 
+## 6.4 Division
 Division is also a bit more complex than add and subtract, and follow the  same principle of multiplication but with some more details, here's how to use.
 
 <ul>
@@ -166,7 +192,7 @@ segment .text
 	
 _start:
 	mov rax, -10
-	; the div opcode always look to rax and rdx to do the
+	; the idiv opcode always look to rax and rdx to do the
 	; calculations, if the division is signed, then you must
 	; use the cqo opcode, this will put 1 in each bit of rdx if
 	; the value of dividend is negative, otherwise 0 is used.
@@ -187,7 +213,7 @@ _start:
 	; since we can't print a negative number, a new trick will be introduced to you.
 	
 	; the neg opcode will negate the value of rax, if this had
-	; the number -5 in it's contents, now it has 5
+	; the number -5 in its contents, now it has 5
 	neg rax
 	
 	; transform to a printable version

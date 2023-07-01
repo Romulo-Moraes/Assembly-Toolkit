@@ -1,4 +1,4 @@
-; Program greet a person using conditional jumps
+; Program that greets a person using conditional jumps
 
 segment .text
     global _start

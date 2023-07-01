@@ -2,7 +2,7 @@
 Register bank or also know as registers is a kind of memory that lies inside the CPU, and it's speed is much better than a normal RAM or SSD. This component of a CPU is responsible for manage data, make system calls, store flags and more...
 
 ## 2.1 Registers types
-There's some types of registers, each type is useful to accomplish a logical problem, here is the most important types of registers that exists:
+There's some types of registers, each type is useful to accomplish a logical problem, here is the most important types of registers that exist:
 
 ```txt
 Data: Is useful to manage data inside the CPU.
@@ -15,7 +15,7 @@ Index: Is useful to index something in the memory, acting like a pointer in C la
 Is important to say that the size of the registers respect the word's size of the CPU's architecture, but is possible access just a part of a data register for example, like the first half or the first 1/4, etc...
 
 
-Now that you know all types of registers is the time of reveal their names, it can be tough at the begin because all of them has just 3 characters and doesn't refer to anything but you'll get it soon.
+Now that you know all types of registers is the time of reveal their names, it can be tough at the begin because a great part of them has just 3 characters and some of them don't refer to anything, but you'll get it soon.
 
 ```txt
 Data: {
@@ -43,7 +43,7 @@ It's time to work a bit with these registers and those opcodes that we learnt be
 ; First program
 mov rax, 0x4 ; move the value 0x4 to register rax
 add rax, 0x2 ; add 0x2 to rax, total: 0x6
-mov rbx, rax ; mov value of rax to rbx (rax still has 0x6)
+mov rbx, rax ; mov value of rax to rbx (rax still having 0x6)
 sub rbx, 0x3 ; subtract 0x3 from rbx, total: 0x3
 
 ; In the end, the register rax has the value 0x6 and rbx has the value 0x3.
@@ -123,4 +123,4 @@ And the 8 bits registers:
 ```
 
 ## What's next
-Here we covered a bit about what are the regiters and whay they do, but the playground with them isn't over because they are important and you will ever use them in your programs. In the next section we will see about the segmentations that a program has inside the memory.
+Here we covered a bit about what are the registers and what they do, but the playground with them isn't over, because they are important and you will ever use them in your programs. In the next section we will see about the segmentations that a program has inside the memory.
