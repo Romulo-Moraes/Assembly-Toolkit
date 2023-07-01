@@ -12,3 +12,6 @@ memset is a function that fills the first x bytes pointed by an address, with th
 
 ## 9.4 strcat
 strcat is a function that concatenate a *source* string into a *destiny* string. The *destiny* **address** must be passed to RDI, and the *source* **address** must be passed to RSI. The function returns the *destiny* address in RAX register. The programmer is responsible for allocate a buffer large enough to hold the final result, that is: strlen(destiny) + strlen(source) + 1. 
+
+## 9.5 atoi
+atoi is a function that converts a numeric string to a number. The **address** of the string must be passed to RDI, the RAX register will contain the integer value after the function call.
