@@ -6,7 +6,7 @@ Only these two new registers are necessary to do anything in the stack segment, 
 
 
 ## 7.2 Allocating memory in Stack segment
-We always must allocate memory in Stack to use it, the amount of allocated memory is defined by the difference between the Base Pointer and Stack pointer. The following example shows how to allocate memory in Stack segment.
+We always must allocate memory in Stack before use it, the amount of allocated memory is defined by the difference between the Base Pointer and Stack pointer. The following example shows how to allocate memory in Stack segment.
 
 ```asm
 ; Is always needed, here we're pointing rsp and rbp to the same location.
@@ -125,7 +125,7 @@ mov al, 2
 ; even if the old value of the al register had 1 in the most significant bit,
 ; it is reseted to 0.
 ; thinking about bigger 
-, if we set a number for the al version of rax,
+; if we set a number for the al version of rax,
 ; then the entire rax register will be reseted to zero, except the used bits.
 ```
 
