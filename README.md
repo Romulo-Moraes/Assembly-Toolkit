@@ -7,131 +7,38 @@
 <br/>
 <br/>
 
-# What is that
-Assembly toolkit is a compiled of text files, code ideas written in assembly and hints that can help you learn Assembly.
-This project is based on Netwide assembler to linux.
+## What's that
+Assembly Toolkit Framework is a compiled of knowledgments and ideas about the Assembly language, useful to learn and always come here to remember how a basic assembly feature works. This repository give the focus to the **Nasm** assembler, therefore, things from this repository may not work with another assembler that exists in the world.
 
-# Registers section
-Inside the register directory you will find what is a register and how it works, execute operations with them and more.
+## Repository sections
+This repository has sections that divide the topics about the Assembly language, each one has a number and its name on the source tree, the sections talk about opcodes, registers, memory segmentations, system calls, jumps, arithmetic operations, the stack segment, functions and some solutions that may be useful when working or even learning Assembly. A bookmark on the section that you have more difficult may help you sometimes.
 
-# Jumps section
-The jumps directory will show what is jumps, conditional jumps and more and why they are one of the most important parts of computing.
+## Opcode section
+The opcode section is a place that we talk about the smallest part of a computer program, such part that together with its siblings can make the magic happens inside the CPU of any machine. Give a look at it, and if this section made you more curious about how machine works, i encourage you to do a deep search about this subject on the internet, this topic is beautiful.
 
-# Arithmetic section
-The Arithmetic directory contains knowledge about how to do the basic math operations that the CPU can handle that is add, sub, div and mul.
+## Registers section
+The registers section talk about of a component of every modern CPU, the registers bank are useful to manage data, make system calls, operate in memory segments and more, beyond of course, be the fastest memory in the memory hierarchy.
 
-# High level functions code example
-Finally the last section, here i wrote some examples of codes that do some things like in the C programming language. Functions like memcpy, strlen, strcmp, itoa, memset and more...
+## Segmentations section
+The segmentation section tells you about the memory segmentations that every computer program contains, example of that can be stack itself, but there're more segments than just that one, give a look, without this section the things becomes tough to understand in the future sections.
 
-# Multiplatform code segments
+## System calls section
+The system calls section is a interesting section that talk about how our program can make things about write something on console, open files, use sockets, etc... looking with care to this section we notice the importance of the operating system.
 
-### strlen.asm
-Like in C programming language, the strlen will return the size of a chain of characters, the value returned is based on the null byte found usually in the end of a valid string.
-To use just import the file and pass some arguments to registers before call the function.
+## Jumps section
+The jumps section tells you about maybe the most important feature of a computer: do a jump. With jumps is possible to stop following a flow of instructions and start another flow in another region of the memory, beyond of course, make decision structures like if/else, switch and loops, like for and while.
 
-```txt
-Pass the string address to RSI register
+## Arithmetic section
+The arithmetic section talks about how to do math using the smallest instructions that the CPU can read, math is very important for any program, and here is possible to see on to use the basic arithmetic operations, like add, subtract, multiply and division.
 
-The output size will be returned in RAX register
-```
-### removen.asm
-This code segment will replace the '\n' character of a string to the NULL char, if not found, then will set the char '\0' to the first NULL byte that it find.
-To use just import the file and pass some arguments to registers before call the function.
+## Stack section
+The stack section talks about the fixed amount of memory that every program receive at the moment that its life starts, this memory is useful to declare variables, call functions, pass parameters and more, absorbing everything from this section makes the Assembly language begin to be funny to work.
 
-```txt
-Pass the string address to RSI register
-```
+## Functions section
+The functions section tells you about how to create procedures and functions in the lowest level of the machine and how it works, learning how functions works in assembly allows you to understand how they even works on languages like C or another compiled language. Here will also be covered about how to pass and receive parameters from inside the function.
 
-### strcmp.asm
-This code segment is based on strcmp from C programming language, this will compare two chain of characters and return a value saying if the values is equal or not.
-To use just import the file and pass some arguments to registers before call the function. The size of each string will be compared, if equal, all bytes will be compared too to find if both string is equal, if not the same size, false is returned.
+## Solutions section
+The solutions section is a compiled of assembly source files to Nasm assembler that copy functionalities of functions from the C programming language to give you a vision of how to build a little program with Assembly or even to use in bigger programs. Examples of functions copied from C are: strlen(), strcmp(), atoi(), etc...
 
-```txt
-Pass the address of the first string to RSI and the second string's address to RDI registers. If value equal to each other then the RAX register will be filled with 1, else 0
-```
-
-
-### itoa.asm
-This code segment is based on itoa from C programming language, this will transform a integer value to a chain of characters, that is printable.
-To use just import the file and pass some arguments to registers before call the function. This work with some math, with division by 10 and module by 10.
-
-```txt
-Pass the number to RAX register (can be signed or unsigned), and output address in RSI. in the end of execution the passed address will be filled with the number in string format.
-```
-
-### memset.asm
-Like in C programming language, this code segment will set a specified value into each memory cell of a specified range.
-To use just import the file and pass some arguments to registers before call the function.
-
-```txt
-Pass the address to RSI, the range value to RAX, and the value to be set in RDX registers
-```
-
-### strcpy.asm
-This file has code segments for execute a C based string copy, from source address to destiny address. Basically i just copy the bytes, one by one from source to destiny address until reach in null byte on source.
-```txt
-Destiny address in RDI, source address in RSI
-```
-Obs: RDI and RSI registers still pointing to the same memory position even after the code segment is done.
-
-### strcat.asm
-Like in C programming language, strcat will concat two strings, from source to destiny. This will try find the null byte of destiny address and start copy everything from source to there until reach in any null byte.
-```txt
-Destiny address in RDI, source address in RSI
-```
-Obs: RDI and RSI registers still pointing to the same memory position even after the code segment is done.
-
-# Unix-like code segments
-
-### puts.asm
-Like in C programming language, this code segment will print a string until reach the NULL character. This segment depends of another file called strlen.asm.
-To use just import the file and pass some arguments to registers before call the function.
-
-```txt
-Pass the string address to rsi
-```
-
-### read_input.asm
-This segment will read a string from stdin of the program, and put the result in passed address of the memory.
-To use just import the file and pass some arguments to registers before call the function.
-
-```txt
-Pass store address to RSI and the size to read to RDX registers.
-```
-
-### fileop.asm
-This code segments will do file operations in Unix-like platforms, like open, read, write files, etc..
-To use just import the file and pass some arguments to registers before call the create_file segment.
-
-```txt
-to create a file pass the file name to RDI, access
-mode in RSI. the file decriptor is returned in RAX 
-register.
-
-to open a file pass the name to RDI register and
-call the segment open_file 
-
-to write a file pass the file decriptor in RDI register,
-the text in RSI register and call the segment write_file
-
-to read a file pass the file decriptor in RDI,
-the address to be written the file text in RSI,
-the size to read in RDX and call the segment read_file
-
-to close a file pass the file decriptor in RDI 
-and call the segment close_file
-```
-
-### exit.asm
-This file just ask the OS to unload your program from memory.
-
-```txt
-Call the segment exit, pass some exit code to RDI register for costumization
-```
-
-
-## The linux-syscalls-cheatsheet and windows-constants files
-This special file contains a good number of constants that can help in system interaction in Unix-like and Windows platform, just include this to your code file then you can use them.
-
-## Segment interfaces files
-Each instruction set folder has a file with a name of "segment_interface..." those files was made to not be necessary open a file of a code segment always that you wan't see which registers that function use or what values it return. With this, it's just necessary import the files, and the "cheat sheet" will be available in just one file.
+## Assembly is psycho
+I could lie and tell you that Assembly is an easy language and can be learned within some days, but that isn't the really truth, therefore, if you found something wrong with any information in this repository, i encourage you to create an issue and report what's wrong, every help is appreciated.
