@@ -1,5 +1,5 @@
 # 11. Useful opcodes
-Here's the official end of the Assembly toolkit framework, and for a great goodbye, will be shown a collection of useful assembly opcodes that can make the difference when working with this incrible low-level language.
+Here's the official end of the Assembly toolkit framework, and for a great goodbye, will be shown a collection of useful assembly opcodes that can make the difference when working with this language.
 
 ## 11.1 Opcode list
 ```txt
