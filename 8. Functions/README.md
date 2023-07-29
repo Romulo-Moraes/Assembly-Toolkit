@@ -92,4 +92,4 @@ If in any moment your function needs return a value to the superior context, you
 A file named as "hello_x_times.asm" is in the same directory of this markdown file, there's an example inside, using function calls, stack frame allocation and more. The program goal is print "Hello, world!" x times, where x is the user that choose (only one digit numbers allowed).
 
 ## What's next
-The functions subject is done! and the process of know the basics of the Assembly language is also complete, really nice! there'll be more topics, but all of them are talking more about solutions that can be useful when working with this language, like strings operations, memory management and more...
+The functions subject is done! in the next section will be told about arrays in the low-level programming, the basic data structure that every software usually have.
