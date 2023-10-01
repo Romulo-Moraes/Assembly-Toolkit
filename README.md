@@ -11,7 +11,7 @@
 Assembly Toolkit Framework is a compiled of knowledgments and ideas about the Assembly language, useful to learn and always come here to remember how a basic assembly feature works. This repository give the focus to the **Nasm** assembler, therefore, things from this repository may not work with another assembler.
 
 ## Repository sections
-This repository has sections that divide the topics about the Assembly language, each one has a number and its name on the source tree, the sections talk about opcodes, registers, memory segmentations, system calls, jumps, arithmetic operations, the stack segment, functions and some solutions that may be useful when working or even learning Assembly. A bookmark on the section that you have more difficult may be useful.
+This repository has sections that divide the topics about the Assembly language, each one has a number and its name on the source tree, the sections talk about opcodes, registers, memory segmentations, system calls, jumps, arithmetic operations, the stack segment, functions, arrays, macros and some solutions that may be useful when working or even learning Assembly. A bookmark on the section that you have more difficult may be useful.
 
 ## Opcode section
 The opcode section is a place that we talk about the smallest part of a computer program, such part that together with its siblings can make the magic happens inside the CPU of any machine. Give a look at it, and if this section made you more curious about how machine works, i encourage you to do a deep search about this subject on the internet.
@@ -39,6 +39,9 @@ The functions section tells you about how to create procedures and functions in 
 
 ## Arrays section
 The arrays section contains information of how to create and operate with arrays at the low-level, the necessary calculation to access an array index and the memory allocation is also covered in this section. Data structures are important, and the array is the most basic structure that we can have here.
+
+## Macros section
+1The macros are a group of instructions that will take effect on the preprocessor of the assembler. With this is possible assign a value to a name, create blocks of codes and call them like a C function, conditional blocks of instructions and more...
 
 ## Solutions section
 The solutions section is a compiled of assembly source files to Nasm assembler that copy functionalities of functions from the C programming language to give you a vision of how to build a little program with Assembly or even to use in larger programs. Examples of functions copied from C are: strlen(), strcmp(), atoi(), etc...
