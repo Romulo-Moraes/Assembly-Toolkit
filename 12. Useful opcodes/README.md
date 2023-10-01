@@ -1,7 +1,7 @@
-# 11. Useful opcodes
+# 12. Useful opcodes
 Here's the official end of the Assembly toolkit framework, and for a great goodbye, will be shown a collection of useful assembly opcodes that can make the difference when working with this language.
 
-## 11.1 Opcode list
+## 12.1. Opcode list
 ```txt
 sete <8bit register> - Set the given register to 1 whether both operands used in 'cmp' opcode were equal, 0 otherwise.
 

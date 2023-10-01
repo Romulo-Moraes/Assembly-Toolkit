@@ -52,7 +52,7 @@ sub rbx, 0x3 ; subtract 0x3 from rbx, total: 0x3
 
 It's often normal to Assembly programmers write the numbers in hexadecimal, However, you could write just decimal numbers without any problem, of course removing the '0x' before the number.
 
-In Assembly language, the comments are made with a semicolon and can be put in any place that you wan't comment.
+In Assembly language, the comments are made with a semicolon and can be put in any place that you want to comment.
 
 The two remaining kinds of registers will be covered in another section, here is just to see what they are.
 

@@ -34,7 +34,7 @@ hello_msg:
     pop rbp
     ret
 ```
-It's important to say that if you wan't a procedure be visible by the linker to link to another executable, the procedure name must be defined in the global keyword, this keyword accepts values separated by commas.
+It's important to say that if you want to a procedure be visible by the linker to link to another executable, the procedure name must be defined in the global keyword, this keyword accepts values separated by commas.
 
 Now let's write a program in C to call this procedure written in Assembly.
 ```c
@@ -150,7 +150,7 @@ Great! The number that we put into the rdi register became a printable string ca
 Unfortunately, the C standard functions collection (i.e. Glibc) is dynamically linked, and this process that we made until now only does static links, without this we still can enjoy some power of the C without the library, that allows you to use arithmetic, loops, conditional statements, easy declaration of variables and arrays, etc... But this isn't the end of the line, it's possible to link the Glibc to our Assembly programs and use everything from there, being the possibilities: printf, scanf, strlen, strcmp, and more. Here is how to dinamically link the Glibc to our executables.
 ```asm
 segment .text
-; Import anything you wan't from the Glibc
+; Import anything you want to from the Glibc
 extern exit
 extern puts
 extern fgets
@@ -247,7 +247,7 @@ collect2: error: ld returned 1 exit status
 This is a try of print the msg symbol using absolute address, like we have been doing until now. (In this example the global entry and the name of the procedure was changed to printtt, there's no possibility of link a object file that contain the _start procedure using the GCC, that's because a conflict will happen when the compiler try to link the files. The GCC compiler when building the program will try implement its own _start procedure (which one that call the programmable procedure main)).
 
 ## Extra of the extra. Callbacks!!!!
-There's the possibility of callbacks, even being in the low-level. We can move the address of a symbol from the .text to a register and then call it any time we wan't, or do anything with it, store this address is the stack or in any other memory segment is also possible. Here's a example of callbacks, this source code is also available inside the directory ./Callbacks.
+There's the possibility of callbacks, even being in the low-level. We can move the address of a symbol from the .text to a register and then call it any time we want to, or do anything with it, store this address on the stack or in any other memory segment is also possible. Here's a example of callbacks, this source code is also available inside the directory ./Callbacks.
 ```asm
 segment .text
 global _start

@@ -3,7 +3,7 @@
 
 
 # 6. Arithmetic
-Arithmetic is really important in software, even more in complex programs, like AI, games, etc... However, here in the low-level it's important too. There're four basic arithmetic operations that the CPU can do, being them add, subtract, multiply and divide, and we'll see how each one works now.
+Arithmetic is really important in software, even more in complex programs, like AI, games, etc... However, here in the low-level it's also important. There're four basic arithmetic operations that the CPU can do, being them add, subtract, multiply and divide, and we'll see how each one works now.
 
 ## 6.1 Flags
 Before start talking about the methods to do arithmetic in assembly is important talk about CPU flags. A CPU flag is used for store a information representing something that have just happened, and this "something" could be a overflow or even representing that the result of a arithmetic operation resulted in zero. This can be used to decide what to do, mainly in jumps, after the cmp opcode, that is what usually create flags.
@@ -107,7 +107,8 @@ _start:
 	mov rdx, msg.sz
 	syscall
 
-	;; Jump to end because we don't wan't two messages
+	;; Jump to end because we don't want to
+	;; print two messages
 	jmp end
 jump_not_overflow:
 	;; If the flow of code reaches here, a overflow

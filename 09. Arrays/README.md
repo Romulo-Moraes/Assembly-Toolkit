@@ -1,7 +1,7 @@
 # 9. Arrays
-Arrays are the most common data structure of many programming languages, and here is also possible to use them, however, in a very low-level approach. In the C programming language, the only necessary thing to read or write to a position of the array is just pass the index of the element that you wan't use; around here it isn't really different, but is necessary do some calculations that the C does under the table. The calculation isn't that hard, basically follow this equation:
+Arrays are the most common data structure of many programming languages, and here is also possible to use them, however, in a very low-level approach. In the C programming language, the one necessary thing to read or write to a position of the array is just pass the index of the element that you want to use. Around here it isn't really different, but is also necessary do some calculations that the C does under the table. The calculation isn't that hard, basically follow this equation:
 ```txt
-base_array_address + (index * sizeof_data) = correct_address_to_use.
+correct_address_to_use = base_array_address + (index * sizeof_data)
 ```
 
 
@@ -112,4 +112,4 @@ print_loop_end:
 The complete example is located at the same directory of this README.md.
 
 ## What's next
-The array section is complete by now, with this is possible making more complex softwares. Even whether in high-level languages this is pretty simple and nobody really cares about an arrays, in the low-level language any resource is valuable, since here there's no built-in features, just metal. In the next section will be possible see some solutions, like C functions, that can really help in some situations.
+The array section is complete by now, with this is possible making more complex softwares. Even whether in high-level languages this is pretty simple and nobody really cares about arrays, in the low-level language any resource is valuable, since there's no built-in features here, just metal. In the next section will be covered a bit more about macros.

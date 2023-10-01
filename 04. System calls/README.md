@@ -1,8 +1,8 @@
 
 # 4. System calls
-System calls are an important thing when we are building programs in userland, with this we can interact with the Operating System and just ask favors like read a file, print something in the screen, get current working directory and more...
+System calls are an important thing when we are building programs in userland, with this we can interact with the Operating System and just ask favors like read a file, print something in the screen, get current working directory and so on...
 
-Having in mind what was said previously, great part of everything that the C language does isn't really it that does. Our program in userland doesn't has the privileges to access the HD to read a file or even access to the network card to create a socket and send data through the internet, it barely know how to do it, even because our program usually has few instructions and can't control an entire device. In this moment comes the Operating System, that is a huge software and with it's drivers can do the dirty job, in short, our program just ask for favors to the Operating System and the OS does whether it is in a good day.
+Having it in mind, great part of everything that the C language does isn't really it that does. Our program in userland doesn't has the privileges to access the HD to read a file or even access to the network card to create a socket and send data through the internet, it barely know how to do it, even because our program usually has few instructions and can't control an entire device. In this moment comes the Operating System, that is a huge software and with it's drivers can do the dirty job, in short, our program just ask for favors to the Operating System and the OS does whether it is in a good day.
 
 A system call uses registers to communicate with the OS and also uses a new opcode, called 'syscall'.
 
@@ -12,14 +12,14 @@ The following code is a program that prints the first message that every program
 ; Below the text segment is where we will put 
 ; the instructions of our software.
 ; the 'global' keyword is used to tell the 
-; linker what procedures you wan't to make
+; linker what procedures you want to make
 ; available across object files, and is also
 ; used to tell the linker where our program
 ; starts
 
 segment .text
     ; 'global _start' is always required
-    ; whether you wan't make this file
+    ; whether you want to make this file
     ; executable
     global _start
 
@@ -52,7 +52,7 @@ _start:
 
     ; Other favor asking, but this time is 
     ; saying to the OS that our program 
-    ; finished all its instructions and wan't 
+    ; finished all its instructions and want to
     ; be unloaded from memory. the rdi 
     ; register is the status that will be sent 
     ; to the OS on program exit
@@ -86,7 +86,7 @@ segment .rodata
 But you may ask: "It's really necessary remember every single system call's numbers when make one ?", and the answer is no. The Linux kernel developers already give you a list of all of them and can be found in any place at the internet, but i would recommend this one: https://hackeradam.com/x86-64-linux-syscalls/.
 
 ## 1.1. Warnings
-It's important to say that every time that you do a system call, a great part of the registers are reseted, so you must save their values in memory if you wan't use them for another reason.
+It's important to say that every time that you do a system call, a great part of the registers are reseted, so you must save their values in memory if you want to use them for another reason.
 
 ## 1.2. Running the code
 
