@@ -47,7 +47,7 @@ The macros are a group of instructions that will take effect on the preprocessor
 The solutions section is a compiled of assembly source files to Nasm assembler that copy functionalities of functions from the C programming language to give you a vision of how to build a little program with Assembly or even to use in larger programs. Examples of functions copied from C are: strlen(), strcmp(), atoi(), etc...
 
 ## Useful opcodes
-This section is basically a list of opcodes that weren't covered during the entire path of the repository, however, they can make the difference when writing bits.
+This section is basically a list of opcodes that weren't covered during the entire path of the repository, however, they can make the difference while writing some bits.
 
 ## Assembly-C interoperability
 Even being two different languages, Assembly and C can be joined to work together to accomplish a task, each one doing the best on its field.
