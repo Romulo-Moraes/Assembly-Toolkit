@@ -49,8 +49,14 @@ The solutions section is a compiled of assembly source files to Nasm assembler t
 ## Useful opcodes
 This section is basically a list of opcodes that weren't covered during the entire path of the repository, however, they can make the difference when writing bits.
 
-## The extra section
-The extra section talks about of 2 subjects basically, being them the Assembly-C interoperability and callbacks, such things that make the Assembly a little more high-level.
+## Assembly-C interoperability
+Even being two different languages, Assembly and C can be joined to work together to accomplish a task, each one doing the best on its field.
+
+## PIC
+A Position Independent Code is useful because it doesn't depends of a fixed address on memory to reach a data or even jump to a procedure to do something. A Position Dependent software may cause some issues while being loaded into memory or even while being linked with a C program.
+
+## Callbacks
+Like in C, Javascript or Python, Assembly also supports a kind of callbacks that may be useful to make most flexible programs. With the feature of move a memory address to a register, this can be easily done by jumping to or calling this address.
 
 ## Assembly is psycho
 I could lie and tell you that Assembly is an easy language and can be learned within some days, but that isn't the really truth, therefore, if you found something wrong with any information in this repository, i encourage you to create an issue and report what's wrong, every help is appreciated.
