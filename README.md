@@ -5,6 +5,7 @@
 </div>
 
 <br/>
+<img height="8px" width="100%" src="./assets/Split.png"/>
 <br/>
 
 ## What's that
