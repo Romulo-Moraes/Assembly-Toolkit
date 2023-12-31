@@ -8,7 +8,7 @@
 <img height="8px" width="100%" src="./assets/Split.png"/>
 <br/>
 
-## What's that
+## What is this?
 Assembly Toolkit Framework is a compiled of knowledgments and ideas about the Assembly language, useful to learn and always come here to remember how a basic assembly feature works. This repository gives the focus to the **Nasm** assembler, therefore, things from this repository may not work with another assembler.
 
 ## Repository sections
