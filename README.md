@@ -9,7 +9,7 @@
 <br/>
 
 ## What's that
-Assembly Toolkit Framework is a compiled of knowledgments and ideas about the Assembly language, useful to learn and always come here to remember how a basic assembly feature works. This repository give the focus to the **Nasm** assembler, therefore, things from this repository may not work with another assembler.
+Assembly Toolkit Framework is a compiled of knowledgments and ideas about the Assembly language, useful to learn and always come here to remember how a basic assembly feature works. This repository gives the focus to the **Nasm** assembler, therefore, things from this repository may not work with another assembler.
 
 ## Repository sections
 This repository has sections that divide the topics about the Assembly language, each one has a number and its name on the source tree, the sections talk about opcodes, registers, memory segmentations, system calls, jumps, arithmetic operations, the stack segment, functions, arrays, macros, solutions, Useful opcodes, Assembly-C interoperability, PIC and Callbacks. A bookmark on the section that you have more difficult may be useful.
