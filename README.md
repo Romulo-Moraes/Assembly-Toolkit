@@ -1,5 +1,5 @@
 <div align="center">
-    <h1>Assembly toolkit framework</h1>
+    <h1>Assembly toolkit</h1>
     <img width="400px" src="./assets/AssemblyImage.png">
     <p>Written by Cypher (Rômulo Peres de Moraes)</p>
 </div>
