@@ -29,22 +29,20 @@ In this section we discuss about how our executables are lazy binaries that only
 ## Jumps section
 In the Jumps section we discuss about the one of the most important features that a computer has. Without jumps, function calls, loops and conditional statements could not be reality. 
 
-The jumps section tells you about maybe the most important feature of a computer: do a jump. With jumps is possible to stop following a flow of instructions and start another flow in another region of the memory, beyond of course, make conditional structures like if/else, switch and loops, like for and while.
-
 ## Arithmetic section
-The arithmetic section talks about how to do math using the smallest instructions that the CPU can read, math is very important for any program, and here is possible to see on to use the basic arithmetic operations, like add, subtract, multiply and division.
+In the Arithmetic section we discuss about... guess what... arithmetic. This section explains how to do the basic arithmetic operations in Low-level programming, such thing that is very important for nowadays computers for many reasons.
 
 ## Stack section
-The stack section talks about the fixed amount of memory that every program receive at the moment that its life starts, this memory is useful to declare variables, make function calls, pass parameters and more, absorbing everything from this section makes the Assembly language begin to be funny to work.
+The Stack is the most used memory segment during program execution. In languages like C, all variables declared within a procedure are stored within the stack segment. In addition to variable declarations, this segment is also responsible for function calls, function arguments and more...
 
 ## Functions section
-The functions section tells you about how to create procedures and functions in the lowest level of the machine and how it works, learning how functions works in assembly allows you to understand how they even works on languages like C or another compiled language. Here will also be covered about how to pass and receive parameters from inside the function.
+In this section we discuss how to create functions/procedures and how they work in Low-Level programming. Once you understand how functions work in Low-Level, you will be able to understand how they work on programming languages like C or another compiled language.
 
 ## Arrays section
-The arrays section contains information of how to create and operate with arrays at the low-level, the necessary calculation to access an array index and the memory allocation is also covered in this section. Data structures are important, and the array is the most basic structure that we can have here.
+The arrays section contains information about creating and manipulate arrays in the Low-Level programming. The memory allocation and the required calculation to access an array index are explained in this section. Data structures are important for software development, and the array is the most basic structure that we can have here.
 
 ## Macros section
-The macros are a group of instructions that will take effect on the preprocessor of the assembler. With this is possible assign a value to a name, create blocks of codes and call them like a C function, conditional blocks of instructions and more...
+The macros are a group of instructions that will take effect on the preprocessor of the assembler. With macros is possible assign a value to a symbol, create blocks of instructions and call them like a C function and more...
 
 ## Solutions section
 The solutions section is a compiled of assembly source files to Nasm assembler that copy functionalities of functions from the C programming language to give you a vision of how to build a little program with Assembly or even to use in larger programs. Examples of functions copied from C are: strlen(), strcmp(), atoi(), etc...
