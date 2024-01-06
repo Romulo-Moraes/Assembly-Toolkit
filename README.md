@@ -45,19 +45,19 @@ The arrays section contains information about creating and manipulate arrays in 
 The macros are a group of instructions that will take effect on the preprocessor of the assembler. With macros is possible assign a value to a symbol, create blocks of instructions and call them like a C function and more...
 
 ## Solutions section
-The solutions section is a compiled of assembly source files to Nasm assembler that copy functionalities of functions from the C programming language to give you a vision of how to build a little program with Assembly or even to use in larger programs. Examples of functions copied from C are: strlen(), strcmp(), atoi(), etc...
+The solutions section is a compiled of assembly source code files for the Nasm assembler that copy functionalities from the C programming language functions. This give us an ideia of how a software is built looking from the Low-Level perspective. Example of created functions: strlen(), strcmp(), atoi(), etc...
 
 ## Useful opcodes
-This section is basically a list of opcodes that weren't covered during the entire path of the repository, however, they can make the difference while writing some bits.
+This section is basically a list of opcodes that have not been introduced by any section of the repository, however, they can make a difference while we are writing some bits.
 
 ## Assembly-C interoperability
-Even being two different languages, Assembly and C can be joined to work together to accomplish a task, each one doing the best on its field.
+Even being two different languages, Assembly and C can work together to perform tasks that require features from both technologies, each one doing the best in its field.
 
 ## PIC
-A Position Independent Code is useful because it doesn't depends of a fixed address on memory to reach a data or even jump to a procedure to do something. A Position Dependent software may cause some issues while being loaded into memory or even while being linked with a C program.
+A Position Independent Code is useful because it doesn't depends of a fixed address on memory to read/write data or even jump to a procedure to perform a task. A Position Dependent software may cause some issues while being loaded into memory or even while being linked with a C program.
 
 ## Callbacks
-Like in C, Javascript or Python, Assembly also supports a kind of callbacks that may be useful to make most flexible programs. With the feature of move a memory address to a register, this can be easily done by jumping to or calling this address.
+Such as in C, Javascript or Python, Assembly also supports a kind of callbacks that may be useful to make most flexible programs. Moving a memory address to a register, this can be used for jumping to or calling this address.
 
 ## Assembly is psycho
-I could lie and tell you that Assembly is an easy language and can be learned within a couple of days, but it's not the truth, therefore, if you found something wrong with any information in this repository, i encourage you to create an issue and report what is wrong, every help is appreciated.
+I could lie and tell you that Assembly is an easy language and can be learned within a couple of days, but it isn't the truth, therefore, if you found something wrong with any information in this repository, i encourage you to create an issue and report what is wrong, every help is appreciated.
