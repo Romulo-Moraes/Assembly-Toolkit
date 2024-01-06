@@ -9,24 +9,26 @@
 <br/>
 
 ## What is this?
-Assembly Toolkit Framework is a compiled of knowledgments and ideas about the Assembly language, useful to learn and always come here to remember how a basic assembly feature works. This repository gives the focus to the **Nasm** assembler, therefore, things from this repository may not work with another assembler.
+Assembly Toolkit is a compiled of knowledgments and ideas about the Assembly language, useful to learn the basics about this Low-level technology. This repository focus on the **Nasm** assembler, therefore, things from this repository may not work with another assembler.
 
 ## Repository sections
-This repository has sections that divide the topics about the Assembly language, each one has a number and its name on the source tree, the sections talk about opcodes, registers, memory segmentations, system calls, jumps, arithmetic operations, the stack segment, functions, arrays, macros, solutions, Useful opcodes, Assembly-C interoperability, PIC and Callbacks. A bookmark on the section that you have more difficult may be useful.
+The contents of this repository is divided into topics about the Assembly language, each one has a number and its name on the source tree, the sections cover about opcodes, registers, memory segments, system calls, jumps, arithmetic operations, the stack segment, functions, arrays, macros, solutions, Useful opcodes, Assembly-C interoperability, PIC and Callbacks.
 
 ## Opcode section
-The opcode section is a place that we talk about the smallest part of a computer program, such part that together with its siblings can make the magic happens inside the CPU of any machine. Give a look at it, and if this section made you more curious about how machine works, i encourage you to do a deep search about this subject on the internet.
+Inside the opcode section we talk about the smallest part of a computer program, such part that when joined with other parts we have a complete program that can be run directly in the CPU of our computer.
 
 ## Registers section
-The registers section talk about of a component of every modern CPU, the registers bank are useful to manage data, make system calls, operate in memory segments and more, beyond of course, be the fastest memory in the memory hierarchy.
+Here we will cover in details what are registers and how they work. The register bank is a crucial component of the modern CPU designs, that make us able to manage data, make system calls, operate in memory segments and more...
 
-## Segmentations section
-The segmentation section tells you about the memory segmentations that every computer program contains, example of that can be stack itself, but there're more segments than just that one, give a look, without this section the things becomes tough to understand in the future sections.
+## Segments section
+The memory segments are a virtual division that every program running on a machine must have. The segments have their own roles, such as storing read-only data, storing uninitialized data, storing the program instructions and so on...
 
 ## System calls section
-The system calls section is a interesting section that talk about how our program can make things about write something on console, open files, use sockets, etc... looking with care to this section is possible notice the importance of the operating system.
+In this section we discuss about how our executables are lazy binaries that only know how to ask for their interests. Here we will cover in details the fact that: all interesting functionalies that a program may have is the Operating System that does everything.
 
 ## Jumps section
+In the Jumps section we discuss about the one of the most important features that a computer has. Without jumps, function calls, loops and conditional statements could not be reality. 
+
 The jumps section tells you about maybe the most important feature of a computer: do a jump. With jumps is possible to stop following a flow of instructions and start another flow in another region of the memory, beyond of course, make conditional structures like if/else, switch and loops, like for and while.
 
 ## Arithmetic section
