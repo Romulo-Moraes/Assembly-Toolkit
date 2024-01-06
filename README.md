@@ -60,4 +60,4 @@ A Position Independent Code is useful because it doesn't depends of a fixed addr
 Like in C, Javascript or Python, Assembly also supports a kind of callbacks that may be useful to make most flexible programs. With the feature of move a memory address to a register, this can be easily done by jumping to or calling this address.
 
 ## Assembly is psycho
-I could lie and tell you that Assembly is an easy language and can be learned within some days, but that isn't the really truth, therefore, if you found something wrong with any information in this repository, i encourage you to create an issue and report what's wrong, every help is appreciated.
+I could lie and tell you that Assembly is an easy language and can be learned within a couple of days, but it's not the truth, therefore, if you found something wrong with any information in this repository, i encourage you to create an issue and report what is wrong, every help is appreciated.
