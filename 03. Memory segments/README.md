@@ -1,4 +1,4 @@
-# 3. Segmentations
+# 3. Memory segments
 A program inside the computer's memory has segments to organize how the things work. Each segment has a kind of data and its features, and us as good Assembly programmers must handle with care all of them, avoiding the possibility of a segmentation fault, such thing that normally happens in a low-level program whether you be careless.
 
 The types of segments are the following:
