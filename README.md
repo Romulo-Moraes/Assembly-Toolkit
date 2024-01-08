@@ -72,7 +72,7 @@ The memory segments are a virtual division that every program running on a machi
 You can click here to be redirected to the Memory segments section.
 
 <a href="https://github.com/Romulo-Moraes/Assembly-Toolkit/tree/2f6d611aff243b86c324ca4d0b3eee6f89e00d0c/03.%20Segmentations">
-    <img src="./assets/"/>
+    <img src="./assets/Memory segments dir.png"/>
 </a>
 
 # System calls
