@@ -7,42 +7,43 @@ Assembly Toolkit is a compiled of knowledgments and ideas about the Assembly lan
 </div>
 
 # Topics
+[Repository structure](#repository-structure)
 
-[Opcodes]()
+[Opcodes](#opcodes)
 
-[Registers]()
+[Registers](#registers)
 
-[Segments]()
+[Segments](#memory-segments)
 
-[System calls]()
+[System calls](#system-calls)
 
-[Jumps]()
+[Jumps](#jumps)
 
-[Arithmetic]()
+[Arithmetic](#arithmetic)
 
-[Stack]()
+[Stack](#stack)
 
-[Functions]()
+[Functions](#functions)
 
-[Arrays]()
+[Arrays](#arrays)
 
-[Macros]()
+[Macros](#macros)
 
-[Solutions]()
+[Solutions](#solutions)
 
-[Useful opcodes]()
+[Useful opcodes](#useful-opcodes)
 
-[Assembly-C interoperability]()
+[Assembly-C interoperability](#assembly-c-interoperability)
 
-[PIC]()
+[PIC](#pic)
 
-[Callbacks]()
+[Callbacks](#callbacks)
 
 
-# Repository structure
-The contents of this repository are divided into topics about the Assembly language, every topic has a number and a name on the source tree.
+## Repository structure
+The contents of this repository are divided into topics about the Assembly language, every topic has a number and a name on the source tree. There are description of each topic below, every description has its own button that redirects you to its contents.
 
-# Opcodes
+## Opcodes
 Inside the opcode section we talk about the smallest part of a computer program, such part that when joined with other parts we have a complete program that can be run directly in the CPU of our computer.
 
 <br/>
@@ -53,7 +54,7 @@ You can click here to be redirected to the Opcodes section.
     <img src="./assets/Opcodes dir.png"/>
 </a>
 
-# Registers
+## Registers
 Here we will cover in details what are registers and how they work. The register bank is a crucial component of the modern CPU designs, that make us able to manage data, make system calls, operate in memory segments and more...
 
 <br/>
@@ -64,7 +65,7 @@ You can click here to be redirected to the Registers section.
     <img src="./assets/Registers dir.png"/>
 </a>
 
-# Memory segments
+## Memory segments
 The memory segments are a virtual division that every program running on a machine must have. The segments have their own roles, such as storing read-only data, storing uninitialized data, storing the program instructions and so on...
 
 <br/>
@@ -75,7 +76,7 @@ You can click here to be redirected to the Memory segments section.
     <img src="./assets/Memory segments dir.png"/>
 </a>
 
-# System calls
+## System calls
 In this section we discuss about how our executables are lazy binaries that only know how to ask for their interests. Here we will cover in details the fact that: all interesting functionalies that a program may have is the Operating System that does everything.
 
 <br/>
@@ -86,7 +87,7 @@ You can click here to be redirected to the System calls section.
     <img src="./assets/System calls dir.png"/>
 </a>
 
-# Jumps
+## Jumps
 In the Jumps section we discuss about the one of the most important features that a computer has. Without jumps, function calls, loops and conditional statements could not be reality. 
 
 <br/>
@@ -97,7 +98,7 @@ You can click here to be redirected to the Jumps section.
     <img src="./assets/Jumps dir.png"/>
 </a>
 
-# Arithmetic
+## Arithmetic
 In the Arithmetic section we discuss about... guess what... arithmetic. This section explains how to do the basic arithmetic operations in Low-level programming, such thing that is very important for nowadays computers for many reasons.
 
 <br/>
@@ -108,7 +109,7 @@ You can click here to be redirected to the Arithmetic section.
     <img src="./assets/Arithmetic dir.png"/>
 </a>
 
-# Stack
+## Stack
 The Stack is the most used memory segment during program execution. In languages like C, all variables declared within a procedure are stored within the stack segment. In addition to variable declarations, this segment is also responsible for function calls, function arguments and more...
 
 <br/>
@@ -119,7 +120,7 @@ You can click here to be redirected to the Stack section.
 <img src="./assets/Stack dir.png"/>
 </a>
 
-# Functions
+## Functions
 In this section we discuss how to create functions/procedures and how they work in Low-Level programming. Once you understand how functions work in Low-Level, you will be able to understand how they work on programming languages like C or another compiled language.
 
 <br/>
@@ -130,7 +131,7 @@ You can click here to be redirected to the Functions section.
     <img src="./assets/Functions dir.png"/>
 </a>
 
-# Arrays
+## Arrays
 The arrays section contains information about creating and manipulate arrays in the Low-Level programming. The memory allocation and the required calculation to access an array index are explained in this section. Data structures are important for software development, and the array is the most basic structure that we can have here.
 
 <br/>
@@ -141,7 +142,7 @@ You can click here to be redirected to the Arrays section.
     <img src="./assets/Arrays dir.png"/>
 </a>
 
-# Macros
+## Macros
 The macros are a group of instructions that will take effect on the preprocessor of the assembler. With macros is possible assign a value to a symbol, create blocks of instructions and call them like a C function and more...
 
 <br/>
@@ -152,7 +153,7 @@ You can click here to be redirected to the Macros section.
     <img src="./assets/Macros dir.png"/>
 </a>
 
-# Solutions
+## Solutions
 The solutions section is a compiled of assembly source code files for the Nasm assembler that copy functionalities from the C programming language functions. This give us an ideia of how a software is built looking from the Low-Level perspective. Example of created functions: strlen(), strcmp(), atoi(), etc...
 
 <br/>
@@ -163,7 +164,7 @@ You can click here to be redirected to the Solutions section.
     <img src="./assets/Solutions dir.png"/>
 </a>
 
-# Useful opcodes
+## Useful opcodes
 This section is basically a list of opcodes that have not been introduced by any section of the repository, however, they can make a difference while we are writing some bits.
 
 <br/>
@@ -174,7 +175,7 @@ You can click here to be redirected to the Useful opcodes section.
     <img src="./assets/Useful opcodes dir.png"/>
 </a>
 
-# Assembly-C interoperability
+## Assembly-C interoperability
 Even being two different languages, Assembly and C can work together to perform tasks that require features from both technologies, each one doing the best in its field.
 
 <br/>
@@ -185,7 +186,7 @@ You can click here to be redirected to the Assembly-C interoperability section.
     <img src="./assets/Assembly-C interoperability dir.png"/>
 </a>
 
-# PIC
+## PIC
 A Position Independent Code is useful because it doesn't depends of a fixed address on memory to read/write data or even jump to a procedure to perform a task. A Position Dependent software may cause some issues while being loaded into memory or even while being linked with a C program.
 
 <br/>
@@ -196,7 +197,7 @@ You can click here to be redirected to the PIC section.
     <img src="./assets/PIC dir.png"/>
 </a>
 
-# Callbacks
+## Callbacks
 Such as in C, Javascript or Python, Assembly also supports a kind of callbacks that may be useful to make most flexible programs. Moving a memory address to a register, this can be used for jumping to or calling this address.
 
 <br/>
