@@ -13,7 +13,7 @@ Assembly Toolkit is a compiled of knowledgments and ideas about the Assembly lan
 
 [Registers](#registers)
 
-[Segments](#memory-segments)
+[Memory segments](#memory-segments)
 
 [System calls](#system-calls)
 
