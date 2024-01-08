@@ -56,7 +56,7 @@ strcmp_loop_begin:
 	;; is less than the second
 	mov rax, -1
 
-	jmp strcmp_return_procedure
+	jmp strcmp_return_procedureee11
 	
 strcmp_first_string_greater_eq:
 	
