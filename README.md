@@ -83,7 +83,7 @@ In this section we discuss about how our executables are lazy binaries that only
 
 You can click here to be redirected to the System calls section.
 
-<a href="https://github.com/Romulo-Moraes/Assembly-Toolkit/tree/2f6d611aff243b86c324ca4d0b3eee6f89e00d0c/04.%20System%20calls">
+<a href="https://github.com/Romulo-Moraes/Assembly-Toolkit/tree/main/04.%20System%20calls">
     <img src="./assets/System calls dir.png"/>
 </a>
 
