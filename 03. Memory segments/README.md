@@ -1,7 +1,7 @@
 # 3. Memory segments
 A program inside the computer's memory has segments to organize how the things work. Each segment has a kind of data and its features, and us as good Assembly programmers must handle with care all of them, avoiding the possibility of a segmentation fault, such thing that normally happens in a low-level program whether you be careless.
 
-The types of segments are the following:
+The kinds of segments are the following:
 
 ```txt
 Text
@@ -11,22 +11,22 @@ Rodata
 Data
 ```
 
-## 3.1 Explanation of the types of segments
+## 3.1 Explaining every kind of memory segment
 
 ### Text
-The text segment is the piece of memory that the Operating System store the instructions of your program, from there that the CPU of your computer will start to read word by word and execute each instruction until reach the end of all of them.
+The text segment is the portion of memory that the Operating System stores the instructions of your program. It is the area of memory that the CPU in your computer will begin to read word by word, executing each instruction until it reaches the end of the program.
 
 ### Stack
-The stack segment is a fixed block of memory that the Operating System gives to your program to do anything with it, in this location you can create stack frames, variables, local variables and more... Stack frame is a place that you allocate to operate with values that have a meaning to your function, basically is a reserved piece of memory that will be freed when you return from the function call.
+The stack segment is a fixed portion of memory allocated by the Operating System for your program to perform operations with data, function calls and more. All variables defined within your functions are stored in this segment. 
+
+#### Stack frame
+A Stack frame is a reserved portion of memory within the stack that you allocate for working with values. These values are also known as local variables, and may be also used to store function arguments.
 
 ### BSS
-The BSS segment is a memory piece to create variables that until the assemble time there's no meaningful value inside it, and will be filled in run-time.
+The BSS segment is a portion of memory allocated at the moment when your program is being loaded into memory by the Operating System. This segment contains no meaningful values; therefore, all values are set to zero. The size of the BSS segment is defined by the programmer.
 
 ### Rodata
-The Rodata segment or also know as read-only data is a place to put anything that won't change in runtime, anything that is put there can't be changed, or a segmentation fault may happen.
+The Rodata segment, also known as read-only data, is a portion of memory whose values are set during the program startup, and new assignments are not allowed at runtime.
 
 ### Data
-The data segment is a place like the BSS segment, but to create with a meaningful value inside in assemble time. This value can be changed in runtime, however, you must respect the original size of it when put a new value inside.
-
-## What's next
-Now that we know about all segments of a program we will see in the next section what is System calls and how to use them, such section that we will build our first program and run in our own machine.
+Suchlike the BSS segment, the Data segment is a portion of memory allocated at the moment when your program is being loaded into memory by the Operating System; however, this segment contains meaningful values defined by the programmer.
