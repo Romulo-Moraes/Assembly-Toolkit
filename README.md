@@ -50,7 +50,7 @@ Inside the opcode section we talk about the smallest part of a computer program,
 
 You can click here to be redirected to the Opcodes section.
 
-<a href="https://github.com/Romulo-Moraes/Assembly-Toolkit/tree/2f6d611aff243b86c324ca4d0b3eee6f89e00d0c/01.%20Opcodes">
+<a href="https://github.com/Romulo-Moraes/Assembly-Toolkit/tree/main/01.%20Opcodes">
     <img src="./assets/Opcodes dir.png"/>
 </a>
 
@@ -61,7 +61,7 @@ Here we will cover in details what are registers and how they work. The register
 
 You can click here to be redirected to the Registers section.
 
-<a href="https://github.com/Romulo-Moraes/Assembly-Toolkit/tree/2f6d611aff243b86c324ca4d0b3eee6f89e00d0c/02.%20Registers">
+<a href="https://github.com/Romulo-Moraes/Assembly-Toolkit/tree/main/02.%20Registers">
     <img src="./assets/Registers dir.png"/>
 </a>
 
@@ -72,7 +72,7 @@ The memory segments are a virtual division that every program running on a machi
 
 You can click here to be redirected to the Memory segments section.
 
-<a href="https://github.com/Romulo-Moraes/Assembly-Toolkit/tree/1c6ae164597afd891fb121344660f92ec9657c28/03.%20Memory%20segments">
+<a href="https://github.com/Romulo-Moraes/Assembly-Toolkit/tree/main/03.%20Memory%20segments">
     <img src="./assets/Memory segments dir.png"/>
 </a>
 
@@ -94,7 +94,7 @@ In the Jumps section we discuss about the one of the most important features tha
 
 You can click here to be redirected to the Jumps section.
 
-<a href="https://github.com/Romulo-Moraes/Assembly-Toolkit/tree/2f6d611aff243b86c324ca4d0b3eee6f89e00d0c/05.%20Jumps">
+<a href="https://github.com/Romulo-Moraes/Assembly-Toolkit/tree/main/05.%20Jumps">
     <img src="./assets/Jumps dir.png"/>
 </a>
 
@@ -105,7 +105,7 @@ In the Arithmetic section we discuss about... guess what... arithmetic. This sec
 
 You can click here to be redirected to the Arithmetic section.
 
-<a href="https://github.com/Romulo-Moraes/Assembly-Toolkit/tree/2f6d611aff243b86c324ca4d0b3eee6f89e00d0c/06.%20Arithmetic">
+<a href="https://github.com/Romulo-Moraes/Assembly-Toolkit/tree/main/06.%20Arithmetic">
     <img src="./assets/Arithmetic dir.png"/>
 </a>
 
@@ -116,7 +116,7 @@ The Stack is the most used memory segment during program execution. In languages
 
 You can click here to be redirected to the Stack section.
 
-<a href="https://github.com/Romulo-Moraes/Assembly-Toolkit/tree/2f6d611aff243b86c324ca4d0b3eee6f89e00d0c/07.%20Stack">
+<a href="https://github.com/Romulo-Moraes/Assembly-Toolkit/tree/main/07.%20Stack">
 <img src="./assets/Stack dir.png"/>
 </a>
 
@@ -127,7 +127,7 @@ In this section we discuss how to create functions/procedures and how they work 
 
 You can click here to be redirected to the Functions section.
 
-<a href="https://github.com/Romulo-Moraes/Assembly-Toolkit/tree/2f6d611aff243b86c324ca4d0b3eee6f89e00d0c/08.%20Functions">
+<a href="https://github.com/Romulo-Moraes/Assembly-Toolkit/tree/main/08.%20Functions">
     <img src="./assets/Functions dir.png"/>
 </a>
 
@@ -138,7 +138,7 @@ The arrays section contains information about creating and manipulate arrays in 
 
 You can click here to be redirected to the Arrays section.
 
-<a href="https://github.com/Romulo-Moraes/Assembly-Toolkit/tree/2f6d611aff243b86c324ca4d0b3eee6f89e00d0c/09.%20Arrays">
+<a href="https://github.com/Romulo-Moraes/Assembly-Toolkit/tree/main/09.%20Arrays">
     <img src="./assets/Arrays dir.png"/>
 </a>
 
@@ -149,7 +149,7 @@ The macros are a group of instructions that will take effect on the preprocessor
 
 You can click here to be redirected to the Macros section.
 
-<a href="https://github.com/Romulo-Moraes/Assembly-Toolkit/tree/2f6d611aff243b86c324ca4d0b3eee6f89e00d0c/10.%20Macros">
+<a href="https://github.com/Romulo-Moraes/Assembly-Toolkit/tree/main/10.%20Macros">
     <img src="./assets/Macros dir.png"/>
 </a>
 
@@ -160,7 +160,7 @@ The solutions section is a compiled of assembly source code files for the Nasm a
 
 You can click here to be redirected to the Solutions section.
 
-<a href="https://github.com/Romulo-Moraes/Assembly-Toolkit/tree/2f6d611aff243b86c324ca4d0b3eee6f89e00d0c/11.%20Solutions">
+<a href="https://github.com/Romulo-Moraes/Assembly-Toolkit/tree/main/11.%20Solutions">
     <img src="./assets/Solutions dir.png"/>
 </a>
 
@@ -171,7 +171,7 @@ This section is basically a list of opcodes that have not been introduced by any
 
 You can click here to be redirected to the Useful opcodes section.
 
-<a href="https://github.com/Romulo-Moraes/Assembly-Toolkit/tree/2f6d611aff243b86c324ca4d0b3eee6f89e00d0c/12.%20Useful%20opcodes">
+<a href="https://github.com/Romulo-Moraes/Assembly-Toolkit/tree/main/12.%20Useful%20opcodes">
     <img src="./assets/Useful opcodes dir.png"/>
 </a>
 
@@ -182,7 +182,7 @@ Even being two different languages, Assembly and C can work together to perform 
 
 You can click here to be redirected to the Assembly-C interoperability section.
 
-<a href="https://github.com/Romulo-Moraes/Assembly-Toolkit/tree/2f6d611aff243b86c324ca4d0b3eee6f89e00d0c/13.%20Assembly-C%20interoperability">
+<a href="https://github.com/Romulo-Moraes/Assembly-Toolkit/tree/main/13.%20Assembly-C%20interoperability">
     <img src="./assets/Assembly-C interoperability dir.png"/>
 </a>
 
@@ -193,7 +193,7 @@ A Position Independent Code is useful because it doesn't depends of a fixed addr
 
 You can click here to be redirected to the PIC section.
 
-<a href="https://github.com/Romulo-Moraes/Assembly-Toolkit/tree/2f6d611aff243b86c324ca4d0b3eee6f89e00d0c/14.%20PIC">
+<a href="https://github.com/Romulo-Moraes/Assembly-Toolkit/tree/main/14.%20PIC">
     <img src="./assets/PIC dir.png"/>
 </a>
 
@@ -204,6 +204,6 @@ Such as in C, Javascript or Python, Assembly also supports a kind of callbacks t
 
 You can click here to be redirected to the Callbacks section.
 
-<a href="https://github.com/Romulo-Moraes/Assembly-Toolkit/tree/2f6d611aff243b86c324ca4d0b3eee6f89e00d0c/15.%20Callbacks">
+<a href="https://github.com/Romulo-Moraes/Assembly-Toolkit/tree/main/15.%20Callbacks">
     <img src="./assets/Callbacks dir.png"/>
 </a>
