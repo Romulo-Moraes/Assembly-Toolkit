@@ -1,19 +1,19 @@
 # 7. Stack
-The Stack is a segment of memory very useful to store any kind of data, although we already have the .data, .bss and .rodata, this segment is very useful for many another things, like stack frames, a more dynamic way to store data, etc... To operate in this segment will be introduced to you more two registers, the Base Pointer and the Stack Pointer.
+The stack is a segment of memory that is very useful for storing various types of data. Although we already have the .data, .bss, and .rodata segments, the stack is particularly useful for many other things, such as stack frames, providing a more dynamic way to store data, etc. To operate in this segment, I will introduce you to two more registers: the Base Pointer and the Stack Pointer.
 
-## 7.1 The new registers
-Only these two new registers are necessary to do anything in the stack segment, being them RBP and RSP, that are also know as Base Pointer and Stack Pointer respectively. The Base Pointer always points to the begin of a block of memory that is important at the current time of your program logic. The Stack Pointer always points where is the current limit of allocated memory and is also useful for push values into stack, like a real stack data structure, these two aspects you must be careful to deal, because we are always more and more closer of the risk of segmentations faults, if you aren't careful, then your program will crash.
+## 7.1. The new registers
+Only these two new registers are necessary to manipulate the stack segment, the RBP (Base Pointer) and RSP (Stack Pointer). The Base Pointer (RBP) always points to the beginning of a block of memory that is important at the current time of your program logic. The Stack Pointer (RSP) always points to the current limit of allocated memory and is also useful for pushing values onto the stack, similar to a real stack data structure. You must be careful when dealing with these two aspects because you are getting closer to the risk of segmentation faults. If you aren't careful, your program may crash.
 
 
-## 7.2 Allocating memory in Stack segment
-We always must allocate memory in Stack before use it, the amount of allocated memory is defined by the difference between the Base Pointer and Stack pointer. The following example shows how to allocate memory in Stack segment.
+## 7.2. Allocating memory in Stack segment
+We must always allocate memory in the stack before using it. The amount of allocated memory is defined by the difference between the Base Pointer and the Stack Pointer.
 
 ```asm
 ; Is always needed, here we're pointing rsp and rbp to the same location.
 ; (passing value of rsp to rbp)
 mov rbp, rsp
 
-; Allocating 4 bytes in Stack Memory. (aka 64bits integer)
+; Allocating 4 bytes in Stack Memory. (aka x64 integer)
 ; We use sub to allocate memory in Stack
 ; and add to deallocate.
 sub rsp, 4
@@ -33,12 +33,13 @@ Visual explanation of the above code
   |        | <- in the second line, rsp points to here. (allocated space)
   +--------+
 ```
+	
+0
+It's important to note that the stack always grows down. This may be a bit confusing initially, but you'll understand it soon.
 
-It's important to say that the stack always grows down, this can be confusing but you'll get it soon.
-
-After allocating a space inside the stack we can put values there, for instance, here is a code that put a single character there and then print it using a simple syscall.
+After allocating space inside the stack, we can store values there. For instance, here is a code that puts a single character into the allocated space and then prints it using a simple syscall.
 ```asm
-	;; We can use a macro to be easier to understand the code
+	;; We can use a macro to easily understand the code
 	%define CHAR_VARIABLE -1
 	
 	segment .text
@@ -55,15 +56,15 @@ _start:
 	;; Printing the value that is inside the stack
 	mov rax, 1
 	mov rdi, 1
-	;; Note that here we use a new opcode named lea.
-	;; lea stands for load effective address.
-	;; since we've started doing print syscalls
-	;; we always used a symbol that lies in any of those
-	;; segments (.rodata, .bss or .data), but those symbols
-	;; don't represent values, they represent addresses
-	;; (the address of that value in those segments)
-	;; the kernel needs an address to print its contents, so
-	;; we use lea for this reason.
+
+	; Note that here we use a new opcode named 'lea', which
+	; stands for "load effective address." Since we've started
+	; doing print syscalls, we always used a symbol that lies 
+	; in any of those segments (.rodata, .bss, or .data). 
+	; However, those symbols don't represent values; they
+	; represent addresses (the address of that value in 
+	; those segments). The kernel needs an address to 
+	; print the contents, so we use 'lea' for this reason.
 	lea rsi, [rbp+CHAR_VARIABLE]
 	mov rdx, 1
 	syscall
@@ -75,8 +76,8 @@ _start:
 
 ```
 
-## 7.3 A common mistake
-Let's look a situation that we're facing the following problem: Us, as programmers, we need to put a chain of chars inside of an allocated space into the stack, the first approach that we could think is the following
+## 7.3. A common mistake
+Let's consider this situation: as programmers, we need to write a chain of characters inside an allocated space in the stack. The first approach that may come to mind is the following:
 
 ```asm
 mov rbp, rsp
@@ -86,7 +87,7 @@ mov eax, "abcd"
 
 mov DWORD [rbp+MY_STRING], eax ; MY_STRING equals to -1
 
-------------------------------------------------
+; ------------------------------------------------
 
 ; The above approach makes sense whether we think that 
 ; all chars will be written in order, from rbp+-1 to rbp+-4,
@@ -113,25 +114,25 @@ mov DWORD [rbp+MY_STRING], eax ; MY_STRING equals to -1
 ; in this way, "abcd" would be written from rsp to rbp+-1.
 ```
 
-## 7.4 Sizes
-You probably have seen that was used a command named "DWORD" in the example above, the sizes of operations are really important in assembly language, and if omitted, then some exceptions can occur in assembly time. A built-in feature that the mov opcode has is that if some bits weren't used in a move, then they are set to zeros, for instance:
+## 7.4. Sizes
+You probably noticed that a command named "DWORD" was used in the example above. The sizes of operations are crucial in assembly language, and if omitted, some exceptions can occur at assembly time. A built-in feature of the `mov` opcode is that if some bits aren't used in a move, they are set to zeros. For instance:
 
-Let's think about a 8bit register, so we'll move the number 2 to it.
+Let's consider a 8bit register, so we will assign the number 2 to it.
 
 ```asm
 mov al, 2
 
-; now the register al contains the binary 00000010.
-; even if the old value of the al register had 1 in the most significant bit,
-; it is reseted to 0.
-; thinking about bigger number
-; if we set a number for the al version of rax,
-; then the entire rax register will be reseted to zero, except the used bits.
+; Now, the register 'al' contains the binary 00000010. 
+; Even if the old value of the 'al' register had 1 in 
+; the most significant bit, it would be set to 0. 
+; Thinking about a larger number, if we set a number for
+; the 'al' version of 'rax', the entire 'rax' register 
+; would be set to zero, except for the used bits.
 ```
 
-For that reason this DWORD was used, to avoid we delete more data than expected in memory
+For that reason that `DWORD` was used, to avoid delete more data than expected in memory
 
-Here's the possibles sizes that you can use with the x86_64:
+Here are the possibles sizes that you can use with the x86_64:
 ```txt
 BYTE - 8bits.
 WORD - 16bits.
@@ -142,22 +143,20 @@ QWORD - Stands for quad WORD. 64bits.
 In the following example these commands make real difference:
 
 ```asm
-	mov rbp, rsp
+    mov rbp, rsp
 	sub rsp, 20
 
 	mov rax, "foobarrr"
-	mov rbx, "E"
 
 	mov [rbp+-8], rax
-	; If we put the BYTE command here
-	; nothing unexpected happens in the
-	; print command bellow, but if we put
-	; QWORD on its place, then only the last
-	; r of "foobarrr" will be printed.
-	; That's because the first 8 bytes
-	; from rbp+-9 to above were overwritten
-	; by this command, resulting in an unexpected
-	; behavior whether you not pay attention
+	
+
+	; If we use the 'BYTE' here, nothing unexpected 
+	; happens in the print command below. However, if we 
+	; put QWORD in its place, only the last 'r' of 
+	; "foobarrr" will be printed. That's because the first
+	; 8 bytes from rbp-9 to above were overwritten by 
+	; this command, resulting in unexpected behavior if not careful.
 	mov BYTE [rbp+-9], "E"
 	
 	mov rax, 1
@@ -165,32 +164,87 @@ In the following example these commands make real difference:
 	lea rsi, [rbp+-8]
 	mov rdx, 8
 	syscall
+
+    mov rax, 60
+    mov rdi, 0
+    syscall
 ```
 
-## 7.5 Stack Segment as Stack Data Structure
-As said previously, we can use the Stack segment as a Data structure, like in C or C++. A Stack follow the Last in, First out principle, and with two new opcodes we can take the whole control over the Stack segment. The new opcodes are *push* and *pop*.
+## 7.5. Stack Segment as Data Structure
+As mentioned earlier, we can use the stack segment as a data structure, similar to C or C++. A stack follows the Last In, First Out (LIFO) principle, and with two new opcodes, we can take complete control over the stack segment. The new opcodes are `push` and `pop`.
 
+### 7.5.1. push opcode
+`push` opcode pushes a value from a register into memory. This new value will be placed where the `rsp` is pointing, then an implicit "sub rsp, 8" will be performed. This opcode can only be used with 64-bit registers.
+
+### 7.5.2. pop opcode
+`pop` opcode does the reverse process, removing the value from the stack. The value is now in the register that was used with the *pop* opcode, then an implicit "add rsp, 8" will be performed. This opcode can only be used with 64-bit registers.
+
+### 7.5.3. Push and pop example
+
+```asm
+	segment .text
+	global _start
+
+_start:
+    mov rax, 7
+    mov rbx, 8
+    mov rdx, 9
+
+	; pushing values onto the stack
+    push rax
+    push rbx
+    push rdx
+
+    ; while loop to pop all values
+loop:
+    ; runs 3 times
+    mov al, [counter]
+    cmp al, 3
+
+    jge loop_end
+
+    ; pop into rax
+    pop rax
+    ; transform into string
+    add rax, '0'
+    ; mov to an address in .data
+    mov [numberAsString], al
+
+    ; print the number
+    mov rax, 1
+    mov rdi, 1
+    mov rsi, numberAsString
+    mov rdx, 2
+    syscall
+
+    ; increment counter
+    inc BYTE [counter]
+
+    ; jump back to loop
+    jmp loop
+
+loop_end:
+
+    mov rax, 60
+    mov rdi, 0
+    syscall
+
+segment .bss
+    counter resb 1
+
+segment .data
+    ; A symbol that represents a null byte
+    ; and a new line (\n).
+    ; The null byte will be replaced
+    ; by a number on each loop
+    numberAsString db 0x0, 0xa
+```
+Expected result: 
 ```txt
-push: {
-	Pushes a value from a register into memory, this new value
-	will be placed where the rsp is pointing. Then
-	an implicit "sub rsp, 8" occur. This opcode can
-	only be used with 64bits registers.
-}
-
-pop:{
-	Does the reverse process, removing the value from
-	the stack. The value is now in the register that was
-	used with the pop opcode. Then an implicit "add rsp, 8"
-	occur. This opcode can only be used with 64bits registers.
-}
-
-The implicit actions from both opcodes use 8 as operand because
-64bits registers use 8 bytes in total.
+9
+8
+7
 ```
 
-## 7.6 Function call preview
-In Assembly language, is possible call methods, but in a very low-level format, we will cover more about functions in the next section. What you currently need to know is that if you use a positive number with the RBP, the CPU will fetch a value from above the pointer in memory. In short, [rbp+-8] will fetch a value that is in the way to the RSP, and [rbp+8] will fetch a value to the opposite side in the stack.
-
-## What's next
-The stack section is finished here, however, you'll keep reading this name for many times in this project, that's because the stack is the main segment when we talk about places to store program data. In the next section we'll keep reading more about functions and functions calls
+## 7.6. Function call preview
+In Assembly language, it's possible to call methods, but in a very low-level format. We will cover more about functions in the next section. What you currently need to know is that if you use a positive number with the `RBP`, the CPU will fetch a value from above the pointer in memory. In short, `[rbp-8]` will fetch a value that is on the way to the `RSP`, and `[rbp+8]` will fetch a value to the opposite side in the stack.
