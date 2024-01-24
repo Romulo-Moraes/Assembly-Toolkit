@@ -1,7 +1,7 @@
 # 5. Jumps and conditional jumps
-Jumps is a essential part of nowadays computers, with this we can make loops, conditional structures like if/else and switch and constructing what we know today by modern languages.
+Jumps are a essential part of nowadays computers, with them we can create loops, conditional structures like if/else, switch and more.
 
-There're many possibles jumps, being conditional or not, they are the following:
+There are many possible jumps, whether conditional or not. They are as follows:
 ```txt
 JMP - Jump to a address given by its unique operand
 
@@ -22,10 +22,11 @@ JG - Jump if greater
 JE - Jump if equal 
 JNE - Jump if not equal 
 ```
-Each one accepts a symbol that lies in .text segment.
+
+Every jump takes a symbol located in the .text segment.
 
 ## 5.1 Symbols in .text segment
-A symbol represents an address in memory, such address that points to the next instruction ahead the symbol, it can be made typing a name that can't start with numbers and can has '_', a-z and A-Z on it's content and ending with a colon, for instance:
+A symbol represents an address in memory that points to the next instruction after the symbol. It can be created by typing a name that cannot start with numbers and may include '_', 'a-z', and 'A-Z' in its content, ending with a colon. For instance:
 ```asm
 _append_number_in_rax:
     add rax, 0xa
@@ -35,11 +36,11 @@ _append_number_in_rax:
 ```
 
 ## 5.2 Comparing values
-There's a special opcode that does the comparison called 'cmp', this accepts two operands, and after that we can call a jump and pass a flag with it. For instance:
+There's a special opcode for comparison called 'cmp,' which takes two operands. After that, we can invoke a jump and pass a symbol with it. For instance:
 ```asm
     cmp rax, rbx ; cmp subtract rbx from rax
 
-    ; since that cmp subtracts a operand from 
+    ; since cmp subtracts a operand from 
     ; another, jz can be used to check if 
     ; both are equal. 4 - 4 = 0.
 
@@ -48,7 +49,4 @@ There's a special opcode that does the comparison called 'cmp', this accepts two
 ```
 
 ## 5.3 Practice with jumps
-In the current directory was put some assembly source files with examples of programs, being them: loops, if/else, etc... Give a look to know a bit more about.
-
-## 5.4 What's next
-We've just learnt how jumps works and we even saw some examples of them in real programs, we are doing a great progress! In the next section we'll see about Arithmetic operations to be possible we make more sophisticated softwares with Assembly language.
+In the current directory, some assembly source files with examples of programs were placed, including loops, if/else statements, etc. Take a look if necessary.

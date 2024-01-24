@@ -1,28 +1,27 @@
-; Program that greets a person using conditional jumps
+; Program that greets the user using conditional jumps
 
 segment .text
     global _start
 
 _start:
-    ; the number put in rax define the flow of
-    ; the program, if it's 1 then the printed 
-    ; message will be 'Nice to meet you, John!'
-    ; otherwise it will be 'Nice to meet you, someone else!'
+    ; the number set to the rax register defines the flow of
+    ; the program, if it's 1, the printed 
+    ; message will be 'Nice to meet you, John!',
+    ; otherwise 'Nice to meet you, someone else!' will be printed
     mov rax, 1
 
-    ; compare to verify if it's John running
+    ; compare to verify if is John running
     ; the program
     cmp rax, 1
 
-    ; If it isn't, then jump to the 'else' of
-    ; our 'if/else' statement
+    ; If the user isn't John, jump to the 'else'
+    ; of our 'if/else' statement
     jnz else
 
-    ; If is John running the program, then
+    ; If is John running the program,
     ; just follow the normal flow of the program
-    ; for now
 
-if_1_then:
+if_john_then:
     ; Print the message: 'Nice to meet you, John!'
     mov rax, 1
     mov rdi, 1
@@ -30,11 +29,12 @@ if_1_then:
     mov rdx, msg.sz
     syscall
 
-    ; This is a if/else statement, we don't wan't
-    ; execute the else whether the 'if' was executed
-    ; so jump to end
+    ; This is a if/else statement, we don't want
+    ; execute the else because is John that is using
+    ; the program
     jmp end
-if_1_end:
+
+if_john_end:
 
 else:
     ; print the message: 'Nice to meet you, someone else!'

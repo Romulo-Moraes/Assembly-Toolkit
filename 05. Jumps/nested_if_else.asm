@@ -1,68 +1,74 @@
-	;; a program to create a chain of if/else
+;; a program to create nested if/else statements
 	
-	;; The context of program is add different
-	;; numbers to a base number depending of the
-	;; defined macro
+;; The context of program is add different
+;; numbers to a base number depending of the
+;; defined macro
 
-	;; If the input is 1 then 4 is added to the base number
-	;; If the input is 2 then 3 is added to the base number
-	;; if the input is 3 then 5 is added to the base number
-	;; if anything else is passed to input then 1 is added to
-	;; the base number
+;; If the input is 1, 4 is added to the base number
+;; If the input is 2, 3 is added to the base number
+;; if the input is 3, 5 is added to the base number
+;; if the input is anything else, 1 is added to
+;; the base number
 
-	;; We use %define to create a macro in nasm, like in C 
-	;; language, but the difference is that here is with the
-	;; symbol of percentage, and in C  is hashtag. 
-	%define INPUT 10
-	%define TO_ADD_WHEN_INPUT_IS_1 4
-	%define TO_ADD_WHEN_INPUT_IS_2 3
-	%define TO_ADD_WHEN_INPUT_IS_3 5
-	%define TO_ADD_WHEN_INPUT_IS_ANYTHING_ELSE 1
+global _start
+
+;; Similar to C programming language, we use %define 
+;; to create a macro in Nasm.
+%define INPUT 10
+%define TO_ADD_IF_INPUT_IS_1 4
+%define TO_ADD_IF_INPUT_IS_2 3
+%define TO_ADD_IF_INPUT_IS_3 5
+%define TO_ADD_IF_INPUT_IS_ANYTHING_ELSE 1
+%define BASE_NUMBER
 	
-	segment .text
-	global _start
+segment .text
 
 _start:
 	;; bl contains the input
 	mov bl, INPUT
-	;; al contains the base number, that's 1
-	mov al, 1
+	;; al contains the base number
+	mov al, BASE_NUMBER
 
-	;; cmp subtract 1 from bl
+	;; cmp subtracts 1 from bl
 	cmp bl, 1
 
-	;; Since cmp does a subtraction, jnz can be used to check
+	;; Due to cmp does a subtraction, jnz can be used to check
 	;; if both values are equal. 2 - 1 != 0.
-	
-	jnz _not_1
+	jnz input_isnt_1
 
-	;; If the flow of the program reach here, then INPUT equals to 1
+if_input_1:
+	; The value is 1! 
+	; Add the correct value to the base number
 	add al, TO_ADD_WHEN_INPUT_IS_1
 	
 	jmp _END_OF_IF_ELSE_CHAIN
 
-_not_1:
+input_isnt_1:
 
+	; Subtract the input by 2
 	cmp bl, 2
 
-	jnz _not_2
+	; Jump to the else if the result isn't 0
+	jnz input_isnt_2
 
-	;; If the flow of the program reach here, then INPUT equals to 2
+if_input_2:
+	; The value is 2!
+	; Add the correct value to the base number
 	add al, TO_ADD_WHEN_INPUT_IS_2
 	
 	jmp _END_OF_IF_ELSE_CHAIN
 	
-_not_2:
+input_isnt_2:
 	cmp bl, 3
 
-	
-	jnz _INPUT_IS_ANYTHING_ELSE
+	jnz input_is_anything_else
 
+if_input_3:
 	add al, TO_ADD_WHEN_INPUT_IS_3
 	
 	jmp _END_OF_IF_ELSE_CHAIN
 
-_INPUT_IS_ANYTHING_ELSE:
+input_is_anything_else:
 	add al, TO_ADD_WHEN_INPUT_IS_ANYTHING_ELSE
 	
 
