@@ -23,10 +23,10 @@ JE - Jump if equal
 JNE - Jump if not equal 
 ```
 
-Every jump takes a symbol located in the .text segment.
+Every jump takes a label located in the .text segment.
 
-## 5.1 Symbols in .text segment
-A symbol represents an address in memory that points to the next instruction after the symbol. It can be created by typing a name that cannot start with numbers and may include '_', 'a-z', and 'A-Z' in its content, ending with a colon. For instance:
+## 5.1 Labels in .text segment
+A label represents an address in memory that points to the next instruction after the symbol. It can be created by typing a name that cannot start with numbers and may include '_', 'a-z', and 'A-Z' in its content, ending with a colon. For instance:
 ```asm
 _append_number_in_rax:
     add rax, 0xa
@@ -36,7 +36,7 @@ _append_number_in_rax:
 ```
 
 ## 5.2 Comparing values
-There's a special opcode for comparison called 'cmp,' which takes two operands. After that, we can invoke a jump and pass a symbol with it. For instance:
+There is a special opcode for comparison called 'cmp,' which takes two operands. After that, we can invoke a jump and pass a label with it. For instance:
 ```asm
     cmp rax, rbx ; cmp subtract rbx from rax
 

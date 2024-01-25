@@ -1,129 +1,91 @@
-    segment .text
-    global _start
+%define SYS_WRITE 1
+%define SYS_READ 0
+%define STDOUT 1
+%define STDIN 0
+
+global _start
+
+segment .text
 
 _start:
-    ; Allocate space in stack for answer
-    mov rbp,rsp
-    sub rsp,1
+    ; Aligning both stack register
+    mov rbp, rsp
+    
+    ; Asking the number of messages to the user
+    call get_number_from_user
+    mov [total_hello_world_count], al
 
-    ; Do the question
-    mov rax, 1
+loop:
+    ; Verifying if the count still within the range
+    mov al, [count]
+    cmp al, [total_hello_world_count]
+    jge loop_end
+
+    ; Print hello world
+    call print_hello_world
+
+    ; Increment the counter
+    inc BYTE [count]
+
+    ; Jump back to the loop
+    jmp loop
+loop_end:
+
+    ; Exit the program
+    mov rax, 60
+    mov rdi, 0
+    syscall    
+
+
+; Procedure that prints 'Hello, world!'
+print_hello_world:
+    mov rax, SYS_WRITE
     mov rdi, 1
-    mov rsi, question
-    mov rdx, question.sz
+    mov rsi, hello_world
+    mov rdx, hello_world.sz
     syscall
 
-    ; Receive the answer
-    mov rax, 0
-    mov rdi, 0
+    ret
+
+; Function that asks a number to the user    
+get_number_from_user:
+    ; save rbp and allocate memory
+    push rbp
+    mov rbp, rsp
+    sub rsp, 1
+
+    ; Ask the question
+    mov rax, SYS_WRITE
+    mov rdi, STDOUT
+    mov rsi, number_question
+    mov rdx, number_question.sz
+    syscall
+
+    ; Receive the number
+    mov rax, SYS_READ
+    mov rdi, STDIN
     lea rsi, [rbp+-1]
     mov rdx, 1
     syscall
 
-    sub BYTE [rbp+-1], '0'
-
-    ; al is the 8bit register of rax
+    ; Move the received value to the 1/8 part of rax
     mov al, [rbp+-1]
+    sub al, '0'
 
-    ; rax has the same value of al
-    push rax
-
-    ; print the "Hello, world" sequence
-    call print_hello_word
-
-    mov rax, 1 ; <- the return address is exactly here
-    mov rdi, 1
-    mov rsi, final_message
-    mov rdx, final_message.sz
-    syscall
-    ; Final message displayed above
-
-    ; Program exit
-    mov rax, 60
-    mov rdi, 0
-    syscall
-
-print_hello_word:
-    ; pass function arguments through 
-    ; registers seems obvious, so here will
-    ; be shown passing through stack segment
-    push rbp
-    mov rbp, rsp
-
-    ; Allocating memory in stack frame
-    sub rsp, 20
-
-    ; rbx now has rax value
-    mov rbx, [rbp+16]
-    
-    ; Counter in rbp+-1, occupying 1 byte
-    mov BYTE [rbp+-1], 0
-
-    ; Moving the message "Hello, world!\n",
-    ; this of course could be put in .rodata
-    ; segment, however, i put here to give a 
-    ; utility to the memory allocation in stack
-    ; frame.
-    mov rax, "Hello, w"
-    mov QWORD [rbp+-17], rax
-    mov rax, "orld!"
-    mov QWORD [rbp+-9], rax
-    mov al, 0xa
-    mov BYTE [rbp+-4], al
-
-; Loop to print the message
-PRINT_LOOP:
-    ; dl is the 8bits register from rdx
-    mov dl, [rbp+-1]
-    
-    ; rdx has the value of dl
-    cmp rdx, rbx
-
-    ; If the counter still less than
-    ; the number that the user typed,
-    ; then we can print more one time
-    jl COUNTER_IS_OK
-
-    ; If not, then jl is ignored
-    ; and a jump to print_hello_world_end
-    ; occur
-    jmp print_hello_word_end
-
-; Begin of print instructions
-COUNTER_IS_OK:
-    ; We must increment dl to 
-    ; control the program
-    inc dl
-
-    ; Saving dl inside the stack.
-    ; this is necessary because all
-    ; data registers are reseted when a 
-    ; syscall is called
-    mov [rbp+-1], dl
-
-    ; requesting the O.S to print our message
-    mov rax, 1
-    mov rdi, 1
-    lea rsi, [rbp+-17] ; <- located here
-    mov rdx, 14 ; <- size of the entire message (with \n)
-    syscall
-
-    jmp PRINT_LOOP ; <- start over and over again...
-
-; When the procedure reach the end, a jump will 
-; occur to here
-print_hello_word_end:
-    ; deallocate memory from stack frame
-    add rsp, 20
-    ; pop the rbp that we pushed previously
+    ; Deallocate memory and pop rbp
+    inc rsp
     pop rbp
 
-    ; pop return address from stack and send it to CPU
+    ; Return from function
     ret
 
 segment .rodata
-    question db "How many times do you wan't hear a Hello, world?", 0xa,"->" , 0x0
-    question.sz equ $- question
+    number_question db "How many times you want to hear 'Hello, world' ?", 0xa, 0x0
+    number_question.sz equ $-number_question
+    hello_world db "Hello, world!", 0xa, 0x0
+    hello_world.sz equ $-hello_world
 
-    final_message db "Here you are. :)", 0xa, 0x0
-    final_message.sz equ $- final_message
+
+segment .bss
+    total_hello_world_count resb 1
+    count resb 1
