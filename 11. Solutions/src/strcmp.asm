@@ -2,15 +2,15 @@
 	;; 
 	;; RDI register is used as the first string
 	;; RSI register is used as the second string
-	;; RAX is the return value. -1 whether first
-	;; string is less, 0 whether both are equal
-	;; and 1 whether first string is greater than second
+	;; RAX is the return value. -1 if the first
+	;; string is less, 0 if both are equal
+	;; and 1 if first string is greater than second
 	;;
 	;; The function doesn't change the value of RDI and RSI
 	;; The function doesn't use any registers beyond the known
 
 	
-strcmpp:
+strcmp:
 	;; Save rbp
 	push rbp
 
