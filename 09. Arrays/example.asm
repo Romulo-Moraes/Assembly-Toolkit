@@ -1,93 +1,112 @@
-segment .text
 global _start
 
-%define INT_SIZE 4
-%define INT_POINTER_LOCATION -11
-%define LOOP_COUNTER_LOCATION -1
+; macros
+%define SYS_EXIT 60
+%define SYS_WRITE 1
+%define STDOUT 1
+%define EXIT_SUCCESS 0
+%define SIZEOF_INTEGER 4
+%define ARRAY_SIZE 4
+%define COUNTER 1
+%define ARRAY_BASE_ADDRESS 9
 
-print_int_array:
+segment .text
 
-    push rbp
+_start:
+    ; allocating memory
     mov rbp, rsp
-    sub rsp, 11
+    sub rsp, SIZEOF_INTEGER * ARRAY_SIZE
 
-    ; LOOP_COUNTER_LOCATION = -1
-    mov BYTE [rbp+LOOP_COUNTER_LOCATION], 0
-    ; A new line is being put in the position -2, but a print 
-    ; syscall will be made pointing to -3. This is just to
-    ; make the print prettier.
-    mov BYTE [rbp+-2], 0xa
-    ; Saving the array pointer, each syscall clean everything
-    ; from the rdi register
-    ; INT_POINTER_LOCATION = -11
-    mov [rbp+INT_POINTER_LOCATION], rdi
+    ; loading array's base address
+    lea rdi, [rbp+-SIZEOF_INTEGER * ARRAY_SIZE]
+    call populate_array
 
-print_loop:
-    ; Compare the counter to check we reached at
-    ; the end of the array
-    cmp BYTE [rbp+LOOP_COUNTER_LOCATION], 10
-    jge print_loop_end
+    call print_array
 
-    ; Move counter to dl register
-    mov dl, [rbp+LOOP_COUNTER_LOCATION]
-    ; Loading the element from the array using rdx register
-    ; (dl is the 8bit part of rdx).
-    mov eax, [rdi+rdx * INT_SIZE] ; INT_SIZE = 4
+    ; exit the program
+    mov rax, SYS_EXIT
+    mov rdi, EXIT_SUCCESS
+    syscall
 
-    ; Here we know that the value inside is smaller than a byte
-    ; so will be used the 8bit part of eax to transform the number
-    ; to string.
-    add al, '0'
+; receive and print a number
+; rdi = number to print
+print_number:
+    ; save rbp
+    push rbp
 
-    ; Move the number character to the position
-    ; to be finally printed.
-    mov [rbp+-3], al
+    ; allocate memory
+    mov rbp, rsp
+    sub rsp, 2
 
-    ; Syscall print to the -3 position
-    mov rax, 1
-    mov rdi, 1
-    lea rsi, [rbp+-3]
+    ; move the number and a new line to
+    ; the allocated buffer
+    mov BYTE [rbp+-1], 0xa
+    mov [rbp+-2], dil
+
+    ; print the number
+    mov rax, SYS_WRITE
+    mov rdi, STDOUT
+    lea rsi, [rbp+-2]
     mov rdx, 2
     syscall
 
-    ; Increment counter to the next iteration
-    inc BYTE [rbp+LOOP_COUNTER_LOCATION]
-
-    ; Reload array pointer from RAM, this is because
-    ; the syscall wiped out everything inside the rdi
-    ; register
-    mov rdi, [rbp+INT_POINTER_LOCATION]
-
-    ; Jump to the loop again to print the next position
-    jmp print_loop
-
-print_loop_end:
-    ; End of the procedure
-    mov rsp, rbp
+    ; deallocate and pop rbp
+    add rsp, 2
     pop rbp
 
     ret
 
-_start:
+; fill the array with constants
+; rdi = array base address
+populate_array:
+    mov DWORD [rdi], 5
+    mov DWORD [rdi+SIZEOF_INTEGER], 2
+    mov DWORD [rdi+SIZEOF_INTEGER * 2], 8
+    mov DWORD [rdi+SIZEOF_INTEGER * 3], 4
+
+    ret
+
+; print all array elements
+; rdi = array address
+print_array:
+    ; save rbp and allocate memory
+    ; for the counter and the base address
+    push rbp
     mov rbp, rsp
-    sub rsp, INT_SIZE * 10
+    sub rsp, 9
 
-    lea rdi, [rbp+-INT_SIZE * 10]
+    ; initialize the counter with 0.
+    ; save the base address.
+    mov BYTE [rbp+-COUNTER], 0
+    mov [rbp+-ARRAY_BASE_ADDRESS], rdi
 
-    mov DWORD [rdi+INT_SIZE * 0], 1
-    mov DWORD [rdi+INT_SIZE * 1], 2
-    mov DWORD [rdi+INT_SIZE * 2], 4
-    mov DWORD [rdi+INT_SIZE * 3], 8
-    mov DWORD [rdi+INT_SIZE * 4], 4
-    mov DWORD [rdi+INT_SIZE * 5], 2
-    mov DWORD [rdi+INT_SIZE * 6], 1
-    mov DWORD [rdi+INT_SIZE * 7], 2
-    mov DWORD [rdi+INT_SIZE * 8], 4
-    mov DWORD [rdi+INT_SIZE * 9], 8
 
-    lea rdi, [rbp+-INT_SIZE * 10]
-    call print_int_array
+print_loop:
+    ; load base address
+    mov rdx, [rbp+-ARRAY_BASE_ADDRESS]
 
-    mov rax, 60
-    mov rdi, 0
-    syscall
+    ; compare the counter with the array size
+    mov al, [rbp+-COUNTER]
+    cmp al, ARRAY_SIZE
+
+    jge print_loop_end
+
+    ; load an array element into edi
+    ; and transform it to a character
+    mov edi, [rdx+rax*SIZEOF_INTEGER]
+    add edi, '0'
+    
+    call print_number
+
+    ; increment the counter
+    inc BYTE [rbp+-COUNTER]
+
+    ; jump back to the loop
+    jmp print_loop
+
+print_loop_end:
+    ; deallocate memory and pop rbp
+    add rsp, 9
+    pop rbp
+
+    ret
