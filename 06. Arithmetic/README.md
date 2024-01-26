@@ -58,9 +58,6 @@ mul rbx
 The *mul* and *imul* instructions trigger certain flags when an overflow occurs, and these can be managed using the jumps we've discussed earlier. Let's take a look at some examples.
 
 ```asm
-
-assembly
-Copy code
 ; imul is used for signed operations,
 ; the following code results in -4.
 ; there is no problem about overflow,

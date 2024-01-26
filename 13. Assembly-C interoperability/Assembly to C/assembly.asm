@@ -1,24 +1,21 @@
+global helloMsg ; making the procedure globally 
+                ; visible to the linker
+
+%define SYS_WRITE 1
+%define STDOUT 1
+
 segment .text
-global hello_msg ; export the procedure
 
-hello_msg:
-    push rbp
-    mov rbp, rsp
-    sub rsp, 15
-
-    mov rax, 'Hello, C'
-    mov [rbp+-15], rax
-    mov rax, ' lang!'
-    mov [rbp+-7], rax
-    mov BYTE [rbp+-1], 0xa
-
-    mov rax, 1
-    mov rdi, 1
-    lea rsi, [rbp+-15]
-    mov rdx, 15
+helloMsg:
+    mov rax, SYS_WRITE
+    mov rdi, STDOUT
+    lea rsi, [rel message]
+    mov rdx, message.sz
     syscall
 
-    mov rsp, rbp
-    
-    pop rbp
     ret
+    
+
+segment .rodata
+    message db "Hello, C lang!", 0xa
+    message.sz equ $-message
