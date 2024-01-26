@@ -22,22 +22,23 @@ global _start
 segment .text
 
 _start:
-    ; Print the first message
-    print msg, msg_len
 
-    ; Get length of the word 'length'
+    ; Get the length of the word 'length'
     _strlen length_word
 
-    ; The result value is in rax
-    ; adding '0' to transform to
+    ; the returned value is in 'rax',
+    ; adding '0' to transform it into
     ; a printable number
     add rax, '0'
     ; Moving to a address to be printed
     mov [words_length], rax
 
+    ; Print the first message
+    print msg, msg_len
+
     ; Print the length, in this case
-    ; i know that the length won't be more
-    ; than 1 character.
+    ; the string won't be larger than
+    ; 1 character.
     print words_length, 1
 
     exit 0
