@@ -1,22 +1,21 @@
 # 2. Registers section
-Register bank or also know as registers is a kind of memory that lies inside the CPU, and it's speed is much better than a normal RAM or SSD. This component of a CPU is responsible for manage data, make system calls, store flags and more...
+Registers are a type of memory that resides inside the CPU. These components are designed to be extremely fast in their operations, even faster than RAM or SSD. Registers are responsible for managing data, making system calls, storing flags, and more.
 
 ## 2.1 Register types
-There's some types of registers, each type is useful to accomplish a logical problem, here is the most important types of registers that exist:
+There is a set of register types, and each type is responsible for performing a specific kind of operation:
 
 ```txt
-Data: Is useful to manage data inside the CPU.
+Data: It is useful for managing data inside the CPU.
 
-Pointer: Is useful to work with the stack segment (Will be covered later).
+Pointer: It is useful for working with the stack segment (Will be covered later).
 
-Index: Is useful to index something in the memory, acting like a pointer in C language.
+Index: It is useful for indexing something in memory, behaving similarly to a pointer in the C language.
 ```
-
-Is important to say that the size of the registers respect the word's size of the CPU's architecture, but is also possible access just a part of the cotent of a register for example, like the first half or the first 1/4, etc...
+The registers follow the size of the word. However, it is possible to access only a part of these registers, such as 1/2, 1/4, and so on.
 
 ## 2.2 Register names
 
-Now that you know all types of registers is the time of reveal their names, it can be tough at the begin because a great part of them has just 3 characters and some of them don't refer to anything, but you'll get it soon.
+Now that you know all types of registers, it is the time of reveal their names, it can be tough at the beginning because a great part of them has just 3 characters and seems like they dont mean anything, but this is not impossible to understand.
 
 ```txt
 Data: {
@@ -35,33 +34,32 @@ Index: {
     RDI
 }
 ```
-
-These registers are from x86-64 and can be different in another architecture that doesn't follow this feature.
-
-It's time to work a bit with these registers and those opcodes that we learnt before, so here is some codes and what they do.
+The above registers are from x86-64 architecture and may be different for other architectures.
 
 ```asm
-; First program
+; First assembly snippet
 mov rax, 0x4 ; move the value 0x4 to register rax
 add rax, 0x2 ; add 0x2 to rax, total: 0x6
-mov rbx, rax ; mov value of rax to rbx (rax still having 0x6)
+mov rbx, rax ; move the value of rax to rbx (with rax still holding 0x6).
 sub rbx, 0x3 ; subtract 0x3 from rbx, total: 0x3
 
-; In the end, the register rax has the value 0x6 and rbx has the value 0x3.
+; In the end, the register `rax` retains the value 0x6, and `rbx` has the value 0x3.
 ```
 
-It's often normal to Assembly programmers write the numbers in hexadecimal, However, you could write just decimal numbers without any problem, of course removing the '0x' before the number.
+It is often normal for Assembly programmers to write numbers in hexadecimal. However, you could write them in decimal with no problem.
 
-In Assembly language, the comments are made with a semicolon and can be put in any place that you want to comment.
+In Assembly language, comments are made with a semicolon and can be placed anywhere in the code to provide explanations or annotations.
 
-The two remaining kinds of registers will be covered in another section, here is just to see what they are.
+The two remaining types of registers will be discussed in another section; here, the goal is to provide an understanding of what they are.
 
-## 2.3 Older versions of nowaday registers
-The word of the architecture x86-64 is exactly 64 bits, in other words, 8 bytes, so in teory we can only manage data by 8 bytes at a time, correct ?
+## 2.3 Older versions of nowadays registers
+The x86-64 architecture has a word size of 64 bits, which is equivalent to 8 bytes. Therefore, in theory, we can only process data in chunks of 8 bytes at a time, is that correct?
 
-At the begin of computing, the memory was very expensive and wasn't possible to make a register of 64 bits, so we started with basic examples of register, being it 8 bits, after 16 and so on... until reach at the most common among the registers that is 64 bits.
+In the early days of computing, memory was very expensive, making it impractical to implement 64-bit registers. As a result, we began with simpler examples, starting with 8-bit registers and gradually increasing to 16 and beyond. This progression continued until we arrived at the most prevalent register size, which is now 64 bits.
 
-But if we face a problem that require we manage one byte at a time, what we do ? We still can access these kinds of registers, however, that isn't different registers, this is a part of the main register of 64 bits, we just access a percentage of it.
+What do we do if we encounter a problem that requires us to manage one byte at a time?
+
+It still possible to access these smaller register. However, they are not a distinct set of registers; they represent fractions of the 64-bits main registers.
 
 Here is the first half with 32 bits:
 ```txt
@@ -102,7 +100,7 @@ Here is the 1/4 from the full register:
     }
 }
 ```
-And the 8 bits registers:
+The 8 bits registers:
 ```txt
 8 bits registers: {
     Data: {
@@ -124,37 +122,36 @@ And the 8 bits registers:
 ```
 
 ## 2.4 State register
-The CPU has a special register that store the current state
-of your code's logic, its name is RFLAGS, this is a 64 bits flags which one store a flag on each bit. These flags mean a lot of things, and is possible interact with them, for instance, we can do something if a arithmetic operation caused an overflow, or do nothing otherwise.
+The CPU has a special register called RFLAGS. It is a 64-bit register that stores different flags on each bit. These flags are created based on the operations performed by the program and provide information about events, such as an arithmetic operation resulting in an overflow or whether a value is greater than or equal to another value.
 ```asm
-; This set a bit into the RFLAGSG register
-; called OF
+; This operation sets a
+; bit in the RFLAGS register
+; called OF.
 mov al, 255
 add al, 1
 
-; We can do jumps after the operation
-; to check if the OF flag is set.
+; We can perform jumps after the operation
+; based on the OF flag
 
 ; ...
 ; ...
 ; ...
 ```
-An overflow occur in this code because the 'al' register only hold 8 bits, and 255 is max the value that 8 bits can represent.
+An overflow occurs in this code because the `al` register can only hold 8 bits, and 255 is the maximum value that 8 bits can represent.
 
 ### 2.4.1 Flag names
-Here is a list of the flag names and what they represent:
+Here is a list of flag names and what they represent:
 ```txt
-OF (Overflow flag) - Set when arithmetic operation caused overflow.
+OF (Overflow flag) - Set when an arithmetic operation causes overflow.
 
-ZF (Zero flag) - Set when arithmetic operation resulted in zero, or most commonly, two equal values in 'cmp' opcode.
+ZF (Zero flag) - Set when an arithmetic operation results in zero, or most commonly, when two equal values are compared using the 'cmp' opcode.
 
-CF (Carry flag) - Set when there's a overflow or when the shifted value of shift operations is 1.
+CF (Carry flag) - Set when there is an overflow or when the shifted value of shift operations is 1.
 
-SF (Sign Flag) - Set when arithmetic operation resulted in a negative value.
+SF (Sign Flag) - Set when arithmetic operation results in a negative value.
 
-PF (Parity flag) - Set when a operation resulted in a value with a even number of set bits (bit 1).
+PF (Parity flag) - Set when an operation results in a value with an even number of set bits (bit 1).
 ```
-These are the main flags that we can interact in our code logic, there're more many of them, but they hold no much meaning for us. The interaction with theses flags is did mainly with conditional jumps, such thing that we will cover later on.
+The above flags are the primary flags that we can interact as we are writing Assembly programs. There are more flags available in the RFLAGS register. However, those flags don't hold considerable meaning for us.
 
-## What's next
-Here we covered a bit about what are the registers and what they do, but the playground with them isn't over, because they are important and you will ever use them in your programs. In the next section we will see about the segmentations that a program has inside the memory.
+The interaction with these flags is done mainly with conditional `jumps` (a section of this repository), where we can perform operations based on previous events.
