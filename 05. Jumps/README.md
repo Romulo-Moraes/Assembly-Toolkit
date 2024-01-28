@@ -31,21 +31,21 @@ A label represents an address in memory that points to the next instruction afte
 _append_number_in_rax:
     add rax, 0xa
 	
-	; We will talk about this command after
+	; We will talk about this command later
     ret
 ```
 
 ## 5.2 Comparing values
-There is a special opcode for comparison called 'cmp,' which takes two operands. After that, we can invoke a jump and pass a label with it. For instance:
+There is a special opcode for comparison called `cmp`, which takes two operands. After that, we can invoke a jump and pass a label with it. For instance:
 ```asm
-    cmp rax, rbx ; cmp subtract rbx from rax
+    cmp rax, rbx ; cmp subtracts rbx from rax
 
     ; since cmp subtracts a operand from 
     ; another, jz can be used to check if 
     ; both are equal. 4 - 4 = 0.
 
-	; Jump to <Symbol> if rax equals to rbx
-    jz <Symbol>
+	; Jump to <label> if rax equals to rbx
+    jz <label>
 ```
 
 ## 5.3 Practice with jumps

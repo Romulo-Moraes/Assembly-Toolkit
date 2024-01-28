@@ -3,10 +3,10 @@
 
 
 # 6. Arithmetic
-Arithmetic is crucial in software, especially in complex programs like AI, games, etc. However, it's also significant at the low level. There are four basic arithmetic operations that the CPU can perform: addition, subtraction, multiplication, and division.
+Arithmetic is crucial in software, especially in complex programs like AI, games, etc. However, it is also significant at the low level. There are four basic arithmetic operations that the CPU can perform: addition, subtraction, multiplication, and division.
 
 ## 6.1 Flags
-Before we begin discussing methods for arithmetic in assembly, it's important to address CPU flags. A CPU flag is utilized to store information representing an event that has just occurred. This event could be an overflow or indicate that the result of an arithmetic operation is zero. These flags are crucial for making decisions, especially in jumps after the cmp opcode, which typically sets flags.
+Before we begin discussing methods for arithmetic in assembly, it is important to address CPU flags. A CPU flag is utilized to store information representing an event that has just occurred. This event could be an overflow or indicate that the result of an arithmetic operation is zero. These flags are crucial for making decisions, especially in jumps after the cmp opcode, which typically sets flags.
 
 ## 6.1 Addition
 There are two ways to perform addition in Assembly language, one more sophisticated and one simpler. We have already encountered them before, and they are the add and inc instructions.
@@ -90,7 +90,7 @@ _start:
 	; at the end (i.e 0 - 127),
 	; the message 'Not overflow!' will be printed,
 	; this happens because 128 * 2 equals to 256, that
-	; means a overflow
+	; means an overflow
 	mov al, 128
 	mov bl, 2
 	mul bl
@@ -98,7 +98,7 @@ _start:
 	; If an overflow NOT occurred, then jump to...
 	jnc jump_not_overflow
 
-	; If the flow of code reaches here, then
+	; If the program reaches here, then
 	; an overflow happened.
 
 	;; Print a message saying it
@@ -195,11 +195,14 @@ segment .text
 	
 _start:
 	mov rax, -10
-	; The 'idiv' opcode always looks to 'rax' and 'rdx' for 
-	; calculations. If the division is signed, you must 
-	; use the 'cqo' opcode. This will set each bit of 
-	; 'rdx' to 1 if the value of the dividend is negative; 
-	; otherwise, 0 is used.
+	; The 'idiv' opcode always looks
+    ; into 'rax' and 'rdx' to perform
+    ; divisions. If the division
+    ; is signed, you must use the
+    ; 'cqo' opcode. This will set
+    ; each bit of 'rdx' to 1 if
+    ; the value of the dividend
+    ; is negative; otherwise, 0 is used.
 	cqo
 	mov rbx, 2
 	idiv rbx
@@ -207,17 +210,27 @@ _start:
 	; rax = -5
 	; rdx = 0
 	
-	; Here, we could theoretically implement a procedure to transform -5
-	; into a printable version and then print the value. However, we'll
-	; cover that later. It's crucial to remember that we can't simply add 
-	; '0' to -5 with the goal of transforming it into a printable version 
-	; because the binary content of -5 and 5 is completely different.
+	; Here, we could theoretically
+	; implement a procedure to 
+	; transform -5
+	; into a printable version and
+	; then print the value. However,
+	; we'll cover that later. It is
+	; crucial to remember that we 
+	; can't simply add '0' to -5 with
+	; the goal of transforming it
+	; into a printable version 
+	; because the binary content of
+	; -5 and 5 are completely different.
 	
-	; Since we can't directly print a negative number, a new trick will
-	; be introduced to you.
+	; Due to it being impossible to
+	; directly print a negative number,
+	; you will learn a new trick.
 	
-	; The 'neg' opcode negates the value of 'rax'. If 'rax' originally 
-	; held the number -5, its contents will now be 5.
+	; The 'neg' opcode negates the 
+	; value of 'rax'. If 'rax'
+	; originally held the number -5,
+	; its contents will now be 5.
 	neg rax
 	
 	; transform to a printable version
@@ -226,7 +239,7 @@ _start:
 	; save it in .bss
 	mov [number], rax
 	
-	; print value
+	; print the value
 	mov rax, 1
 	mov rdi, 1
 	mov rsi, number
@@ -238,7 +251,6 @@ _start:
 	mov rdi, 1
 	syscall
 	
-	segment .bss
-		number resb 8
-
+segment .bss
+	number resb 8
 ```
