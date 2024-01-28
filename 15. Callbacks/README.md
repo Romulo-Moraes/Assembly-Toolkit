@@ -1,4 +1,5 @@
 # 15. Callbacks
+Callbacks are procedures that are provided as arguments to another procedure
 There's the possibility of callbacks, even being in the low-level. We can move the address of a symbol from the .text to a register and then call it any time we want to, or do anything with it, like store this address on the stack or in any other memory segment. Here's a example of callbacks, this source code is also available inside the directory ./Callbacks.
 ```asm
 segment .text
