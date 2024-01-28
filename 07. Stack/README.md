@@ -1,5 +1,5 @@
 # 7. Stack
-The stack is a segment of memory that is very useful for storing various types of data. Although we already have the .data, .bss, and .rodata segments, the stack is particularly useful for many other things, such as stack frames, providing a more dynamic way to store data, etc. To operate in this segment, I will introduce you to two more registers: the Base Pointer and the Stack Pointer.
+The stack is a segment of memory that is very useful for storing various types of data. Although we already have the .data, .bss, and .rodata segments, the stack is particularly useful for many other things, such as stack frames, providing a more dynamic way to store data. To operate in this segment, I will introduce you to two more registers: the Base Pointer and the Stack Pointer.
 
 ## 7.1. The new registers
 Only these two new registers are necessary to manipulate the stack segment, the RBP (Base Pointer) and RSP (Stack Pointer). The Base Pointer (RBP) always points to the beginning of a block of memory that is important at the current time of your program logic. The Stack Pointer (RSP) always points to the current limit of allocated memory and is also useful for pushing values onto the stack, similar to a real stack data structure. You must be careful when dealing with these two aspects because you are getting closer to the risk of segmentation faults. If you aren't careful, your program may crash.
@@ -9,8 +9,9 @@ Only these two new registers are necessary to manipulate the stack segment, the 
 We must always allocate memory in the stack before using it. The amount of allocated memory is defined by the difference between the Base Pointer and the Stack Pointer.
 
 ```asm
-; Is always needed, here we're pointing rsp and rbp to the same location.
-; (passing value of rsp to rbp)
+; It is always needed, here we are 
+; pointing rsp and rbp to the same
+; location. (passing value of rsp to rbp)
 mov rbp, rsp
 
 ; Allocating 4 bytes in Stack Memory. (aka x64 integer)
@@ -30,11 +31,10 @@ Visual explanation of the above code
   +--------+
   |        | <- allocated space
   +--------+
-  |        | <- in the second line, rsp points to here. (allocated space)
-  +--------+
+  |        | <- in the second line, rsp points to 
+  +--------+    here. (allocated space)
 ```
-	
-0
+
 It's important to note that the stack always grows down. This may be a bit confusing initially, but you'll understand it soon.
 
 After allocating space inside the stack, we can store values there. For instance, here is a code that puts a single character into the allocated space and then prints it using a simple syscall.
@@ -96,8 +96,8 @@ mov DWORD [rbp+MY_STRING], eax ; MY_STRING equals to -1
 ;
 ; +----+
 ; | d  |
-; +----+
-; | c  | The "abcd" will be written from rbp+-1 to above
+; +----+  The "abcd" will be written 
+; | c  |  from rbp+-1 to above 
 ; +----+
 ; | b  | <- rbp
 ; +----+
@@ -153,10 +153,10 @@ In the following example these commands make real difference:
 
 	; If we use the 'BYTE' here, nothing unexpected 
 	; happens in the print command below. However, if we 
-	; put QWORD in its place, only the last 'r' of 
+	; replace the 'BYTE' by 'QWORD', only the last 'r' of 
 	; "foobarrr" will be printed. That's because the first
 	; 8 bytes from rbp-9 to above were overwritten by 
-	; this command, resulting in unexpected behavior if not careful.
+	; this command, resulting in an unexpected behavior.
 	mov BYTE [rbp+-9], "E"
 	
 	mov rax, 1
@@ -197,6 +197,7 @@ _start:
 
     ; while loop to pop all values
 loop:
+
     ; runs 3 times
     mov al, [counter]
     cmp al, 3
