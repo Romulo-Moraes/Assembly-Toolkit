@@ -10,7 +10,7 @@ _start:
     ; otherwise 'Nice to meet you, someone else!' will be printed
     mov rax, 1
 
-    ; compare to verify if is John running
+    ; compare to verify if it is John running
     ; the program
     cmp rax, 1
 
@@ -30,8 +30,8 @@ if_john_then:
     syscall
 
     ; This is a if/else statement, we don't want
-    ; execute the else because is John that is using
-    ; the program
+    ; execute the else because it is John that is using
+    ; the program, not someone else
     jmp end
 
 if_john_end:

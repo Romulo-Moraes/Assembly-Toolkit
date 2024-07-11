@@ -2,28 +2,24 @@
 	global _start
 
 _start:
-	; An unsigned byte can support
-    ; values between 0 and 255.
-	; In this code, if al is 128, the
-    ; message 'Overflow!!' will be
-    ; printed.
-	; Using any number that doesn't
-    ; result in an overflow at the
-    ; end (i.e 0 - 127), the message
-    ; 'Not overflow!' will be printed,
-	; this happens because 128 * 2
-    ; equals to 256, that means an overflow
+	; an unsigned byte can support values between
+	; 0 and 255.
+	; In this code, if al is 128, the message 'Overflow!!'
+	; will be printed.
+	; Using any number that doesn't result in an overflow
+	; at the end (i.e 0 - 127), the message 'Not overflow!'
+	; will be printed
 	mov al, 128
 	mov bl, 2
 	mul bl
 
-	; If an overflow NOT occurred, then jump to...
+	; if an overflow didn't occur, jump to...
 	jnc jump_not_overflow
 
-	; If the program reaches here, then
+	; if the program reaches here, then
 	; an overflow happened.
 
-	; Print a message saying it
+	; print a message saying it
 	mov rax, 1
 	mov rdi, 1
 	mov rsi, msg
@@ -34,7 +30,7 @@ _start:
 	; print two messages
 	jmp end
 jump_not_overflow:
-	; If the flow of code reaches here, a overflow
+	; If the program reaches here, a overflow
 	; didn't happen
 
 	; Print a message saying it
@@ -47,7 +43,7 @@ jump_not_overflow:
 
 end:
 
-	; Exit the program
+	;; Exit the program
 	mov rax, 60
 	mov rdi, 0
 

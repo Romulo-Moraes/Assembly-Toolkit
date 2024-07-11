@@ -14,12 +14,12 @@ global _start
 
 ;; Similar to C programming language, we use %define 
 ;; to create a macro in Nasm.
-%define INPUT 10
+%define INPUT 1
 %define TO_ADD_IF_INPUT_IS_1 4
 %define TO_ADD_IF_INPUT_IS_2 3
 %define TO_ADD_IF_INPUT_IS_3 5
 %define TO_ADD_IF_INPUT_IS_ANYTHING_ELSE 1
-%define BASE_NUMBER
+%define BASE_NUMBER 2
 	
 segment .text
 
@@ -29,7 +29,7 @@ _start:
 	;; al contains the base number
 	mov al, BASE_NUMBER
 
-	;; cmp subtracts 1 from bl
+	;; checking if bl equals to 1
 	cmp bl, 1
 
 	;; Due to cmp does a subtraction, jnz can be used to check
@@ -39,13 +39,13 @@ _start:
 if_input_1:
 	; The value is 1! 
 	; Add the correct value to the base number
-	add al, TO_ADD_WHEN_INPUT_IS_1
+	add al, TO_ADD_IF_INPUT_IS_1
 	
 	jmp _END_OF_IF_ELSE_CHAIN
 
 input_isnt_1:
 
-	; Subtract the input by 2
+	;; checking if bl equals to 2
 	cmp bl, 2
 
 	; Jump to the else if the result isn't 0
@@ -54,44 +54,40 @@ input_isnt_1:
 if_input_2:
 	; The value is 2!
 	; Add the correct value to the base number
-	add al, TO_ADD_WHEN_INPUT_IS_2
+	add al, TO_ADD_IF_INPUT_IS_2
 	
 	jmp _END_OF_IF_ELSE_CHAIN
 	
 input_isnt_2:
+	;; checking if bl equals to 3
 	cmp bl, 3
 
 	jnz input_is_anything_else
 
 if_input_3:
-	add al, TO_ADD_WHEN_INPUT_IS_3
+	add al, TO_ADD_IF_INPUT_IS_3
 	
 	jmp _END_OF_IF_ELSE_CHAIN
 
 input_is_anything_else:
-	add al, TO_ADD_WHEN_INPUT_IS_ANYTHING_ELSE
+	add al, TO_ADD_IF_INPUT_IS_ANYTHING_ELSE
 	
 
 _END_OF_IF_ELSE_CHAIN:	
 
-	;; Now we need to print the number, but there's a problem,
-	;; we can't just print the number, because according to the ascii
-	;; table, only numbers between the ascii codes 48 and 57 are
-	;; printable, now we are working with literal numbers, so we
-	;; must convert it to show in the terminal, otherwise, junk
-	;; data would be showed to us.
+	;; In order to print the result, we need to perform a small conversion
+	;; from the number to its character representation.
 
-	;; Now a trick, we just need add the CHARACTER '0' to the number,
-	;; doing a simple math behind the ascii encoding.
+	;; The trick is add the character '0' to the number we want to convert,
+	;; doing a simple math using the ascii enconding.
 
 	add al, '0'
 
 	;; Explanation:
 	;; If we have the number 5 in the al register and we add the
-	;; character '0' that has the ascii value 48, we just added
-	;; 48 to 5, resulting in 53. If we look in the ascii table,
-	;; then we will see that 53 represents the character '5', that
-	;; is the exact thing we wan't.
+	;; character '0' that means 48 in decimal, the final result 53.
+	;; If we look in the ascii table, we will see that 53 represents
+	;; the character '5', that is exactly what we want.
 
 	;; Moving the data to a address in .bss
 	mov [final_answer], al

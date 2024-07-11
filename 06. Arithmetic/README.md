@@ -1,29 +1,20 @@
-
-
-
-
 # 6. Arithmetic
-Arithmetic is crucial in software, especially in complex programs like AI, games, etc. However, it is also significant at the low level. There are four basic arithmetic operations that the CPU can perform: addition, subtraction, multiplication, and division.
+Arithmetic is crucial in software development, especially for complex programs like AI, games, etc. However, it is also significant at the low level. There are four basic arithmetic operations that the CPU can perform: addition, subtraction, multiplication and division.
 
-## 6.1 Flags
-Before we begin discussing methods for arithmetic in assembly, it is important to address CPU flags. A CPU flag is utilized to store information representing an event that has just occurred. This event could be an overflow or indicate that the result of an arithmetic operation is zero. These flags are crucial for making decisions, especially in jumps after the cmp opcode, which typically sets flags.
 
 ## 6.1 Addition
-There are two ways to perform addition in Assembly language, one more sophisticated and one simpler. We have already encountered them before, and they are the add and inc instructions.
-```txt
-add - Takes two operands, the left operand will be incremented by the value of the second operand.
-
-inc - Takes only one operand, and will be incremented by one. 
-
-```
+There are two ways to perform addition in Assembly, one of them is more sophisticated and the other is a simpler one. We have already encountered them before, and they are the `add` and `inc` instructions.
+<ul>
+	<li>add - Takes two operands, the left operand will be incremented by the value of the second operand</li>
+	<li>inc - Takes only one operand, that will be incremented by one</li>
+</ul>
 
 ## 6.2 Subtraction
-Similarly, there are two ways to subtract in Assembly. The commands for subtraction are sub and dec.
-```txt
-sub - Takes two operands, the left will be decremented by the value of the second operand.
-
-dec - Takes only one operand, and will be decremented by one.
-```
+Similarly, there are two ways to subtract in Assembly. The instruction for subtraction are `sub` and `dec`.
+<ul>
+	<li>sub - Takes two operands, the left operand will be decremented by the value of the second operand</li>
+	<li>dec - Takes only one operand, that will be decremented by one</li>
+</ul>
 
 ## 6.3 Multiplication
 Multiplication in Assembly can be a bit more complex than expected because it involves introducing an additional register or even a value in memory into the process.
@@ -39,7 +30,7 @@ Instructions:
 	<li>imul: multiplication for signed numbers</li>
 </ul>
 
-Note 1: The *mul* and *imul* opcodes must be used with the multiplier to perform multiplication in Assembly.
+Note 1: The *mul* and *imul* opcodes must be used with the multiplier to perform  the multiplication.
 
 Note 2: the rax register will be filled up with the result of the operation
 
@@ -50,9 +41,8 @@ Note 2: the rax register will be filled up with the result of the operation
 mov rax, 10
 mov rbx, 2
 mul rbx
-	
-; now rax stores 20 as its value
 ```
+In the end, rax is storing 20 inside it.
 
 ### 6.3.1 Using jumps in multiplication
 The *mul* and *imul* instructions trigger certain flags when an overflow occurs, and these can be managed using the jumps we've discussed earlier. Let's take a look at some examples.
@@ -69,9 +59,9 @@ imul BYTE bl
 
 ; mul is used for unsigned operations,
 ; the following code results in -4.
-; a unsigned byte can support from 0 to 255
-; -4 doesn't fit in that range, so overflow
-; flag is triggered
+; a unsigned byte can support from 0 to 255, therefore,
+; -4 doesn't fit in that range, so the overflow
+; flag is set.
 mov al, 2
 mov bl, -2
 mul BYTE bl
@@ -82,40 +72,38 @@ A more significant scenario where an overflow jump becomes useful is illustrated
 	global _start
 
 _start:
-	; An unsigned byte can support values between
+	; an unsigned byte can support values between
 	; 0 and 255.
 	; In this code, if al is 128, the message 'Overflow!!'
 	; will be printed.
 	; Using any number that doesn't result in an overflow
-	; at the end (i.e 0 - 127),
-	; the message 'Not overflow!' will be printed,
-	; this happens because 128 * 2 equals to 256, that
-	; means an overflow
+	; at the end (i.e 0 - 127), the message 'Not overflow!'
+	; will be printed
 	mov al, 128
 	mov bl, 2
 	mul bl
 
-	; If an overflow NOT occurred, then jump to...
+	; if an overflow didn't occur, jump to...
 	jnc jump_not_overflow
 
-	; If the program reaches here, then
+	; if the program reaches here, then
 	; an overflow happened.
 
-	;; Print a message saying it
+	; print a message saying it
 	mov rax, 1
 	mov rdi, 1
 	mov rsi, msg
 	mov rdx, msg.sz
 	syscall
 
-	;; Jump to end because we don't want to
-	;; print two messages
+	; Jump to end because we don't want to
+	; print two messages
 	jmp end
 jump_not_overflow:
-	;; If the flow of code reaches here, a overflow
-	;; didn't happen
+	; If the program reaches here, a overflow
+	; didn't happen
 
-	;; Print a message saying it
+	; Print a message saying it
 	mov rax, 1
 	mov rdi, 1
 	mov rsi, msg2
@@ -141,7 +129,7 @@ end:
 In short, overflow occurs when a value doesn't fit inside the register. This can happen when two positive values are added together, resulting in a negative value, or when the result is otherwise impossible for that specific operation, indicating an overflow.
 
 ### 6.3.2 Possible jumps for multiplication
-The following jumps are useful to handle overflows in multiplication and also for addition/subtraction.
+The following jumps are useful to handle overflows in multiplication and also for addition and subtraction.
 ```txt
 JO - Jump on overflow (signed operation)
 JNO - Jump on not overflow (signed operation)
@@ -214,8 +202,7 @@ _start:
 	; implement a procedure to 
 	; transform -5
 	; into a printable version and
-	; then print the value. However,
-	; we'll cover that later. It is
+	; then print the value. It is
 	; crucial to remember that we 
 	; can't simply add '0' to -5 with
 	; the goal of transforming it
@@ -254,3 +241,15 @@ _start:
 segment .bss
 	number resb 8
 ```
+
+### 6.5. Floating-point operations
+By default, the CPU can only perform operations with whole numbers using the instructions shown above. The division using the `div` and `idiv` instructions are made using the Euclidean division, so you cannot get 0.5 as result from 1/2 somehow.
+
+If your assembly program needs to handle floating-point operations, you should use another approach to reach the desired results. There are two main approaches that may be used to perform floating-point operations:
+
+<ul>
+	<li>FPU (Floating-point Unit) instructions</li>
+	<li>SIMD (Single instruction, multiple data) instructions</li>
+</ul>
+
+It is advisable to prefer SIMD over FPU, because the FPU is legacy and the SIMD is the better option nowadays. Hovewer, both technologies can achieve almost the same results if used correctly.

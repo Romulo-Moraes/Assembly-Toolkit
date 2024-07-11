@@ -17,11 +17,11 @@ Here is an introduction and examples of how a program is executed on a machine.
 
 Every CPU has something called a `word`." The term `word` refers to the amount of data that the CPU can handle in each operation.
 
-The most well-known architectures are x86, x64, and x86-64, containing word sizes of 32 bits, 64 bits, and 64 bits respectively. However, in this context, we'll specifically work with x86-64, which is a 64-bit architecture with compatibility with x86.
+The most well-known architectures are x86 and x86-64, containing word sizes of 32 bits and 64 bits respectively. However, in this context, we'll specifically work with x86-64, which is a 64-bit architecture with compatibility with x86.
 
 Keeping in mind that our CPU can only operate with a maximum of 64 bits, or in other words, 8 bytes, these bits must be divided carefully to fit perfectly for each opcode/operands. Here is an example:
 
-Imagine a CPU that we are going to build has three opcodes and 8 bits in the word. The implemented opcodes will be `add`, `sub`, and `mul`. Using binary, these three opcodes can be represented as 00, 01, and 10. In other words, we need at least 2 bits to represent our opcodes. Keeping in mind that each opcode receives two operands, the remaining bits can be divided among them. In the end, our instruction is exactly the following:
+Imagine a CPU that we are going to build has a word of 8 bits, and we want to make this CPU read and execute three different opcodes. The implemented opcodes will be `add`, `sub`, and `mul`. Using binary, these three opcodes can be represented as 00, 01, and 10. In other words, we need at least 2 bits to represent our opcodes. Keeping in mind that each opcode receives two operands, the remaining bits can be divided among them. In the end, our instruction is exactly the following:
 
 <img src='./../assets/Bits split.png'/>
 
@@ -43,7 +43,7 @@ An example using the `add` opcode:
 ; binary representation, which is 101,
 ; and will be placed in the green field.
 ;
-; Now, the 6 is known as a constant.
+; Now, the 6 is known as an immediate.
 ; There's no secret here; the purple 
 ; field will be filled with the binary 
 ; representation of the decimal 6, 
@@ -51,8 +51,8 @@ An example using the `add` opcode:
 
 add al, 6
 ```
-After replacing all fields with their binary values, resulting in the sequence `00101110`, the machine's CPU can decode this binary. It splits this sequence into fields of (2, 3, 3) bits and understands that it has to perform the `CYAN` operation over the `GREEN` register using the `PURPLE` value.
+After replacing all fields with their binary values, the resulting sequence is `00101110`, the CPU can now decode and execute this binary. After reading this binary from the memory, the CPU will split this sequence into fields of (2, 3, 3) bits and understand that it has to perform the `CYAN` operation over the `GREEN` register using the `PURPLE` value.
 
-The above example is quite simple. Nowadays, computers have a word size of 64 bits, making it possible to create a larger set of instructions.
+The above example is quite simple, nowadays computers have a word size of 64 bits, making it possible to create a larger set of instructions.
 
-At this point, it is clear that the assembler only needs to replace the opcodes and their operands with their binary representations, making it possible for the computer to understand.
+At this point, it is clear that the assembler (a tool used to transform an assembly file into machine-readable code) only needs to replace the opcodes and their operands with their binary representations, making it possible for the computer to understand.

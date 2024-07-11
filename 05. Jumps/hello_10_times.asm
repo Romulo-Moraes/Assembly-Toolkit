@@ -1,5 +1,5 @@
 	;; This is an assembly program that prints 'Hello!' 10 times
-	;; using conditional jumps to make a loop
+	;; using conditional jumps to create a loop
 
 	segment .text
 	global _start
@@ -8,11 +8,11 @@ _start:
     
 loop_begin:
 
-    ; moving value of symbol count to al
-    ; al is the register of 8 bits from rax
+    ; moving the value of the count symbol to al.
+    ; al is the 1/8 register of rax (8-bits).
     mov al, [count] 
 
-    cmp al, 0xa ; compare with 0xa, aka 10.
+    cmp al, 0xa ; compare with 0xa, 10 in hexadecimal.
 
     ; if al is greater or equal to 10, then
     ; jump to loop_end
@@ -23,7 +23,7 @@ loop_begin:
     ; increment al by 1
     inc al
 
-    ; mov al back to symbol count
+    ; mov al back to count symbol
     mov [count], al
 
     ; prepare the print syscall
@@ -32,11 +32,11 @@ loop_begin:
     mov rsi, msg
     mov rdx, msg.sz
 
-    ; Ask the favor
+    ; Ask the kernel to print the string
     syscall
 
-    ; Jump back to the begin of loop to start
-    ; over and over again until count reach 10
+    ; Jump back to the loop to start
+    ; over and over again until the counter reaches 10
     jmp loop_begin
 
 loop_end:

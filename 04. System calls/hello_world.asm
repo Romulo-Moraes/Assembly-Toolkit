@@ -2,26 +2,34 @@
 ; store the program instructions, so is within this 
 ; segment that we are going to write the Assembly code
 
-; The global keyword is used to make a symbol available
-; across all object files. The linker requires that the
-; main text symbol be visible using this statement.
+; The global keyword is used to make
+; a label available across all object
+; files. The linker requires the
+; main text label to be available using
+; this keyword.
 global _start
 
 segment .text
 
-; By default, the _start is the entry point of the program.
+; By default, the _start label is 
+; the entry point of the program.
 _start:
 
-    ; The following block of code will print a
+    ; The following block of 
+    ; code will print a
     ; message on terminal.
     ;
-    ; The rax register means the operation to be performed, 
-    ; the programmers that built the linux made 
-    ; the value 1 represent "print something...".
+    ; The rax register means the 
+    ; operation to be performed, 
+    ; the programmers that built
+    ; the linux made the value 1
+    ; represent "print something...".
     ;
-    ; The rdi register is the file descriptor to where the print
-    ; shall be redirected, '0' represents the STDIN,
-    ; '1' the STDOUT, and '2' the STDERR.
+    ; The rdi register is the file
+    ; descriptor to where the print
+    ; shall be redirected, '0' 
+    ; represents the STDIN,'1' the
+    ; STDOUT, and '2' the STDERR.
     ;
     ; The rsi register is the pointer to the 
     ; message.
@@ -66,6 +74,6 @@ segment .rodata
 
     message db 'Hello, world!', 0xa, 0x0
 
-    ; 'equ $-' means to get the size of a 
-    ; constant, so message_size = sizeof(message)
+    ; 'equ $-' is useful to get the size of something on 
+    ; memory, so message_size = sizeof(message)
     message_size equ $- message
