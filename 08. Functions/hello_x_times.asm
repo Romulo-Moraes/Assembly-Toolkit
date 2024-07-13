@@ -1,5 +1,6 @@
 %define SYS_WRITE 1
 %define SYS_READ 0
+%define SYS_EXIT 60
 %define STDOUT 1
 %define STDIN 0
 
@@ -32,7 +33,7 @@ loop:
 loop_end:
 
     ; Exit the program
-    mov rax, 60
+    mov rax, SYS_EXIT
     mov rdi, 0
     syscall    
 
@@ -64,7 +65,7 @@ get_number_from_user:
     ; Receive the number
     mov rax, SYS_READ
     mov rdi, STDIN
-    lea rsi, [rbp+-1]
+    lea rsi, [rbp-1]
     mov rdx, 1
     syscall
 
@@ -80,7 +81,7 @@ get_number_from_user:
     ret
 
 segment .rodata
-    number_question db "How many times you want to hear 'Hello, world' ?", 0xa, 0x0
+    number_question db "How many times do you want to see 'Hello, world' ?", 0xa, 0x0
     number_question.sz equ $-number_question
     hello_world db "Hello, world!", 0xa, 0x0
     hello_world.sz equ $-hello_world
