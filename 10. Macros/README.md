@@ -38,9 +38,9 @@ Everything provided to these macros will be used to replace the %x's in their de
 
 
 ## 10.2.1. Warnings about the macros
-The task of macros is to replace the identifier with its value. A large instruction set inside a macro may create a final executable with an unexpected size; therefore, macros that call functions may be a better approach. Tasks such as writing data on the screen can be accomplished by macros without further trouble; all moves and the syscall in this operation would be performed anyway.
+The task of a macro is to replace the identifier with its value. A large instruction set inside a macro may create a final executable with an unexpected size; therefore, macros that call functions may be a better approach. Tasks such as writing data on the screen can be accomplished by macros without further trouble; all moves and the syscall in this operation would be performed anyway.
 
-Although not explicitly stated, macros will use and modify the registers during their execution. So, be aware of how your code will behave before and after using a macro.
+Although not explicitly stated, macros will use and modify the registers during their execution. So be aware of how your code will behave before and after using a macro.
 
 ## 10.2.2. Examples
 There is a file called `example.asm` inside the `src` directory that provides examples of how macros may be useful.
@@ -65,7 +65,7 @@ Similar to the C programming language, there is a macro to undefine a previously
 ```
 
 ## 10.5. Conditional macros
-Conditional macros are useful for inserting or removing a block of instructions depending on the conditional result. The conditional structure ends with `%endif`:
+Conditional macros are useful for inserting or removing a block of instructions depending on a conditional test result. The conditional structure ends with `%endif`:
 ```asm
 ; Undefining this macro with %undef
 ; or just not creating it will make
@@ -83,14 +83,14 @@ A complement to the `%ifdef` macro is the `%else` and `%elifdef`. Here is a basi
 %define ALLOW_PRINT
 
 %ifdef ALLOW_PRINT
-    ; Print if ALLOW_PRINT is defined
+    ; Prints if ALLOW_PRINT is defined
     print msg, msg_len
 %elifdef ALLOW_PRINT2
-    ; Print if ALLOW_PRINT is not defined but
-    ; the ALLOW_PRINT2 is defined
+    ; only prints if the ALLOW_PRINT2 is defined
+    ; and the ALLOW_PRINT is not defined
     print msg2, msg2_len
 %else
-    ; Print if ALLOW_PRINT and 
+    ; Prints if ALLOW_PRINT and 
     ; ALLOW_PRINT2 are not defined
     print msg3, msg3_len
 %endif
