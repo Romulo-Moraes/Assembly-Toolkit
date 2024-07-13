@@ -1,112 +1,76 @@
+%define SYS_WRITE 1
+%define SYS_EXIT 60
+%define EXIT_SUCCESS 0
+%define STDOUT 1
+
 global _start
 
-; macros
-%define SYS_EXIT 60
-%define SYS_WRITE 1
-%define STDOUT 1
-%define EXIT_SUCCESS 0
-%define SIZEOF_INTEGER 4
-%define ARRAY_SIZE 4
-%define COUNTER 1
-%define ARRAY_BASE_ADDRESS 9
-
+%define SIZEOF_INT 4
+%define ARRAY_SIZE 5
 segment .text
 
 _start:
-    ; allocating memory
     mov rbp, rsp
-    sub rsp, SIZEOF_INTEGER * ARRAY_SIZE
+    sub rsp, SIZEOF_INT * ARRAY_SIZE
 
-    ; loading array's base address
-    lea rdi, [rbp+-SIZEOF_INTEGER * ARRAY_SIZE]
-    call populate_array
+    ; (note) RSP and RDI points to the same address
+    lea rdi, [rbp - SIZEOF_INT * ARRAY_SIZE]
 
-    call print_array
+    mov DWORD [rdi + SIZEOF_INT * 0], 5
+    mov DWORD [rdi + SIZEOF_INT * 1], 2
+    mov DWORD [rdi + SIZEOF_INT * 2], 9
+    mov DWORD [rdi + SIZEOF_INT * 3], 3
+    mov DWORD [rdi + SIZEOF_INT * 4], 7
+
+    ; save the array base address to be accessible across syscalls
+    mov [array_base_address], rdi
+
+loop:
+    ; load array base address
+    mov rdi, [array_base_address]
+
+    ; load the index and check if it is greater than 4
+    mov rbx, [index]
+    cmp rbx, 4
+
+    jg loop_end
+
+    ; using the loaded index to fetch the array value
+    mov eax, [rdi + SIZEOF_INT * rbx]
+
+    ; transform the number to its character representation
+    ; and save it on .data segment
+    add eax, '0'
+    mov [value_to_print], al
+
+    ; print the number
+    mov rax, SYS_WRITE
+    mov rdi, STDOUT
+    mov rsi, value_to_print
+    mov rdx, 2
+    syscall
+
+    ; increment the index
+    inc BYTE [index]
+
+    ; go back to the loop
+    jmp loop
+
+loop_end:
 
     ; exit the program
     mov rax, SYS_EXIT
     mov rdi, EXIT_SUCCESS
     syscall
 
-; receive and print a number
-; rdi = number to print
-print_number:
-    ; save rbp
-    push rbp
+segment .data
 
-    ; allocate memory
-    mov rbp, rsp
-    sub rsp, 2
+    ; defines a qword
+    index dq 0
 
-    ; move the number and a new line to
-    ; the allocated buffer
-    mov BYTE [rbp+-1], 0xa
-    mov [rbp+-2], dil
+    ; defines the address that will be used
+    ; to print the result
+    value_to_print db 0, 0xa ; 0xa in the end to break a line
 
-    ; print the number
-    mov rax, SYS_WRITE
-    mov rdi, STDOUT
-    lea rsi, [rbp+-2]
-    mov rdx, 2
-    syscall
-
-    ; deallocate and pop rbp
-    add rsp, 2
-    pop rbp
-
-    ret
-
-; fill the array with constants
-; rdi = array base address
-populate_array:
-    mov DWORD [rdi], 5
-    mov DWORD [rdi+SIZEOF_INTEGER], 2
-    mov DWORD [rdi+SIZEOF_INTEGER * 2], 8
-    mov DWORD [rdi+SIZEOF_INTEGER * 3], 4
-
-    ret
-
-; print all array elements
-; rdi = array address
-print_array:
-    ; save rbp and allocate memory
-    ; for the counter and the base address
-    push rbp
-    mov rbp, rsp
-    sub rsp, 9
-
-    ; initialize the counter with 0.
-    ; save the base address.
-    mov BYTE [rbp+-COUNTER], 0
-    mov [rbp+-ARRAY_BASE_ADDRESS], rdi
-
-
-print_loop:
-    ; load base address
-    mov rdx, [rbp+-ARRAY_BASE_ADDRESS]
-
-    ; compare the counter with the array size
-    mov al, [rbp+-COUNTER]
-    cmp al, ARRAY_SIZE
-
-    jge print_loop_end
-
-    ; load an array element into edi
-    ; and transform it to a character
-    mov edi, [rdx+rax*SIZEOF_INTEGER]
-    add edi, '0'
-    
-    call print_number
-
-    ; increment the counter
-    inc BYTE [rbp+-COUNTER]
-
-    ; jump back to the loop
-    jmp print_loop
-
-print_loop_end:
-    ; deallocate memory and pop rbp
-    add rsp, 9
-    pop rbp
-
-    ret
+segment .bss
+    array_base_address resb 8
