@@ -1,142 +1,189 @@
 ;; atoi - function that receives a string and return the contents as integer 
 ;; 
-;; RDI register receive the address of the string
+;; RDI register receives the address of the string
 ;; RAX is the return value (contains the integer)
-;;
-;; The function doesn't change the value of RDI
-;; This function uses rdx, rcx and rbx, or its fraction
-;; This function restore the original value of rdx, rcx and rbx registers
-	
+
+%define _ATOI_NEGATIVE_FLAG 1
+%define _DIGIT_COUNTER 9
+%define _FINAL_NUMBER 17
+%define _RATIO 18
+
 atoi:
-	;; Save some registers that
-	;; will be used in the function
-	push rbp
-	push rdx
-	push rcx
-	push rbx
-	push rdi
+    ; saving registers 
+    push rbp
+    push rbx
+    push rdx
 
-	;; Update rbp
-	mov rbp, rsp
+    ; aligning stack registers
+    ; and allocating memory
+    mov rbp, rsp
+    sub rsp, 18
 
-	;; Allocate memory in stack
-	sub rsp, 0xb
-	
-	;; Clear region
-	mov BYTE [rbp+-1], 0x0
-	mov QWORD [rbp+-11], 0x0
+    ; setting default values for each variable
+    mov QWORD [rbp-_DIGIT_COUNTER], 0
+    mov QWORD [rbp-_FINAL_NUMBER], 0
+    mov BYTE [rbp-_RATIO], 10
 
-	;; Checking if the number is negative
-	cmp BYTE [rdi], '-'
-	jne _atoi_negative_number_end
+    ; checking if the given number positive
+    cmp BYTE [rdi], '-'
+    
+    jne _atoi_number_is_positive
 
-_atoi_negative_number:
-	;; Set negative number flag
-	mov BYTE [rbp+-1], 0x1
-	inc rdi
+    ; set negative flag and increment pointer
+    mov BYTE [rbp-_ATOI_NEGATIVE_FLAG], 1
+    inc rdi
 
-	;; Jump straight to loop because
-	;; if the first byte is '-'
-	;; there's no point in check if
-	;; it's number in the next
-	;; instructions
-	jmp _atoi_conversion_loop
-_atoi_negative_number_end:
-	;; Copy first byte
-	mov BYTE bl, [rdi]
+_atoi_number_is_positive:
+_atoi_loop:
+    ; checking if the loop reached the
+    ; end of the string
+    cmp BYTE [rdi], 0
+    je _atoi_loop_end
 
-	;; Check if is number, bl as argument
-	call _atoi_check_is_number
-	cmp rax, 1
+    ; calling a private function that
+    ; checks if a character is numeric
+    call check_if_character_is_numeric
 
-	;; Jump to end if this isn't number
-	jne _atoi_conversion_loop_end
-	
-_atoi_conversion_loop:
-	;; Get current byte
-	mov BYTE bl, [rdi]
+    ; checking the result
+    cmp rax, 1
+    jne _atoi_loop_end
 
-	;; Check if it's null
-	cmp bl, 0x0
-	;; Jump to end if this is null
-	je _atoi_conversion_loop_end
+    ; moving the numeric character to dl
+    mov dl, [rdi]
 
-	;; Check if it's numeric
-	call _atoi_check_is_number
-	cmp rax, 0x1
+    ; pushing rdx (dl)
+    push rdx
 
-	je _atoi_is_a_number
+    ; incrementing the digit counter
+    ; useful to fetch the pushed values
+    inc QWORD [rbp-_DIGIT_COUNTER]
 
-	;; Jump to end if this isn't number
-	jmp _atoi_conversion_loop_end
-_atoi_is_a_number:
-	;; It's a number!
+    ; incrementing the numeric string pointer
+    inc rdi
 
-	;; Transform to number
- 	sub bl, '0'
+    ; jumping back to the loop
+    jmp _atoi_loop
 
-	;; Multiply the current value in
-	;; memory by 10
-	mov rax, [rbp+-11]
-	mov rcx, 10
-	mul rcx
+_atoi_loop_end:
+    ; zeroing rbx to be used as counter
+    xor rbx, rbx
+    ; rdx will be used as multiplier
+    ; for multiplication operations
+    mov rdx, 1
 
-	;; Put value back
-	mov [rbp+-11], rax
-	;; Pass current value to al. aka rax
-	mov al, bl
+_atoi_transformation_loop:
+    ; checking if we've already poped
+    ; all values from stack
+    cmp rbx, [rbp-_DIGIT_COUNTER]
 
-	;; Add the value
-	add [rbp+-11], rax
+    jge _atoi_transformation_loop_end
 
-	;; Increment the address
-	inc rdi
-	;; Jump back to loop
-	jmp _atoi_conversion_loop
+    ; pops the next value from stack
+    pop rax
 
-_atoi_conversion_loop_end:
-	;; Move value to rax as return value
-	mov rax, [rbp+-11]
+    ; pushing rdx to be available after
+    ; the multiplication operation
+    push rdx
 
-	;; Checking if the number must be negative
-	cmp BYTE [rbp+-1], 0x1
-	;; Ignore sign addition if flag not active
-	jne _atoi_add_negative_sign_end
-	
-_atoi_add_negative_sign:
-	;; Negate number
-	neg rax			
-_atoi_add_negative_sign_end:	
-	;; Free stack memory
-	add rsp, 0xb
+    ; sub '0' from rax to get the numeric
+    ; representation of the character
+    sub rax, '0'
+    mul rdx
 
-	;; Restore registers previously
-	;; pushed into stack
-	pop rdi
-	pop rbx
-	pop rcx
-	pop rdx
-	pop rbp
+    ; restore rdx
+    pop rdx
 
-	;; Return function
-	ret
+    ; add the multiplication result to 
+    ; the final number variable
+    add [rbp-_FINAL_NUMBER], rax
+    
+    ; (multiplies the rdx by 10)
+    mov rax, rdx
+    mul BYTE [rbp-_RATIO]
+    mov rdx, rax
 
-;; Private atoi function, check if character
-;; in bl register is numeric returning 1 as TRUE
-;; and 0 as FALSE
-_atoi_check_is_number:
-	cmp bl, 0x30
-	jge _atoi_ge_than_0
+    ; increment the counter
+    inc rbx
 
-	mov rax, 0
-	ret
-_atoi_ge_than_0:	
-	cmp bl, 0x39
-	jle _atoi_le_than_9
+    ; jumps back to the loop
+    jmp _atoi_transformation_loop
 
-	mov rax, 0
-	ret
+_atoi_transformation_loop_end:
+    ; move the final number variable to rax
+    mov rax, [rbp-_FINAL_NUMBER]
 
-_atoi_le_than_9:
-	mov rax, 1
-	ret
+    ; checks if the native flag is set
+    ; to negate rax if necessary
+    cmp BYTE [rbp-_ATOI_NEGATIVE_FLAG], 1
+    jne _atoi_end
+
+    neg rax
+
+_atoi_end:
+    ; deallocating the stack frame
+    ; and restoring the previous
+    ; pushed registers
+    mov rsp, rbp
+    pop rdx
+    pop rbx
+    pop rbp
+
+    ; returns from the function
+    ret
+
+; private functions that checks if
+; if the given character is numeric
+;
+; RDI receives the character that needs to be verified
+; RAX holds the return value (boolean)
+check_if_character_is_numeric:
+    ; saving registers
+    push rbp
+    push rdi
+    push rbx
+
+    ; aligning and allocating 
+    ; stack frame memory    
+    mov rbp, rsp
+    sub rsp, 1
+
+    mov bl, [rdi]
+    sub rbx, '0'
+
+    ; checking if the character is 
+    ; greater than or equal the character '0'
+    cmp rbx, 0
+    setge BYTE [rbp-1]
+
+    ; checking if the character is 
+    ; lower than or equal then the character '9'
+    cmp rbx, 9
+    setle BYTE dil
+
+    ; performing a bitwise 'and' on the result
+    ; of the previous operations
+    and dil, [rbp-1]
+    
+    ; checking if the character is numeric
+    cmp dil, 1
+    je _numeric
+
+_not_numeric:
+    mov rax, 0
+
+    jmp check_if_character_is_numeric_end
+
+_numeric:
+    mov rax, 1
+
+check_if_character_is_numeric_end:
+    ; deallocating the stack frame 
+    ; and restoring the pushed registers
+    mov rsp, rbp
+    pop rbx
+    pop rdi
+    pop rbp
+
+    ; returning from the function
+    ret
+

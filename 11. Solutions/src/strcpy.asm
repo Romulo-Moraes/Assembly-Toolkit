@@ -5,27 +5,28 @@
 ; RAX is the return value (contains destiny addr)
 ;
 ; The function doesn't change the value of RDI and RSI
-; The function doesn't use any registers beyond the known
+; The function doesn't use any registers beyond the specified ones
 
 
 strcpy:
-    ; Save destiny 
+    ; save destiny 
     push rdi
+    ; save source
     push rsi
 
 _strcpy_loop:
-    ; Compare the current byte of 
+    ; compare the current byte of 
     ; source with NULL
     mov al, [rsi]
     cmp al, 0
 
-    ; If is equal, jump to end
+    ; if the byte is zero, jump to end
     jz _strcpy_end
 
     ; else, copy to destiny
     mov [rdi], al
 
-    ; Increment both address
+    ; increment both address
     inc rdi
     inc rsi
 
@@ -34,13 +35,13 @@ _strcpy_loop:
 _strcpy_end:
     mov BYTE [rdi], 0
 
-    ; Pop the values saved previously
+    ; pop the values saved previously
     pop rsi
     pop rdi
 
-    ; Copy destiny to return value
-    ; register
+    ; copy destiny to rax 
+    ; as return value
     mov rax, rdi
 
-    ; Return the function
+    ; return from the function
     ret

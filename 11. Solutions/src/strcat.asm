@@ -1,4 +1,4 @@
-;; strcat - function that concatenate the source str to destiny str
+;; strcat - function that concatenates the source str to destiny str
 ;; 
 ;; RDI register is used as destiny
 ;; RSI register is used as source
@@ -10,7 +10,7 @@
 
 
 strcat:
-	;; Save and update rbp
+	;; save and update rbp
 	push rbp
 	mov rbp, rsp
 
@@ -20,53 +20,53 @@ strcat:
 	push rdx
 
 _strcat_loop:
-	;; Searching for null byte in destiny
+	;; searching for null byte in destiny
 	cmp BYTE [rdi], 0
 	je _strcat_loop_end
 
-	;; If not found, inc pointer
+	;; if not found, inc pointer
 	inc rdi
 
-	;; Jump back to loop
+	;; jump back to loop
 	jmp _strcat_loop
 _strcat_loop_end:
 
-	;; Loop to copy bytes
+	;; loop to copy bytes
 	;; from source to destiny
 _strcat_loop2:
-	;; Checking if reached the
+	;; checking if reached the
 	;; end in source
 	cmp BYTE [rsi], 0
 	je _strcat_loop2_end
 
-	;; If not reached, copy
+	;; if not reached, copy
 	;; the byte
-	mov BYTE dl, [rsi]
-	mov BYTE [rdi], dl
+	mov dl, [rsi]
+	mov [rdi], dl
 
-	;; Increment both address'
+	;; increment both addresses
 	inc rsi
 	inc rdi
 
-	;; Jump back to loop
+	;; jump back to loop
 	jmp _strcat_loop2
 _strcat_loop2_end:
-	;; Add null byte to the end
-	;; in destiny address
+	;; add null byte to the end
+	;; of destiny address
 	mov BYTE [rdi], 0
 
-	;; Restore registers
+	;; restore registers
 	pop rdx
 	pop rsi
 	pop rdi
 
-	;; Move destiny address
+	;; move destiny address
 	;; to rax as return value
 	mov rax, rdi
 
-	;; Restore rbp
+	;; restore rbp
 	pop rbp
 
-	;; Return from function
+	;; return from function
 	ret
 	
