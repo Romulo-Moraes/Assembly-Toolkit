@@ -120,14 +120,23 @@ It still possible to access these smaller register. However, they are not a dist
 <br/>
 
 ### Here is the list of the 1/8 registers (also known as 8-bits registers)
+The 8-bits registers are a little more special, it is possible to access the HIGH and LOW values of a 16-bits register as 8-bits registers.
 
 #### Data
+The LOW 8-bits registers (0-7)
 <ul>
     <li>AL (AX 1/2) (EAX 1/4) (RAX 1/8)</li>
     <li>BL (BX 1/2) (EBX 1/4) (RBX 1/8)</li>
     <li>CL (CX 1/2) (ECX 1/4) (RCX 1/8)</li>
     <li>DL (DX 1/2) (EDX 1/4) (RDX 1/8)</li>
-    <li>R8B-R15B (R8W-R15W 1/2) (R8D-R15D 1/4) (R8-R15 1/8)</li>
+</ul>
+
+The HIGH 8-bits registers (8-15)
+<ul>
+    <li>AH (AX 1/2) (EAX 1/4) (RAX 1/8)</li>
+    <li>BH (BX 1/2) (EBX 1/4) (RBX 1/8)</li>
+    <li>CH (CX 1/2) (ECX 1/4) (RCX 1/8)</li>
+    <li>DH (DX 1/2) (EDX 1/4) (RDX 1/8)</li>
 </ul>
 
 
