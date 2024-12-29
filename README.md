@@ -3,7 +3,7 @@
     <h1></h1>
     <h3>A repository to support the learning on Low-level programming using the Assembly language</h3>
     <img src="./assets/Assembly toolkit example.png">
-Assembly Toolkit is a compiled of knowledgments and ideas about the Assembly language, useful to learn the basics about this Low-level technology. This repository contains topics such as Opcodes, Memory segments, Assembly-C interoperability and much more...
+Assembly Toolkit is a compiled of knowledges and ideas about the Assembly language, useful to learn the basics about this Low-level technology. This repository contains topics such as Opcodes, Memory segments, Assembly-C interoperability and much more...
 </div>
 
 # Topics
