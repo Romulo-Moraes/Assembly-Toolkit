@@ -65,7 +65,7 @@ Similar to the C programming language, there is a macro to undefine a previously
 ```
 
 ## 10.5. Conditional macros
-Conditional macros are useful for inserting or removing a block of instructions depending on a conditional test result. The conditional structure ends with `%endif`:
+Conditional macros are useful for inserting or removing a block of instructions based on the result of a conditional test.
 ```asm
 ; Undefining this macro with %undef
 ; or just not creating it will make
