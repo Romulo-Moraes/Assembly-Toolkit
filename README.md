@@ -3,7 +3,7 @@
     <h1></h1>
     <h3>A repository to support the learning on Low-level programming using the Assembly language</h3>
     <img src="./assets/Assembly toolkit example.png">
-Assembly Toolkit is a compiled of knowledges and ideas about the Assembly language, useful to learn the basics about this Low-level technology. This repository contains topics such as Opcodes, Memory segments, Assembly-C interoperability and much more...
+The Assembly Toolkit is a compilation of knowledge and ideas related to Assembly language, designed to help anyone to learn the fundamentals of this low-level technology. This repository covers various topics, including opcodes, memory segments, Assembly-C interoperability, and much more.
 </div>
 
 # Topics
@@ -44,7 +44,7 @@ Assembly Toolkit is a compiled of knowledges and ideas about the Assembly langua
 The contents of this repository are divided into topics about the Assembly language, every topic has a number and a name on the source tree. There are description of each topic below, every description has its own button that redirects you to its contents.
 
 ## Opcodes
-Inside the opcode section we talk about the smallest part of a computer program, such part that when joined with other parts we have a complete program that can be run directly in the CPU of our computer.
+In the opcode section, we discuss the smallest unit of a computer program, which, when combined with other units, forms a complete program that can be executed directly by the CPU of our computer.
 
 <br/>
 
@@ -55,7 +55,7 @@ You can click here to be redirected to the Opcodes section.
 </a>
 
 ## Registers
-Here we will cover in details what are registers and how they work. The register bank is a crucial component of the modern CPU designs, that make us able to manage data, make system calls, operate in memory segments and more...
+Here, we will explore in detail what registers are and how they work. The register bank is a key component in modern CPU designs, enabling us to manage data, make system calls, operate in memory segments, and more.
 
 <br/>
 
@@ -66,7 +66,7 @@ You can click here to be redirected to the Registers section.
 </a>
 
 ## Memory segments
-The memory segments are a virtual division that every program running on a machine must have. The segments have their own roles, such as storing read-only data, storing uninitialized data, storing the program instructions and so on...
+The memory segments are a virtual division that every program running on a machine must have. The segments have their own roles, such as storing read-only data, storing uninitialized data, storing the program instructions and so on.
 
 <br/>
 
@@ -77,8 +77,7 @@ You can click here to be redirected to the Memory segments section.
 </a>
 
 ## System calls
-In this section we discuss about how our executables are lazy binaries that only know how to ask for their interests. Here we will cover in details the fact that: all interesting functionalies that a program may have is the Operating System that does everything.
-
+System calls are interfaces established by the operating system that enable user-space programs to request and manipulate resources that are exclusively accessible by the kernel. In this section, we will explore how these calls work and how to execute them using registers.
 <br/>
 
 You can click here to be redirected to the System calls section.
@@ -88,7 +87,7 @@ You can click here to be redirected to the System calls section.
 </a>
 
 ## Jumps
-In the Jumps section we discuss about the one of the most important features that a computer has. Without jumps, function calls, loops and conditional statements could not be reality. 
+Jumps are essential components of modern computers. Instructions that perform jumps enable programs to create conditional structures, such as loops, if/else statements, and switches. These jumps are typically based on the values of the RFLAGS register. This section will explain everything you need to know about this important register and how to execute jumps effectively.
 
 <br/>
 
@@ -99,7 +98,7 @@ You can click here to be redirected to the Jumps section.
 </a>
 
 ## Arithmetic
-In the Arithmetic section we discuss about... guess what... arithmetic. This section explains how to do the basic arithmetic operations in Low-level programming, such thing that is very important for nowadays computers for many reasons.
+The primary function of a computer is to perform calculations. This section will cover the basics of arithmetic operations in low-level programming, including addition, multiplication, division, and subtraction.
 
 <br/>
 
@@ -110,7 +109,7 @@ You can click here to be redirected to the Arithmetic section.
 </a>
 
 ## Stack
-The Stack is the most used memory segment during program execution. In languages like C, all variables declared within a procedure are stored within the stack segment. In addition to variable declarations, this segment is also responsible for function calls, function arguments and more...
+The stack is the most frequently used memory segment during program execution. In languages such as C, all variables declared within a function are stored in this segment. Additionally, the stack manages function calls, arguments, and other related operations.
 
 <br/>
 
@@ -121,7 +120,7 @@ You can click here to be redirected to the Stack section.
 </a>
 
 ## Functions
-In this section we discuss how to create functions/procedures and how they work in Low-Level programming. Once you understand how functions work in Low-Level, you will be able to understand how they work on programming languages like C or another compiled language.
+In this section, we will explore how to create and utilize functions and procedures in low-level programming. By mastering these concepts, you will gain a deeper understanding of their implementation in languages like C and other compiled languages.
 
 <br/>
 
@@ -132,7 +131,7 @@ You can click here to be redirected to the Functions section.
 </a>
 
 ## Arrays
-The arrays section contains information about creating and manipulate arrays in the Low-Level programming. The memory allocation and the required calculation to access an array index are explained in this section. Data structures are important for software development, and the array is the most basic structure that we can have here.
+The arrays section provides information on creating and manipulating arrays in low-level programming. It explains memory allocation and the calculations required to access array indices. As fundamental data structures, arrays are essential for software development.
 
 <br/>
 
@@ -143,7 +142,7 @@ You can click here to be redirected to the Arrays section.
 </a>
 
 ## Macros
-The macros are a group of instructions that will take effect on the preprocessor of the assembler. With macros is possible assign a value to a symbol, create blocks of instructions and call them like a C function and more...
+Macros are a set of instructions that affect the assembler's preprocessor. With macros, you can assign values to symbols, create blocks of instructions, and invoke them like functions in C, among other capabilities.
 
 <br/>
 
@@ -154,7 +153,7 @@ You can click here to be redirected to the Macros section.
 </a>
 
 ## Solutions
-The solutions section is a compiled of assembly source code files for the Nasm assembler that copy functionalities from the C programming language functions. This give us an ideia of how a software is built looking from the Low-Level perspective. Example of created functions: strlen(), strcmp(), atoi(), etc...
+The solutions section consists of assembly source code files for the NASM assembler, which replicate functionalities from C programming language functions. This provides insight into how software is constructed from a low-level perspective. Examples of functions created include strlen(), strcmp(), and atoi(), among others.
 
 <br/>
 
@@ -167,6 +166,8 @@ You can click here to be redirected to the Solutions section.
 ## Useful opcodes
 This section is basically a list of opcodes that have not been introduced by any section of the repository, however, they can make a difference while we are writing some bits.
 
+This section lists opcodes that have not been introduced elsewhere in the repository, yet they can significantly impact our bit writing process.
+
 <br/>
 
 You can click here to be redirected to the Useful opcodes section.
@@ -176,7 +177,7 @@ You can click here to be redirected to the Useful opcodes section.
 </a>
 
 ## Assembly-C interoperability
-Even being two different languages, Assembly and C can work together to perform tasks that require features from both technologies, each one doing the best in its field.
+Despite being two distinct languages, Assembly and C can collaborate effectively, leveraging their unique strengths to address tasks that benefit from both technologies.
 
 <br/>
 
@@ -187,7 +188,7 @@ You can click here to be redirected to the Assembly-C interoperability section.
 </a>
 
 ## PIC
-A Position Independent Code is useful because it doesn't depends of a fixed address on memory to read/write data or even jump to a procedure to perform a task. A Position Dependent software may cause some issues while being loaded into memory or even while being linked with a C program.
+Position Independent Code (PIC) is advantageous because it does not rely on fixed memory addresses for reading, writing data, or jumping to procedures. In contrast, Position Dependent software can cause issues during loading or linking with a C program.
 
 <br/>
 
@@ -198,7 +199,7 @@ You can click here to be redirected to the PIC section.
 </a>
 
 ## Callbacks
-Such as in C, Javascript or Python, Assembly also supports a kind of callbacks that may be useful to make most flexible programs. Moving a memory address to a register, this can be used for jumping to or calling this address.
+Like C, JavaScript, and Python, Assembly language also supports a form of callbacks that can help create more flexible programs. By moving a memory address into a register, this address can be used for jumping to or calling its associated function.
 
 <br/>
 
