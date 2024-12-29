@@ -1,7 +1,7 @@
 # 10. Macros
 The objective of macros is to reduce the amount of complex code that a programmer has to write. A piece of code or a numeric constant can be replaced by a label, making it easier to remember and understand.
 
-## 10.1. How does a macro works ?
+## 10.1. How does a macro work ?
 A macro is identified by a name, and this name represents something useful assigned by the programmer. Every time the assembler encounters a macro in the code, that name will be replaced by the value assigned to that macro. A good example of this is the `%define` macro:
 ```asm
 %define SYS_EXIT 60
