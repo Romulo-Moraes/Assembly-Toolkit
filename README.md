@@ -6,39 +6,7 @@
 The Assembly Toolkit is a compilation of knowledge and ideas related to Assembly language, designed to help anyone to learn the fundamentals of this low-level technology. This repository covers various topics, including opcodes, memory segments, Assembly-C interoperability, and much more.
 </div>
 
-# Topics
-[Repository structure](#repository-structure)
-
-[Opcodes](#opcodes)
-
-[Registers](#registers)
-
-[Memory segments](#memory-segments)
-
-[System calls](#system-calls)
-
-[Jumps](#jumps)
-
-[Arithmetic](#arithmetic)
-
-[Stack](#stack)
-
-[Functions](#functions)
-
-[Arrays](#arrays)
-
-[Macros](#macros)
-
-[Solutions](#solutions)
-
-[Useful opcodes](#useful-opcodes)
-
-[Assembly-C interoperability](#assembly-c-interoperability)
-
-[PIC](#pic)
-
-[Callbacks](#callbacks)
-
+<br/>
 
 ## Repository structure
 The contents of this repository are organized by topics related to Assembly language. Each topic is identified by a number and a name in the source tree. Below each topic, you will find descriptions, each accompanied by a button that redirects you to its content.
