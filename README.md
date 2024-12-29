@@ -41,7 +41,7 @@ The Assembly Toolkit is a compilation of knowledge and ideas related to Assembly
 
 
 ## Repository structure
-The contents of this repository are divided into topics about the Assembly language, every topic has a number and a name on the source tree. There are description of each topic below, every description has its own button that redirects you to its contents.
+The contents of this repository are organized by topics related to Assembly language. Each topic is identified by a number and a name in the source tree. Below each topic, you will find descriptions, each accompanied by a button that redirects you to its content.
 
 ## Opcodes
 In the opcode section, we discuss the smallest unit of a computer program, which, when combined with other units, forms a complete program that can be executed directly by the CPU of our computer.
