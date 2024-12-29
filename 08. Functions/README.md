@@ -66,9 +66,9 @@ The `RBP` pointer can be used for fetching arguments passed through stack and ac
 ; rax filled with 5
 mov rax, [rbp+16]
 
-; al filled with a local variable
-; with 1 byte of size
-mov al, [rbp+-1]
+; al filled with a local 
+; variable with 1 byte in size
+mov al, [rbp-1]
 ```
 In short, `[rbp+number]` are function arguments, and `[rbp-number]` are local variables.
 
