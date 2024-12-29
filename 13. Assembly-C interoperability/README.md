@@ -3,11 +3,10 @@ Assembly and C can work together to accomplish tasks, with each technology contr
 
 
 ## 13.1. The object file
-After compiling a C source file, the compiler will generate an object file (.o). The generated file contains all instructions of the functions written in the source file. The assembler does the same thing, generating an object file that needs to be given to the linker to create the final executable. Although both files are generated from different sources, they can be linked by the linker to interact with each other.
-
+Upon compiling a C source file, the compiler generates an object file (.o) that contains all the instructions for the functions defined in the source. Similarly, the assembler produces an object file that must be passed to the linker to create the final executable. Despite being generated from different sources, both files can be linked by the linker, allowing them to interact with one another
 
 ## 13.2. Calling Assembly from C
-To call Assembly from C we can create a procedure that prints a message and export it through the linker in order to it be accessible inside the C environment.
+To call Assembly from C we create a procedure that prints a message and export it through the linker in order to make it accessible inside the C environment.
 ```asm
 global helloMsg ; making the procedure globally 
                 ; visible to the linker
@@ -65,7 +64,7 @@ Hello, C lang!
 ```
 
 ## 13.3. Calling C from Assembly
-The advantage of calling C functions from Assembly is that the C programming language supports high-level code structures, such as `if/else`, `switch`, `while`, `for`, and so on. 
+One advantage of invoking C functions from Assembly is that C provides high-level control structures, such as `if/else`, `switch`, `while`, and `for`.
 
 Performing operations in Assembly using C procedures makes the entire process easier.
 ```c
@@ -263,7 +262,7 @@ segment .rodata
 ```
 The `extern` keyword behaves in exactly the same way for functions coming from shared objects.
 
-The program above can'g run yet, it have to be linked against the glibc shared object.
+The program above can't run yet, it have to be linked against the glibc shared object first.
 
 The following set of commands accomplish the assembling and the linking tasks:
 ```sh
